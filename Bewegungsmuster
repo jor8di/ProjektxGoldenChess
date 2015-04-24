@@ -1,0 +1,365 @@
+
+public class Bewegungsmuster {
+
+	Gui dieGui;
+	Steuerung dieSteuerung;
+	String gegnerString;
+	
+	int x;
+	int y;
+	
+	int buttonKoordinaten [] = new int [2];
+
+	public Bewegungsmuster(Gui dieGui, Steuerung dieSteuerung) {
+		
+		this.dieGui = dieGui;
+		this.dieSteuerung = dieSteuerung;		
+		
+	}
+	
+	//--------------------------------------------------------------------------------
+	
+	public void hochfuellen(String button, String arraySpielfeld [][]) {
+		
+		buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+		
+		x= buttonKoordinaten [0];
+		y= buttonKoordinaten [1];
+		
+		//y-Achse hoch auffüllen
+		
+		
+		for (int i = 1; i < arraySpielfeld.length; i++) {
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x, y-i)==true) {
+					
+					break;
+					
+				} else if(dieGui.pruefeObGegner(x, y-i)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x, y-i);
+					
+					dieGui.schreibeGegnerButton(x, y-i, gegnerString, button);
+					
+					break;
+
+				}else{
+					
+					dieGui.setzteFeld(x,y-i,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+			} catch (Exception e) {
+				
+				break;
+				
+			}
+			
+		}
+	}
+	//--------------------------------------------------------------------------------
+	
+ 	public void runterfuellen(String button, String arraySpielfeld [][]) {
+	
+ 		buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+ 		
+ 		x= buttonKoordinaten [0];
+ 		y= buttonKoordinaten [1];
+ 		
+	//y-Achse runter füllen
+	
+	for (int i = 1; i < arraySpielfeld.length; i++) {
+		
+		try {
+			
+			if (dieGui.pruefeObVerbuendeter(x, y+i)==true) {
+				
+				break;
+				
+			} else if(dieGui.pruefeObGegner(x,y+i)!="-1"){
+				
+				gegnerString = dieGui.pruefeObGegner(x, y+i);
+				
+				dieGui.schreibeGegnerButton(x, y+i,gegnerString,button);
+				
+				break;
+
+			}else{
+				
+				dieGui.setzteFeld(x,y+i,dieGui.iBlauesFeld,"blau");
+				
+			}
+			
+		} catch (Exception e) {
+			break;
+		}
+		
+	}
+}
+ 	//--------------------------------------------------------------------------------
+ 	
+ 	public void rechtsfuellen(String button, String arraySpielfeld [][]) {
+ 		
+ 		buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+ 		
+ 		x= buttonKoordinaten [0];
+ 		y= buttonKoordinaten [1];
+ 		
+		//x-Achse nach rechts füllen
+		
+		for (int i = 1; i < arraySpielfeld.length; i++) {
+			 
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x+i, y)==true) {
+					
+					break;
+					
+				} else if(dieGui.pruefeObGegner(x+i,y)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x+i, y);
+					
+					dieGui.schreibeGegnerButton(x+i, y, gegnerString, button);
+					
+					break;
+
+				}else{
+					
+					dieGui.setzteFeld(x+i,y,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+			} catch (Exception e) {
+				break;
+			}
+			
+		}
+		
+ 	}
+ 	//--------------------------------------------------------------------------------
+ 	
+ 	public void linksfuellen(String button, String arraySpielfeld [][]) {
+ 		
+ 		buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+ 		
+ 		x= buttonKoordinaten [0];
+ 		y= buttonKoordinaten [1];
+
+		//x-Achse nach links füllen
+		
+		for (int i = 1; i < arraySpielfeld.length; i++) {
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x-i, y)==true) {
+					
+					break;
+					
+				} else if(dieGui.pruefeObGegner(x-i,y)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x-i, y);
+					
+					dieGui.schreibeGegnerButton(x-i, y, gegnerString, button);
+					
+					break;
+
+				}else{
+					
+					dieGui.setzteFeld(x-i,y,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+			} catch (Exception e) {
+				break;
+			}
+			
+		}
+		
+		
+ 	}
+ 	//--------------------------------------------------------------------------------
+ 	
+ 	public void diagonalObenRechtsfuellen(String button, String arraySpielfeld [][]) {
+ 		
+ 		buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+ 		
+ 		x= buttonKoordinaten [0];
+ 		y= buttonKoordinaten [1];
+
+ 		//diagonal-Achse nach oben-rechts füllen
+		
+		for (int i = 1; i < arraySpielfeld.length; i++) {
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x+i, y-i)==true) {
+					
+					break;
+					
+				} else if(dieGui.pruefeObGegner(x+i,y-i)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x+i, y-i);
+					
+					dieGui.schreibeGegnerButton(x+i, y-i, gegnerString, button);
+					
+					break;
+
+				}else{
+					
+					dieGui.setzteFeld(x+i,y-i,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+				
+			} catch (Exception e) {
+				break;
+			}
+			
+		}
+		
+		
+		
+ 	}
+ 	//--------------------------------------------------------------------------------
+ 	
+ 	public void diagonalObenLinksfuellen(String button, String arraySpielfeld [][]) {
+	
+ 		buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+ 		
+ 		x= buttonKoordinaten [0];
+ 		y= buttonKoordinaten [1];
+
+	//diagonal-Achse nach oben-links füllen
+	
+	for (int i = 1; i < arraySpielfeld.length; i++) {
+		
+		try {
+			
+			if (dieGui.pruefeObVerbuendeter(x-i, y-i)==true) {
+				
+				break;
+				
+			} else if(dieGui.pruefeObGegner(x-i,y-i)!="-1"){
+				
+				gegnerString = dieGui.pruefeObGegner(x-i, y-i);
+				
+				dieGui.schreibeGegnerButton(x-i, y-i, gegnerString, button);
+				
+				break;
+
+			}else{
+				
+				dieGui.setzteFeld(x-i,y-i,dieGui.iBlauesFeld,"blau");
+				
+			}
+			
+			
+			
+		} catch (Exception e) {
+			break;
+		}
+		
+	}
+	
+	
+	}
+ 	//--------------------------------------------------------------------------------
+ 	
+	public void diagonalUntenRechtsfuellen(String button, String arraySpielfeld [][]) {
+	
+		buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+		
+		x= buttonKoordinaten [0];
+		y= buttonKoordinaten [1];	
+
+	//diagonal-Achse nach unten-rechts füllen
+	
+	for (int i = 1; i < arraySpielfeld.length; i++) {
+		
+		try {
+			
+			if (dieGui.pruefeObVerbuendeter(x+i, y+i)==true) {
+				
+				break;
+				
+			} else if(dieGui.pruefeObGegner(x+i,y+i)!="-1"){
+				
+				gegnerString = dieGui.pruefeObGegner(x+i, y+i);
+				
+				dieGui.schreibeGegnerButton(x+i, y+i, gegnerString, button);
+				
+				break;
+
+			}else{
+				
+				dieGui.setzteFeld(x+i,y+i,dieGui.iBlauesFeld,"blau");
+				
+			}
+			
+			
+			
+		} catch (Exception e) {
+			break;
+		}
+		
+	}
+	
+	
+	}
+	//--------------------------------------------------------------------------------
+	
+	public void diagonalUntenLinksfuellen(String button, String arraySpielfeld [][]) {
+	
+		buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+		
+		x= buttonKoordinaten [0];
+		y= buttonKoordinaten [1];
+		
+		//diagonal-Achse nach unten-links füllen
+		
+		for (int i = 1; i < arraySpielfeld.length; i++) {
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x-i, y+i)==true) {
+					
+					break;
+					
+				} else if(dieGui.pruefeObGegner(x-i,y+i)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x-i, y+i);
+					
+					dieGui.schreibeGegnerButton(x-i, y+i, gegnerString, button);
+					
+					break;
+
+				}else{
+					
+					dieGui.setzteFeld(x-i,y+i,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+			} catch (Exception e) {
+				break;
+			
+			
+		}
+		
+		}
+	
+	}
+	
+	
+}
