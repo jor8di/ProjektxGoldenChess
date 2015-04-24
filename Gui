@@ -1,0 +1,1012 @@
+ import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+
+public class Gui extends JFrame{
+
+	//Welcher Spieler ist am Zug?
+	
+	String spieler="gold";
+	
+	//Variable die angibt, wie rum das Spielfeld gedreht ist
+	
+	Boolean goldOben = true;
+	
+	//Variable die angibt, welche Figur gerade am Zug ist
+	
+	String istAmZug = null;
+	
+	//Array der die Koordinaten der im Zug befindlichen Figur speichert
+	
+	int buttonKoordinaten [] = new int [2];
+	
+	//Array des Spielfeldes vor dem Zug
+	
+	String arraySpielfeldVorher[][] = new String [8][8];
+	
+	
+	//assoziation mit könig
+	
+	Koenig derKoenig;
+	Bauer derBauer;
+	Dame dieDame;
+	Turm derTurm;
+	Steuerung dieSteuerung;
+	
+	//zweidimensionales Hintergrundspielfeldarray 
+	
+	String [][] arraySpielfeld = new String[8][8];
+	
+	//Feldernamen für array
+	//gold
+	String turmGold = "tuGold";
+	String pferdGold = "pfGold";
+	String laeuferGold = "laGold";
+	String dameGold = "daGold";
+	String koenigGold= "koGold";
+	String bauerGold = "baGold";
+	//rot-gold
+	String tuGoldRH = "tuGoldRH";
+	String pfGoldRH = "pfGoldRH";
+	String laGoldRH = "laGoldRH";
+	String daGoldRH = "daGoldRH";
+	String koGoldRH = "koGoldRH";
+	String baGoldRH = "baGoldRH";
+	
+	//silber:
+	String turmSilber = "tuSilber";
+	String pferdSilber = "pfSilber";
+	String laeuferSilber = "laSilber";
+	String dameSilber = "daSilber";
+	String koenigSilber = "koSilber";
+	String bauerSilber = "baSilber";
+	//rot-silber
+	String tuSilberRH = "tuSilberRH";
+	String pfSilberRH = "pfSilberRH";
+	String laSilberRH = "laSilberRH";
+	String daSilberRH = "daSilberRH";
+	String koSilberRH = "koSilberRH";
+	String baSilberRH = "baSilberRH";
+	
+	//weiß und schwarz
+	String weißesFeld = "weiß";
+	String schwarzesFeld ="schwarz"; 
+	
+	//64 Buttons für die jeweiligen Felder deklarieren, 1-8 = x-Achse, A-H= y-Achse
+	JButton bA1,bA2,bA3,bA4,bA5,bA6,bA7,bA8;
+	
+	JButton bB1,bB2,bB3,bB4,bB5,bB6,bB7,bB8;
+	
+	JButton bC1,bC2,bC3,bC4,bC5,bC6,bC7,bC8;
+	
+	JButton bD1,bD2,bD3,bD4,bD5,bD6,bD7,bD8;
+	
+	JButton bE1,bE2,bE3,bE4,bE5,bE6,bE7,bE8;
+	
+	JButton bF1,bF2,bF3,bF4,bF5,bF6,bF7,bF8;
+	
+	JButton bG1,bG2,bG3,bG4,bG5,bG6,bG7,bG8;
+	
+	JButton bH1,bH2,bH3,bH4,bH5,bH6,bH7,bH8;
+	
+	
+	
+	
+	
+	ImageIcon iWeißesFeld; 
+	ImageIcon iSchwarzesFeld;
+	ImageIcon iBlauesFeld;
+	
+	//goldene Figurenicons
+	ImageIcon iGoldeneDameWH;
+	ImageIcon iGoldeneDameSH;
+	ImageIcon iGoldenerKoenigWH;
+	ImageIcon iGoldenerKoenigSH;
+	ImageIcon iGoldenerLaeuferWH;
+	ImageIcon iGoldenerLaeuferSH;
+	ImageIcon iGoldenesPferdWH;
+	ImageIcon iGoldenesPferdSH;
+	ImageIcon iGoldenerTurmWH;
+	ImageIcon iGoldenerTurmSH;
+	ImageIcon iGoldenerBauerWH;
+	ImageIcon iGoldenerBauerSH;
+	
+	//rote goldene Figuren
+	ImageIcon iGoldeneDameRH;
+	ImageIcon iGoldenerKoenigRH;
+	ImageIcon iGoldenerLaeuferRH;
+	ImageIcon iGoldenesPferdRH;
+	ImageIcon iGoldenerTurmRH;
+	ImageIcon iGoldenerBauerRH;
+	
+	//silberne Figurenicons
+	ImageIcon iSilberneDameWH;
+	ImageIcon iSilberneDameSH;
+	ImageIcon iSilbernerKoenigWH;
+	ImageIcon iSilbernerKoenigSH;
+	ImageIcon iSilbernerLaeuferWH;
+	ImageIcon iSilbernerLaeuferSH;
+	ImageIcon iSilbernesPferdWH;
+	ImageIcon iSilbernesPferdSH;
+	ImageIcon iSilbernerTurmWH;
+	ImageIcon iSilbernerTurmSH;
+	ImageIcon iSilbernerBauerWH;
+	ImageIcon iSilbernerBauerSH;
+	
+	//rote Silberne Figurenicons
+	ImageIcon iSilberneDameRH;
+	ImageIcon iSilbernerKoenigRH;
+	ImageIcon iSilbernerLaeuferRH;
+	ImageIcon iSilbernesPferdRH;
+	ImageIcon iSilbernerTurmRH;
+	ImageIcon iSilbernerBauerRH;
+	
+	
+	
+	
+	
+	JPanel pBrett;
+	JPanel pContentpane;
+	
+	
+	
+	Gui(){
+		
+		
+		init(); //initialisiert Variablen der Gui
+		
+		
+		derKoenig = new Koenig(this);
+		derBauer = new Bauer(this);
+		dieDame = new Dame(this);
+		derTurm = new Turm(this);
+		dieSteuerung = new Steuerung(this,dieDame);
+		dieSteuerung = new Steuerung(this,derTurm);
+	}
+
+	
+	//Initialisierungsmethode---------------------------------------------------------------------------
+	
+	private void init() {
+		
+		
+		arraySpielfeld = erstelleSpielfeldArray();
+		
+		
+		//initialisiere Imageicons mithilfe der Bilder im Ordner SchachfigurenBilderBearbeitet
+		iWeißesFeld = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/WH.jpg");
+		iSchwarzesFeld = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/SH.jpg");
+		iBlauesFeld = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FeldHellBlau.jpg");
+		
+		//gold
+		iGoldeneDameWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/DameGoldWH.jpg");
+		iGoldeneDameSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/DameGoldSH.jpg");
+		iGoldenerKoenigWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/KoenigGoldWH.jpg");
+		iGoldenerKoenigSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/KoenigGoldSH.jpg");
+		iGoldenerLaeuferWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/LaeuferGoldWH.jpg");
+		iGoldenerLaeuferSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/LaeuferGoldSH.jpg");
+		iGoldenesPferdWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/PferdGoldWH.jpg");
+		iGoldenesPferdSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/PferdGoldSH.jpg");
+		iGoldenerTurmWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/TurmGoldWH.jpg");
+		iGoldenerTurmSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/TurmGoldSH.jpg");
+		iGoldenerBauerWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/BauerGoldWH.jpg");
+		iGoldenerBauerSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/BauerGoldSH.jpg");
+		
+		//goldRoteFiguren
+		iGoldeneDameRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/rotGold/DameGoldRH.jpg");
+		iGoldenerKoenigRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/rotGold/KoenigGoldRH.jpg");
+		iGoldenerTurmRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/rotGold/TurmGoldRH.jpg");
+		iGoldenerBauerRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/rotGold/BauerGoldRH.jpg");
+		iGoldenesPferdRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/rotGold/PferdGoldRH.jpg");
+		iGoldenerLaeuferRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/rotGold/LaeuferGoldRH.jpg");
+		
+		
+		
+		//silber
+		iSilberneDameWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/DameSilberWH.jpg");
+		iSilberneDameSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/DameSilberSH.jpg");
+		iSilbernerKoenigWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/KoenigSilberWH.jpg");
+		iSilbernerKoenigSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/KoenigSilberSH.jpg");
+		iSilbernerLaeuferWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/LaeuferSilberWH.jpg");
+		iSilbernerLaeuferSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/LaeuferSilberSH.jpg");
+		iSilbernesPferdWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/PferdSilberWH.jpg");
+		iSilbernesPferdSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/PferdSilberSH.jpg");
+		iSilbernerTurmWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/TurmSilberWH.jpg");
+		iSilbernerTurmSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/TurmSilberSH.jpg");
+		iSilbernerBauerWH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/BauerSilberWH.jpg");
+		iSilbernerBauerSH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/BauerSilberSH.jpg");
+		
+		//silberRoteFiguren
+		iSilberneDameRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/rotSilber/DameSilberRH.jpg");
+		iSilbernerKoenigRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/rotSilber/KoenigSilberRH.jpg");
+		iSilbernerLaeuferRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/rotSilber/LaeuferSilberRH.jpg");
+		iSilbernesPferdRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/rotSilber/PferdSilberRH.jpg");
+		iSilbernerTurmRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/rotSilber/TurmSilberRH.jpg");
+		iSilbernerBauerRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/rotSilber/BauerSilberRH.jpg");
+	
+		
+		
+		
+		initButtons();
+		erstelleActionLis();
+		
+		pContentpane = new JPanel();
+		pBrett = new JPanel();
+		pBrett = erstelleGridlayout();
+		
+		pContentpane.setLayout(new BorderLayout());
+		pContentpane.add(pBrett,BorderLayout.CENTER);
+		
+		this.setContentPane(pContentpane);
+		
+		this.pack();
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setSize(1000,1000);
+		
+		
+		
+		
+		
+	}
+	
+	//Initialisierungsmethode Buttons-----------------------------------------------------------------
+	
+	public void initButtons(){
+		
+		bA1 = new JButton(iGoldenerTurmWH);
+		bA2 = new JButton(iGoldenesPferdSH);
+		bA3 = new JButton(iGoldenerLaeuferWH);
+		bA4 = new JButton(iGoldeneDameSH);
+		bA5 = new JButton(iGoldenerKoenigWH);
+		bA6 = new JButton(iGoldenerLaeuferSH);
+		bA7 = new JButton(iGoldenesPferdWH);
+		bA8 = new JButton(iGoldenerTurmSH);
+		bB1 = new JButton(iGoldenerBauerSH);
+		bB2 = new JButton(iGoldenerBauerWH);
+		bB3 = new JButton(iGoldenerBauerSH);
+		bB4 = new JButton(iGoldenerBauerWH);
+		bB5 = new JButton(iGoldenerBauerSH);
+		bB6 = new JButton(iGoldenerBauerWH);
+		bB7 = new JButton(iGoldenerBauerSH);
+		bB8 = new JButton(iGoldenerBauerWH);
+		bC1 = new JButton(iWeißesFeld);
+		bC2 = new JButton(iSchwarzesFeld);
+		bC3 = new JButton(iWeißesFeld);
+		bC4 = new JButton(iSchwarzesFeld);
+		bC5 = new JButton(iWeißesFeld);
+		bC6 = new JButton(iSchwarzesFeld);
+		bC7 = new JButton(iWeißesFeld);
+		bC8 = new JButton(iSchwarzesFeld);
+		bD1 = new JButton(iSchwarzesFeld);
+		bD2 = new JButton(iWeißesFeld);
+		bD3 = new JButton(iSchwarzesFeld);
+		bD4 = new JButton(iGoldenerTurmWH);
+		bD5 = new JButton(iSchwarzesFeld);
+		bD6 = new JButton(iWeißesFeld);
+		bD7 = new JButton(iSchwarzesFeld);
+		bD8 = new JButton(iWeißesFeld);
+		bE1 = new JButton(iWeißesFeld);
+		bE2 = new JButton(iSchwarzesFeld);
+		bE3 = new JButton(iWeißesFeld);
+		bE4 = new JButton(iSchwarzesFeld);
+		bE5 = new JButton(iWeißesFeld);
+		bE6 = new JButton(iSchwarzesFeld);
+		bE7 = new JButton(iWeißesFeld);
+		bE8 = new JButton(iSchwarzesFeld);
+		bF1 = new JButton(iSchwarzesFeld);
+		bF2 = new JButton(iWeißesFeld);
+		bF3 = new JButton(iSchwarzesFeld);
+		bF4 = new JButton(iWeißesFeld);
+		bF5 = new JButton(iSchwarzesFeld);
+		bF6 = new JButton(iWeißesFeld);
+		bF7 = new JButton(iSchwarzesFeld);
+		bF8 = new JButton(iWeißesFeld);
+		bG1 = new JButton(iSilbernerBauerWH);
+		bG2 = new JButton(iSilbernerBauerSH);
+		bG3 = new JButton(iSilbernerBauerWH);
+		bG4 = new JButton(iSilbernerBauerSH);
+		bG5 = new JButton(iSilbernerBauerWH); 
+		bG6 = new JButton(iSilbernerBauerSH);
+		bG7 = new JButton(iSilbernerBauerWH);
+		bG8 = new JButton(iSilbernerBauerSH);
+		bH1 = new JButton(iSilbernerTurmSH);
+		bH2 = new JButton(iSilbernesPferdWH);
+		bH3 = new JButton(iSilbernerLaeuferSH);
+		bH4 = new JButton(iSilberneDameWH);
+		bH5 = new JButton(iSilbernerKoenigSH);
+		bH6 = new JButton(iSilbernerLaeuferWH);
+		bH7 = new JButton(iSilbernesPferdSH);
+		bH8 = new JButton(iSilbernerTurmWH);
+		
+		
+	}
+	
+	//Gebe Buttons Actionlistener-------------------------------------------------------------------
+	
+	public void erstelleActionLis() {
+		
+		bD4.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				arraySpielfeldVorher = arraySpielfeld;
+				
+				String button = "bD4";
+				
+				if (istAmZug==null) {
+					
+					dieSteuerung.rufeBewegungsMusterKlassen(arraySpielfeld, spieler, button);
+					
+				} else {
+					
+					
+
+				}
+				
+				
+				
+			}
+
+			
+		});
+		
+	}
+	
+	//Füge Buttons dem Grid-Layout zu-------------------------------------------------------------------
+	
+	public JPanel erstelleGridlayout(){
+		
+		pBrett = new JPanel(); 
+		pBrett.setLayout(new GridLayout(8,8));
+		
+		pBrett.add(bA1);
+		pBrett.add(bA2);
+		pBrett.add(bA3);
+		pBrett.add(bA4);
+		pBrett.add(bA5);
+		pBrett.add(bA6);
+		pBrett.add(bA7);
+		pBrett.add(bA8);
+		
+		pBrett.add(bB1);
+		pBrett.add(bB2);
+		pBrett.add(bB3);
+		pBrett.add(bB4);
+		pBrett.add(bB5);
+		pBrett.add(bB6);
+		pBrett.add(bB7);
+		pBrett.add(bB8);
+		
+		pBrett.add(bC1);
+		pBrett.add(bC2);
+		pBrett.add(bC3);
+		pBrett.add(bC4);
+		pBrett.add(bC5);
+		pBrett.add(bC6);
+		pBrett.add(bC7);
+		pBrett.add(bC8);
+		
+		pBrett.add(bD1);
+		pBrett.add(bD2);
+		pBrett.add(bD3);
+		pBrett.add(bD4);
+		pBrett.add(bD5);
+		pBrett.add(bD6);
+		pBrett.add(bD7);
+		pBrett.add(bD8);
+		
+		pBrett.add(bE1);
+		pBrett.add(bE2);
+		pBrett.add(bE3);
+		pBrett.add(bE4);
+		pBrett.add(bE5);
+		pBrett.add(bE6);
+		pBrett.add(bE7);
+		pBrett.add(bE8);
+		
+		pBrett.add(bF1);
+		pBrett.add(bF2);
+		pBrett.add(bF3);
+		pBrett.add(bF4);
+		pBrett.add(bF5);
+		pBrett.add(bF6);
+		pBrett.add(bF7);
+		pBrett.add(bF8);
+		
+		pBrett.add(bG1);
+		pBrett.add(bG2);
+		pBrett.add(bG3);
+		pBrett.add(bG4);
+		pBrett.add(bG5);
+		pBrett.add(bG6);
+		pBrett.add(bG7);
+		pBrett.add(bG8);
+		
+		pBrett.add(bH1);
+		pBrett.add(bH2);
+		pBrett.add(bH3);
+		pBrett.add(bH4);
+		pBrett.add(bH5);
+		pBrett.add(bH6);
+		pBrett.add(bH7);
+		pBrett.add(bH8);
+		
+		
+		return pBrett;
+		
+	}
+	
+	//erstelle einen zweidimensionalen Stringarray------------------------------------------------------
+	public String [] [] erstelleSpielfeldArray(){
+		
+	String [][] arraySpielfeld = new String [8][8];
+	int moduloRest;
+		
+		
+	//alle Felder mit schwarz oder weiß initialisieren
+	
+		for (int i = 0; i < 8; i++) {
+			
+			moduloRest = i%2;
+			
+			if (moduloRest!=0) {
+				
+				for (int j = 0; j < 8; j++) {
+					
+					moduloRest = j%2;
+					
+					if (moduloRest!=0) {
+						
+						arraySpielfeld[j][i] = weißesFeld;
+						
+					} else {
+						
+						arraySpielfeld[j][i] = schwarzesFeld;
+						
+					}
+					
+				}
+				
+				
+			} else {
+				
+				for (int j = 0; j < 8; j++) {
+					
+					moduloRest = j%2;
+					
+					if (moduloRest!=0) {
+						
+						arraySpielfeld[j][i] = schwarzesFeld;
+						
+					} else {
+						
+						arraySpielfeld[j][i] = weißesFeld;
+						
+					}
+
+			}
+			
+			
+		}
+		
+	   }
+	
+		//goldene bauern dem array hinzufügen
+		
+		for (int k = 0; k < 8; k++) {
+			
+			arraySpielfeld[k][1] = "baGold";
+			
+		}
+		
+		//silberne bauern dem array hinzufügen
+		
+		for (int k = 0; k < 8; k++) {
+					
+			arraySpielfeld[k][6] = "baSilber";
+					
+		}
+	
+		//restliche figuren setzen
+		//gold:
+		arraySpielfeld[3][3] = turmGold;
+		arraySpielfeld[1][0] = pferdGold;
+		arraySpielfeld[2][0] = laeuferGold;
+		arraySpielfeld[3][0] = dameGold;
+		arraySpielfeld[4][0] = koenigGold;
+		arraySpielfeld[5][0] = laeuferGold;
+		arraySpielfeld[6][0] = pferdGold;
+		arraySpielfeld[7][0] = turmGold;
+		
+		//silber:
+		arraySpielfeld[0][7] = turmSilber;
+		arraySpielfeld[1][7] = pferdSilber;
+		arraySpielfeld[2][7] = laeuferSilber;
+		arraySpielfeld[3][7] = dameSilber;
+		arraySpielfeld[4][7] = koenigSilber;
+		arraySpielfeld[5][7] = laeuferSilber;
+		arraySpielfeld[6][7] = pferdSilber;
+		arraySpielfeld[7][7] = turmSilber;
+		
+		
+		return arraySpielfeld;
+		
+	
+	}
+
+
+    //füge die möglichen Felder für einen zug als blaue  oder mit rotem Hintergrund Buttons hinzu
+    
+    public void setzteFeld(int x, int y, ImageIcon farbe, String feldArray){
+    	
+    	if (x==0 && y==0) {
+			
+    		bA1.setIcon(farbe);
+    		arraySpielfeld[x][y] = feldArray;
+    		
+		} else if(x==1 && y==0){
+			bA2.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==2 && y==0){
+			bA3.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==3 && y==0){
+			bA4.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==4 && y==0){
+			bA5.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==5 && y==0){
+			bA6.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==6 && y==0){
+			bA7.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==7 && y==0){
+			bA8.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+			
+			
+
+		}else if(x==0 && y==1){
+			bB1.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==1 && y==1){
+			bB2.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==2 && y==1){
+			bB3.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==3 && y==1){
+			bB4.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==4 && y==1){
+			bB5.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==5 && y==1){
+			bB6.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==6 && y==1){
+			bB7.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==7 && y==1){
+			bB8.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+			
+			
+
+		}else if(x==0 && y==2){
+			bC1.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==1 && y==2){
+			bC2.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==2 && y==2){
+			bC3.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==3 && y==2){
+			bC4.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==4 && y==2){
+			bC5.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==5 && y==2){
+			bC6.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==6 && y==2){
+			bC7.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==7 && y==2){
+			bC8.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+			
+			
+
+		}else if(x==0 && y==3){
+			bD1.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==1 && y==3){
+			bD2.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==2 && y==3){
+			bD3.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==3 && y==3){
+			bD4.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==4 && y==3){
+			bD5.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==5 && y==3){
+			bD6.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==6 && y==3){
+			bD7.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==7 && y==3){
+			bD8.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+			
+			
+
+		}else if(x==0 && y==4){
+			bE1.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==1 && y==4){
+			bE2.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+					
+		}else if(x==2 && y==4){
+			bE3.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==3 && y==4){
+			bE4.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==4 && y==4){
+			bE5.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==5 && y==4){
+			bE6.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==6 && y==4){
+			bE7.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==7 && y==4){
+			bE8.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+			
+			
+
+		}else if(x==0 && y==5){
+			bF1.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+			
+		}else if(x==1 && y==5){
+			bF2.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==2 && y==5){
+			bF3.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==3 && y==5){
+			bF4.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==4 && y==5){
+			bF5.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==5 && y==5){
+			bF6.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==6 && y==5){
+			bF7.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==7 && y==5){
+			bF8.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+			
+			
+
+		}else if(x==0 && y==6){
+			bG1.setIcon(farbe);
+			arraySpielfeld[x][y] =feldArray;
+
+		}else if(x==1 && y==6){
+			bG2.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==2 && y==6){
+			bG3.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==3 && y==6){
+			bG4.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==4 && y==6){
+			bG5.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==5 && y==6){
+			bG6.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==6 && y==6){
+			bG7.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==7 && y==6){
+			bG8.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+			
+			
+
+		}else if(x==0 && y==7){
+			bH1.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==1 && y==7){
+			bH2.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==2 && y==7){
+			bH3.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==3 && y==7){
+			bH4.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==4 && y==7){
+			bH5.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+			
+		}else if(x==5 && y==7){
+			bH6.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==6 && y==7){
+			bH7.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}else if(x==7 && y==7){
+			bH8.setIcon(farbe);
+			arraySpielfeld[x][y] = feldArray;
+
+		}
+		
+		
+		else {
+			
+		}
+    
+    	
+    }
+    
+    
+    // Prüfe von welcher gegnerischen Figur Feld besetzt wird
+    
+    public void schreibeGegnerButton(int x, int y, String gegnerString,String button){
+    
+    	switch (gegnerString) {
+
+    	case "tuGold":
+    		
+    		setzteFeld(x, y, iGoldenerTurmRH, tuGoldRH);
+			
+			break;
+
+    	case "pfGold":
+			
+    		setzteFeld(x, y, iGoldenesPferdRH, pfGoldRH);
+    		
+			break;
+
+    	case "laGold":
+			
+    		setzteFeld(x, y, iGoldenerLaeuferRH, laGoldRH);
+    		
+			break;
+
+    	case "daGold":
+			
+    		setzteFeld(x, y, iGoldeneDameRH, daGoldRH);
+    		
+			break;
+
+    	case "koGold":
+			
+    		setzteFeld(x, y, iGoldenerKoenigRH, koGoldRH);
+    		
+			break;
+
+    	case "baGold":
+			
+    		setzteFeld(x, y, iGoldenerBauerRH, baGoldRH);
+    		
+			break;
+
+    	case "tuSilber":
+			
+    		setzteFeld(x, y, iSilbernerTurmRH, tuSilberRH);
+    		
+			break;
+
+    	case "pfSilber":
+			
+    		setzteFeld(x, y, iSilbernesPferdRH, pfSilberRH);
+    		
+			break;
+
+    	case "laSilber":
+			
+    		setzteFeld(x, y, iSilbernerLaeuferRH, laSilberRH);
+    		
+			break;
+
+    	case "daSilber":
+			
+    		setzteFeld(x, y, iSilberneDameRH, daSilberRH);
+    		
+			break;
+
+    	case "koSilber":
+			
+    		setzteFeld(x, y, iSilbernerKoenigRH, koSilberRH);
+    		
+			break;
+
+    	case "baSilber":
+			
+    		setzteFeld(x, y, iSilbernerBauerRH, baSilberRH);
+    		
+			break;
+
+			
+		default:
+			
+			System.out.println("Fehler bei Verarbeitung des Actionlisteners von " + button);
+			
+			break;
+		}
+
+    	
+    }
+    
+    // Prüfe ob Feld von gegnerischer oder eigener Figur besetzt wird
+    
+    public boolean pruefeObVerbuendeter(int x, int y){
+    	
+    	//nach weißen Verbündeten abfragen
+    	
+    	if (arraySpielfeld[x][y].equals("baGold") && spieler.equals("gold")) {
+    		return true;
+		} else if(arraySpielfeld[x][y].equals("tuGold") && spieler.equals("gold")){
+			return true;
+		}else if(arraySpielfeld[x][y].equals("pfGold") && spieler.equals("gold")){
+			return true;
+		}else if(arraySpielfeld[x][y].equals("laGold") && spieler.equals("gold")){
+			return true;
+		}else if(arraySpielfeld[x][y].equals("daGold") && spieler.equals("gold")){
+			return true;
+		}else if(arraySpielfeld[x][y].equals("koGold") && spieler.equals("gold")){
+			return true;
+		}else{
+    	
+    	//nach schwarzen Verbündeten abfragen
+    	if (arraySpielfeld[x][y].equals("baSilber") && spieler.equals("silber")) {
+    		return true;
+		} else if(arraySpielfeld[x][y].equals("tuSilber") && spieler.equals("silber")){
+			return true;
+		}else if(arraySpielfeld[x][y].equals("pfSilber") && spieler.equals("silber")){
+			return true;
+		}else if(arraySpielfeld[x][y].equals("laSilber") && spieler.equals("silber")){
+			return true;
+		}else if(arraySpielfeld[x][y].equals("daSilber") && spieler.equals("silber")){
+			return true;
+		}else if(arraySpielfeld[x][y].equals("koSilber") && spieler.equals("silber")){
+			return true;
+		}else{
+			return false;
+		}
+    	
+		}
+    	
+    }
+
+    //Überprüfen ob ein gegner auf dem potentiellen Bewegungsfeld sitzt
+
+	public String pruefeObGegner(int x, int y) {
+		
+//nach goldenen Gegnern abfragen
+    	
+		System.out.println(arraySpielfeld[x][y]);
+		
+    	if (arraySpielfeld[x][y].equals("baGold") && spieler.equals("silber")) {
+    		return "baGold";
+		} else if(arraySpielfeld[x][y].equals("tuGold") && spieler.equals("silber")){
+			return "tuGold";
+		}else if(arraySpielfeld[x][y].equals("pfGold") && spieler.equals("silber")){
+			return "pfGold";
+		}else if(arraySpielfeld[x][y].equals("laGold") && spieler.equals("silber")){
+			return "laGold";
+		}else if(arraySpielfeld[x][y].equals("daGold") && spieler.equals("silber")){
+			return "daGold";
+		}else if(arraySpielfeld[x][y].equals("koGold") && spieler.equals("silber")){
+			return "koGold";
+		}else{
+    	
+    	//nach silbernen Gegnern abfragen
+    	if (arraySpielfeld[x][y]=="baSilber" && spieler.equals("gold")) {
+    		return "baSilber";
+		} else if(arraySpielfeld[x][y].equals("tuSilber") && spieler.equals("gold")){
+			return "tuSilber";
+		}else if(arraySpielfeld[x][y].equals("pfSilber") && spieler.equals("gold")){
+			return "pfSilber";
+		}else if(arraySpielfeld[x][y].equals("laSilber") && spieler.equals("gold")){
+			return "laSilber";
+		}else if(arraySpielfeld[x][y].equals("daSilber") && spieler.equals("gold")){
+			return "daSilber";
+		}else if(arraySpielfeld[x][y].equals("koSilber") && spieler.equals("gold")){
+			return "koSilber";
+		}else{
+			
+			return "-1";
+		}
+    	
+		}
+		
+		
+		
+		
+	}
+    
+}
+
+
+
+
