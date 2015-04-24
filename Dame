@@ -1,0 +1,44 @@
+
+public class Dame {
+
+	
+	Steuerung dieSteuerung;
+	Bewegungsmuster dieBewegungsmuster;
+	
+	
+
+	public Dame(Gui dieGui) {
+		
+	
+		dieSteuerung = new Steuerung(dieGui,this);
+		dieBewegungsmuster = new Bewegungsmuster(dieGui,dieSteuerung);
+	}
+
+	//Dame geklickt
+
+	public void dameClicked(String button, String arraySpielfeld [][]) {
+	
+		//-Methodenaufrufe aus der Klasse Bewegungsmuster-
+		dieBewegungsmuster.hochfuellen(button, arraySpielfeld);
+		dieBewegungsmuster.runterfuellen(button, arraySpielfeld);
+		dieBewegungsmuster.rechtsfuellen(button, arraySpielfeld);
+		dieBewegungsmuster.linksfuellen(button, arraySpielfeld);
+		dieBewegungsmuster.diagonalObenRechtsfuellen(button, arraySpielfeld);
+		dieBewegungsmuster.diagonalObenLinksfuellen(button, arraySpielfeld);
+		dieBewegungsmuster.diagonalUntenRechtsfuellen(button, arraySpielfeld);
+		dieBewegungsmuster.diagonalUntenLinksfuellen(button, arraySpielfeld);
+	
+			
+			
+			
+
+		
+		
+			
+	}
+
+	
+}
+
+
+
