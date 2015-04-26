@@ -3,6 +3,7 @@ public class Bewegungsmuster {
 
 	Gui dieGui;
 	Steuerung dieSteuerung;
+	
 	String gegnerString;
 	
 	int x;
@@ -10,10 +11,8 @@ public class Bewegungsmuster {
 	
 	int buttonKoordinaten [] = new int [2];
 
-	public Bewegungsmuster(Gui dieGui, Steuerung dieSteuerung) {
+	public Bewegungsmuster() {
 		
-		this.dieGui = dieGui;
-		this.dieSteuerung = dieSteuerung;		
 		
 	}
 	
@@ -360,6 +359,267 @@ public class Bewegungsmuster {
 		}
 	
 	}
+	//--------------------------------------------------------------------------------
 	
+	public void alleRichtungenEinFeldFuellen(String button, String arraySpielfeld [][]) {
+		
+		buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+		
+		x= buttonKoordinaten [0];
+		y= buttonKoordinaten [1];
+		
+		//oben----------------------------------------------------------------------
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x, y-1)==true) {
+					
+					
+					
+				} else if(dieGui.pruefeObGegner(x,y-1)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x, y-1);
+					
+					dieGui.schreibeGegnerButton(x, y-1, gegnerString, button);
+					
+					
+
+				}else{
+					
+					dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+				} catch (Exception e) {
+				
+			
+			
+				}
+			//unten---------------------------------------------------------------------
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x, y+1)==true) {
+					
+					
+					
+				} else if(dieGui.pruefeObGegner(x,y+1)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x, y+1);
+					
+					dieGui.schreibeGegnerButton(x, y+1, gegnerString, button);
+					
+					
+
+				}else{
+					
+					dieGui.setzteFeld(x,y+1,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+				} catch (Exception e) {
+				
+			
+			
+				}
+			
+			//rechts---------------------------------------------------------------------
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x+1, y)==true) {
+					
+					
+					
+				} else if(dieGui.pruefeObGegner(x+1,y)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x+1, y);
+					
+					dieGui.schreibeGegnerButton(x+1, y, gegnerString, button);
+					
+					
+
+				}else{
+					
+					dieGui.setzteFeld(x+1,y,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+				} catch (Exception e) {
+				
+			
+			
+				}
+			//links---------------------------------------------------------------------
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x-1, y)==true) {
+					
+					
+					
+				} else if(dieGui.pruefeObGegner(x-1,y)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x-1, y);
+					
+					dieGui.schreibeGegnerButton(x-1, y, gegnerString, button);
+					
+					
+
+				}else{
+					
+					dieGui.setzteFeld(x-1,y,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+				} catch (Exception e) {
+				
+			
+			
+				}
+			//diagonal-oben-rechts---------------------------------------------------------------------
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x+1, y-1)==true) {
+					
+					
+					
+				} else if(dieGui.pruefeObGegner(x+1,y-1)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x+1, y-1);
+					
+					dieGui.schreibeGegnerButton(x+1, y-1, gegnerString, button);
+					
+					
+
+				}else{
+					
+					dieGui.setzteFeld(x+1,y-1,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+				} catch (Exception e) {
+				
+			
+			
+				}
+			//diagonal-oben-links---------------------------------------------------------------------
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x-1, y-1)==true) {
+					
+					
+					
+				} else if(dieGui.pruefeObGegner(x-1,y-1)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x-1, y-1);
+					
+					dieGui.schreibeGegnerButton(x-1, y-1, gegnerString, button);
+					
+					
+
+				}else{
+					
+					dieGui.setzteFeld(x-1,y-1,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+				} catch (Exception e) {
+				
+			
+			
+				}
+			//diagonal-unten-rechts---------------------------------------------------------------------
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x+1, y+1)==true) {
+					
+					
+					
+				} else if(dieGui.pruefeObGegner(x+1,y+1)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x+1, y+1);
+					
+					dieGui.schreibeGegnerButton(x+1, y+1, gegnerString, button);
+					
+					
+
+				}else{
+					
+					dieGui.setzteFeld(x+1,y+1,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+				} catch (Exception e) {
+				
+			
+			
+				}
+			//diagonal-unten-links---------------------------------------------------------------------
+			
+			try {
+				
+				if (dieGui.pruefeObVerbuendeter(x-1, y+1)==true) {
+					
+					
+					
+				} else if(dieGui.pruefeObGegner(x-1,y+1)!="-1"){
+					
+					gegnerString = dieGui.pruefeObGegner(x-1, y+1);
+					
+					dieGui.schreibeGegnerButton(x-1, y+1, gegnerString, button);
+					
+					
+
+				}else{
+					
+					dieGui.setzteFeld(x-1,y+1,dieGui.iBlauesFeld,"blau");
+					
+				}
+				
+				
+				
+				} catch (Exception e) {
+				
+			
+			
+				}
+		
+		
+	}
+	
+	
+	// Assoziation mit Gui:
+	
+	public void linkGui(Gui g) {
+		
+		dieGui = g;
+		
+	}
+	
+	// Assoziation mit Steuerung:
+	
+		public void linkSteuerung(Steuerung s) {
+			
+			dieSteuerung = s;
+			
+		}
 	
 }
