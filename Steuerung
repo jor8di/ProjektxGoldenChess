@@ -1,0 +1,560 @@
+
+public class Steuerung {
+	
+	Bewegungsmuster dieBewegungsmuster;
+	Dame dieDame;
+	Turm derTurm;
+	Laeufer derLaeufer;
+	Koenig derKoenig;
+	
+	Steuerung(Bewegungsmuster b){
+	
+		dieBewegungsmuster = b;
+		dieBewegungsmuster.linkSteuerung(this);
+		
+		
+		dieDame = new Dame(b);
+		derTurm = new Turm(b);
+		derLaeufer = new Laeufer(b);
+		derKoenig = new Koenig(b);
+			
+	}
+	
+	// Gibt die dem Button entsprechende Stringstelle im array
+	public int [] gibButtonKoordinaten(String button){
+		
+		
+		int buttonKoordinaten [] = new int [2];
+		
+		switch (button){
+		case "bA1":
+			buttonKoordinaten [0]= 0;
+			buttonKoordinaten [1]= 0;
+			break;	
+		
+		case "bA2":
+			buttonKoordinaten [0]= 1;
+			buttonKoordinaten [1]= 0;
+			break;
+		
+		case "bA3":
+			buttonKoordinaten [0]= 2;
+			buttonKoordinaten [1]= 0;
+			break;
+			
+		case "bA4":
+			buttonKoordinaten [0]= 3;
+			buttonKoordinaten [1]= 0;
+			break;
+		
+		case "bA5":
+			buttonKoordinaten [0]= 4;
+			buttonKoordinaten [1]= 0;
+			break;
+			
+		case "bA6":
+			buttonKoordinaten [0]= 5;
+			buttonKoordinaten [1]= 0;
+			break;
+			
+		case "bA7":
+			buttonKoordinaten [0]= 6;
+			buttonKoordinaten [1]= 0;
+			break;
+			
+		case "bA8":
+			buttonKoordinaten [0]= 7;
+			buttonKoordinaten [1]= 0;
+			break;
+			
+	//------------------------------------------------------------
+			
+		case "bB1":
+			buttonKoordinaten [0]= 0;
+			buttonKoordinaten [1]= 1;
+			break;	
+		
+		case "bB2":
+			buttonKoordinaten [0]= 1;
+			buttonKoordinaten [1]= 1;
+			break;
+		
+		case "bB3":
+			buttonKoordinaten [0]= 2;
+			buttonKoordinaten [1]= 1;
+			break;
+			
+		case "bB4":
+			buttonKoordinaten [0]= 3;
+			buttonKoordinaten [1]= 1;
+			break;
+		
+		case "bB5":
+			buttonKoordinaten [0]= 4;
+			buttonKoordinaten [1]= 1;
+			break;
+			
+		case "bB6":
+			buttonKoordinaten [0]= 5;
+			buttonKoordinaten [1]= 1;
+			break;
+			
+		case "bB7":
+			buttonKoordinaten [0]= 6;
+			buttonKoordinaten [1]= 1;
+			break;
+			
+		case "bB8":
+			buttonKoordinaten [0]= 7;
+			buttonKoordinaten [1]= 1;
+			break;
+		
+//-----------b-----------------
+		case "bC1":
+			buttonKoordinaten [0]= 0;
+			buttonKoordinaten [1]= 2;
+			break;	
+		
+		case "bC2":
+			buttonKoordinaten [0]= 1;
+			buttonKoordinaten [1]= 2;
+			break;
+		
+		case "bC3":
+			buttonKoordinaten [0]= 2;
+			buttonKoordinaten [1]= 2;
+			break;
+			
+		case "bC4":		
+			buttonKoordinaten [0]= 3;
+			buttonKoordinaten [1]= 2;
+			break;
+		
+		case "bC5":
+			buttonKoordinaten [0]= 4;
+			buttonKoordinaten [1]= 2;
+			break;
+			
+		case "bC6":
+			buttonKoordinaten [0]= 5;
+			buttonKoordinaten [1]= 2;
+			break;
+			
+		case "bC7":
+			buttonKoordinaten [0]= 6;
+			buttonKoordinaten [1]= 2;
+			break;
+			
+		case "bC8":
+			buttonKoordinaten [0]= 7;
+			buttonKoordinaten [1]= 2;
+			break;
+			
+		case "bD1":
+			buttonKoordinaten [0] = 0;
+			buttonKoordinaten [1] = 3;
+			break;
+
+		case "bD2":
+			buttonKoordinaten [0] = 1;
+			buttonKoordinaten [1] = 3;
+			break;
+
+
+		case "bD3":
+			buttonKoordinaten [0] = 2;
+			buttonKoordinaten [1] = 3;
+			break;
+
+
+		case "bD4":
+			buttonKoordinaten [0] = 3;
+			buttonKoordinaten [1] = 3;
+			break;
+
+
+		case "bD5":
+			buttonKoordinaten [0] = 4;
+			buttonKoordinaten [1] = 3;
+			break;
+
+
+		case "bD6":
+			buttonKoordinaten [0] = 5;
+			buttonKoordinaten [1] = 3;
+			break;
+
+		case "bD7":
+			buttonKoordinaten [0] = 6;
+			buttonKoordinaten [1] = 3;
+			break;
+
+		case "bD8":
+			buttonKoordinaten [0] = 7;
+			buttonKoordinaten [1] = 3;
+			break;
+			//---------------------------------------------------------------------------------
+
+		case "bE1":
+			buttonKoordinaten [0] = 0;
+			buttonKoordinaten [1] = 4;
+			break;
+
+		case "bE2":
+			buttonKoordinaten [0] = 1;
+			buttonKoordinaten [1] = 4;
+			break;
+
+		case "bE3":
+			buttonKoordinaten [0] = 2;
+			buttonKoordinaten [1] = 4;
+			break;
+
+
+		case "bE4":
+			buttonKoordinaten [0] = 3;
+			buttonKoordinaten [1] = 4;
+			break;
+
+
+		case "bE5":
+			buttonKoordinaten [0] = 4;
+			buttonKoordinaten [1] = 4;
+			break;
+
+
+		case "bE6":
+			buttonKoordinaten [0] = 5;
+			buttonKoordinaten [1] = 4;
+			break;
+
+		case "bE7":
+			buttonKoordinaten [0] = 6;
+			buttonKoordinaten [1] = 4;
+			break;
+
+		case "bE8":
+			buttonKoordinaten [0] = 7;
+			buttonKoordinaten [1] = 4;
+			break;
+			//---------------------------------------------------------------------------------
+
+
+		case "bF1":
+			buttonKoordinaten [0] = 0;
+			buttonKoordinaten [1] = 5;
+			break;
+
+		case "bF2":
+			buttonKoordinaten [0] = 1;
+			buttonKoordinaten [1] = 5;
+			break;
+
+		case "bF3":
+			buttonKoordinaten [0] = 2;
+			buttonKoordinaten [1] = 5;
+			break;
+
+
+		case "bF4":
+			buttonKoordinaten [0] = 3;
+			buttonKoordinaten [1] = 5;
+			break;
+
+
+		case "bF5":
+			buttonKoordinaten [0] = 4;
+			buttonKoordinaten [1] = 5;
+			break;
+
+
+		case "bF6":
+			buttonKoordinaten [0] = 5;
+			buttonKoordinaten [1] = 5;
+			break;
+
+		case "bF7":
+			buttonKoordinaten [0] = 6;
+			buttonKoordinaten [1] = 5;
+			break;
+
+		case "bF8":
+			buttonKoordinaten [0] = 7;
+			buttonKoordinaten [1] = 5;
+			break;
+			//---------------------------------------------------------------------------------
+
+		case "bG1":
+			buttonKoordinaten [0] = 0;
+			buttonKoordinaten [1] = 6;
+			break;
+
+		case "bG2":
+			buttonKoordinaten [0] = 1;
+			buttonKoordinaten [1] = 6;
+			break;
+
+		case "bG3":
+			buttonKoordinaten [0] = 2;
+			buttonKoordinaten [1] = 6;
+			break;
+
+		case "bG4":
+			buttonKoordinaten [0] = 3;
+			buttonKoordinaten [1] = 6;
+			break;
+
+		case "bG5":
+			buttonKoordinaten [0] = 4;
+			buttonKoordinaten [1] = 6;
+			break;
+
+
+		case "bG6":
+			buttonKoordinaten [0] = 5;
+			buttonKoordinaten [1] = 6;
+			break;
+
+		case "bG7":
+			buttonKoordinaten [0] = 6;
+			buttonKoordinaten [1] = 6;
+			break;
+
+		case "bG8":
+			buttonKoordinaten [0] = 7;
+			buttonKoordinaten [1] = 6;
+			break;
+			//---------------------------------------------------------------------------------
+
+		case "bH1":
+			buttonKoordinaten [0] = 0;
+			buttonKoordinaten [1] = 7;
+			break;
+
+		case "bH2":
+			buttonKoordinaten [0] = 1;
+			buttonKoordinaten [1] = 7;
+			break;
+
+		case "bH3":
+			buttonKoordinaten [0] = 2;
+			buttonKoordinaten [1] = 7;
+			break;
+
+		case "bH4":
+			buttonKoordinaten [0] = 3;
+			buttonKoordinaten [1] = 7;
+			break;
+
+		case "bH5":
+			buttonKoordinaten [0] = 4;
+			buttonKoordinaten [1] = 7;
+			break;
+
+
+		case "bH6":
+			buttonKoordinaten [0] = 5;
+			buttonKoordinaten [1] = 7;
+			break;
+
+		case "bH7":
+			buttonKoordinaten [0] = 6;
+			buttonKoordinaten [1] = 7;
+			break;
+
+		case "bH8":
+			buttonKoordinaten [0] = 7;
+			buttonKoordinaten [1] = 7;
+			break;
+			//---------------------------------------------------------------------------------	
+			
+		default:
+			break;
+			
+		}
+		
+		return buttonKoordinaten; 
+		
+		
+	}
+
+	//Prüfungsmethode ob eine Figur angeklickt wurde
+	
+	public boolean istFigurAngeklickt (String [][] arraySpielfeld){
+		
+		for (int i = 0; i < arraySpielfeld.length; i++) {
+			
+			for (int j = 0; j < arraySpielfeld.length; j++) {
+				
+				if (arraySpielfeld[j][i].equals("blau") || arraySpielfeld[j][i].equals("tuGoldRH") 
+						|| arraySpielfeld[j][i].equals("pfGoldRH") || arraySpielfeld[j][i].equals("laGoldRH") 
+						|| arraySpielfeld[j][i].equals("daGoldRH") || arraySpielfeld[j][i].equals("koGoldRH") 
+						|| arraySpielfeld[j][i].equals("baGoldRH") || arraySpielfeld[j][i].equals("tuSilberRH") 
+						|| arraySpielfeld[j][i].equals("pfSilberRH") || arraySpielfeld[j][i].equals("laSilberRH") 
+						|| arraySpielfeld[j][i].equals("daSilberRH") || arraySpielfeld[j][i].equals("koSilberRH") 
+						|| arraySpielfeld[j][i].equals("baSilber") ) {
+					
+					return true;
+					
+				}
+				
+			}
+			
+		}
+		
+		return false;
+		
+		
+	}
+	
+	
+	
+	//Classenaufrufe der verschiedenen Klassen für die jeweiligen Bewegungsmuster----------------------------------------------------------------------------
+	
+	public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spieler, String button) {
+		
+		int x = gibButtonKoordinaten(button)[0];
+		int y = gibButtonKoordinaten(button)[1];
+		
+		
+		if(spieler.equals("gold")){
+		
+			  switch (arraySpielfeld[x][y]) {
+			  
+			  case "tuGold":
+				  
+				  	derTurm.turmClicked(button, arraySpielfeld);
+				  	break;
+				
+			  case "pfGold":
+				  
+					break;
+					
+			  case "laGold":
+				  
+				  	derLaeufer.laeuferClicked(button, arraySpielfeld);
+					break;
+					
+			  case "daGold":
+				  
+					dieDame.dameClicked(button,arraySpielfeld);
+					break;
+					
+			  case "koGold":
+				  
+				  	derKoenig.koenigClicked(button,arraySpielfeld);
+					break;
+					
+			  case "baGold":
+				  
+					break;
+
+			  default:
+				  
+				break;
+			  
+				  }
+			
+				
+		}else if(spieler.equals("silber")){ 
+			
+			
+				switch (arraySpielfeld[x][y]) {
+				
+				  case "tuSilber":
+					 
+					  	derTurm.turmClicked(button, arraySpielfeld);
+					  
+					  	break;
+					
+				  case "pfSilber":
+					  
+						break;
+						
+				  case "laSilber":
+					 
+					  	derLaeufer.laeuferClicked(button, arraySpielfeld);
+						break;
+						
+				  case "daSilber":
+					  
+						dieDame.dameClicked(button,arraySpielfeld);
+						break;
+						
+				  case "koSilber":
+					  
+					  	derKoenig.koenigClicked(button,arraySpielfeld);
+						break;
+						
+				  case "baSilber":
+					  
+						break;
+
+				  default:
+					break;
+				
+				}
+		
+		
+			}
+	
+			
+	   }
+	
+	
+	//Methode, um die Stelle eines bestimmten Strings im arraySpielfeld zu finden
+	
+	public int [] gibStrinStelle(String arraySpielfeld[][], String figur){
+		
+		int buttonKoordinaten [] = new int [2];
+		
+		for (int i = 0; i < arraySpielfeld.length; i++) {
+			
+			for (int j = 0; j < arraySpielfeld.length; j++) {
+				
+				if(arraySpielfeld[j][i]==figur){
+					
+					buttonKoordinaten[0] = j;
+					buttonKoordinaten[1] = i;
+					
+					return buttonKoordinaten;
+					
+					
+				}
+				
+			}
+			
+		}
+		
+		return null;
+		
+	}
+	
+	//Bewegen einer Schachfigur
+	
+	
+	public void bewegen(String button){
+		//	
+		//int x = gibButtonKoordinaten(button)[0];
+		//int y = gibButtonKoordinaten(button)[1];
+		
+		//if (dieGui.arraySpielfeld[x][y].equals("blau") || dieGui.arraySpielfeld[x][y].equals("tuGoldRH") 
+		//		|| dieGui.arraySpielfeld[x][y].equals("pfGoldRH") || dieGui.arraySpielfeld[x][y].equals("laGoldRH") 
+		//		|| dieGui.arraySpielfeld[x][y].equals("daGoldRH") || dieGui.arraySpielfeld[x][y].equals("koGoldRH") 
+		//		|| dieGui.arraySpielfeld[x][y].equals("baGoldRH") || dieGui.arraySpielfeld[x][y].equals("tuSilberRH") 
+		//		|| dieGui.arraySpielfeld[x][y].equals("pfSilberRH") || dieGui.arraySpielfeld[x][y].equals("laSilberRH") 
+		//		|| dieGui.arraySpielfeld[x][y].equals("daSilberRH") || dieGui.arraySpielfeld[x][y].equals("koSilberRH") 
+		//		|| dieGui.arraySpielfeld[x][y].equals("baSilber") ) {
+			
+			
+			
+			
+		
+
+		//}else{
+			
+		//}
+		
+	}
+	
+}
