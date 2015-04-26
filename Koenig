@@ -1,0 +1,20 @@
+
+public class Koenig {
+	
+	Bewegungsmuster dieBewegungsmuster;
+	
+	public Koenig(Bewegungsmuster b){
+		
+		dieBewegungsmuster = b;
+		
+	}
+	
+	
+	//feld mit könig wurde geklickt-------------------------
+	public void koenigClicked(String button, String arraySpielfeld [][]){
+		
+		dieBewegungsmuster.alleRichtungenEinFeldFuellen(button, arraySpielfeld);
+		
+	}
+
+}
