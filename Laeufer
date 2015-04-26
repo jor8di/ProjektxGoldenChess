@@ -1,0 +1,28 @@
+
+public class Laeufer {
+
+	Bewegungsmuster dieBewegungsmuster;
+	
+	public Laeufer(Bewegungsmuster b) {
+		
+		dieBewegungsmuster = b;
+		
+	}
+	
+	
+	//Laeufer geklickt
+
+	public void laeuferClicked(String button, String arraySpielfeld [][]) {
+		
+		//-Methodenaufrufe aus der Klasse Bewegungsmuster-
+				
+				dieBewegungsmuster.diagonalObenRechtsfuellen(button, arraySpielfeld);
+				dieBewegungsmuster.diagonalObenLinksfuellen(button, arraySpielfeld);
+				dieBewegungsmuster.diagonalUntenRechtsfuellen(button, arraySpielfeld);
+				dieBewegungsmuster.diagonalUntenLinksfuellen(button, arraySpielfeld);
+		
+		
+	}
+	
+	
+}
