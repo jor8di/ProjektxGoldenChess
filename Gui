@@ -32,13 +32,10 @@ public class Gui extends JFrame{
 	String arraySpielfeldVorher[][] = new String [8][8];
 	
 	
-	//assoziation mit könig
+	//assoziation mit Steuerung
 	
-	Koenig derKoenig;
-	Bauer derBauer;
-	Dame dieDame;
-	Turm derTurm;
 	Steuerung dieSteuerung;
+	Bewegungsmuster dieBewegungsmuster;
 	
 	//zweidimensionales Hintergrundspielfeldarray 
 	
@@ -157,18 +154,17 @@ public class Gui extends JFrame{
 	
 	
 	
-	Gui(){
+	Gui(Bewegungsmuster b){
+		dieBewegungsmuster = b;
 		
+		dieSteuerung = new Steuerung(dieBewegungsmuster);
+		
+		
+		dieBewegungsmuster.linkGui(this);
 		
 		init(); //initialisiert Variablen der Gui
 		
 		
-		derKoenig = new Koenig(this);
-		derBauer = new Bauer(this);
-		dieDame = new Dame(this);
-		derTurm = new Turm(this);
-		dieSteuerung = new Steuerung(this,dieDame);
-		dieSteuerung = new Steuerung(this,derTurm);
 	}
 
 	
@@ -287,7 +283,7 @@ public class Gui extends JFrame{
 		bD1 = new JButton(iSchwarzesFeld);
 		bD2 = new JButton(iWeißesFeld);
 		bD3 = new JButton(iSchwarzesFeld);
-		bD4 = new JButton(iGoldenerTurmWH);
+		bD4 = new JButton(iGoldenerKoenigWH);
 		bD5 = new JButton(iSchwarzesFeld);
 		bD6 = new JButton(iWeißesFeld);
 		bD7 = new JButton(iSchwarzesFeld);
@@ -516,11 +512,11 @@ public class Gui extends JFrame{
 	
 		//restliche figuren setzen
 		//gold:
-		arraySpielfeld[3][3] = turmGold;
+		arraySpielfeld[0][0] = turmGold;
 		arraySpielfeld[1][0] = pferdGold;
 		arraySpielfeld[2][0] = laeuferGold;
 		arraySpielfeld[3][0] = dameGold;
-		arraySpielfeld[4][0] = koenigGold;
+		arraySpielfeld[3][3] = koenigGold;
 		arraySpielfeld[5][0] = laeuferGold;
 		arraySpielfeld[6][0] = pferdGold;
 		arraySpielfeld[7][0] = turmGold;
@@ -1001,10 +997,13 @@ public class Gui extends JFrame{
 		}
 		
 		
-		
-		
 	}
     
+	
+	
+	
+	
+	
 }
 
 
