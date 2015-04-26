@@ -1,17 +1,17 @@
 
 public class Dame {
 
-	
-	Steuerung dieSteuerung;
+	Gui dieGui;
 	Bewegungsmuster dieBewegungsmuster;
+	
+
 	
 	
 
-	public Dame(Gui dieGui) {
+	public Dame(Bewegungsmuster b) {
 		
-	
-		dieSteuerung = new Steuerung(dieGui,this);
-		dieBewegungsmuster = new Bewegungsmuster(dieGui,dieSteuerung);
+		
+		dieBewegungsmuster = b;
 	}
 
 	//Dame geklickt
