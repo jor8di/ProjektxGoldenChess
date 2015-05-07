@@ -14,6 +14,19 @@ public class Laeufer {
 
 	public void laeuferClicked(String button, String arraySpielfeld [][]) {
 		
+		//Laeufer mit dunkelblauem Hintergrund hinterlegen:
+				if (dieBewegungsmuster.getSpieler().equals("gold")) {
+					
+					  dieBewegungsmuster.setzteAktuelleFigur(button,"laGoldDBH");
+					
+				} else {
+					
+				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"laSilberDBH");
+
+				}
+		
+		
+		
 		//-Methodenaufrufe aus der Klasse Bewegungsmuster-
 				
 				dieBewegungsmuster.diagonalObenRechtsfuellen(button, arraySpielfeld);
