@@ -13,8 +13,21 @@ public class Koenig {
 	//feld mit könig wurde geklickt-------------------------
 	public void koenigClicked(String button, String arraySpielfeld [][]){
 		
+		//König mit dunkelblauem Hintergrund hinterlegen:
+				if (dieBewegungsmuster.getSpieler().equals("gold")) {
+					
+					  dieBewegungsmuster.setzteAktuelleFigur(button,"koGoldDBH");
+					
+				} else {
+					
+				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"koSilberDBH");
+
+				}
+		
 		dieBewegungsmuster.alleRichtungenEinFeldFuellen(button, arraySpielfeld);
 		
 	}
 
+	
+	
 }
