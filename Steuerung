@@ -530,30 +530,67 @@ public class Steuerung {
 		
 	}
 	
+	//Algorithmus für das Drehen des Spielfeldes:
+	
+	public String [][] dreheSpielfeld(String [][] arraySpielfeld) {
+		
+		String speichereFigur;
+		
+		for (int i = 0; i < 4; i++) {
+			
+			for (int j = 0; j < arraySpielfeld.length; j++) {
+				
+				speichereFigur = arraySpielfeld[j][i];
+				
+				arraySpielfeld[j][i] = arraySpielfeld [7-j][7-i];
+				
+				arraySpielfeld [7-j][7-i] = speichereFigur;
+				
+				
+			}
+			
+		}
+		
+		
+		return arraySpielfeld;
+	}
+	
 	//Bewegen einer Schachfigur
 	
 	
-	public void bewegen(String button){
-		//	
-		//int x = gibButtonKoordinaten(button)[0];
-		//int y = gibButtonKoordinaten(button)[1];
+	public void bewegen(int buttonKoordinaten[], String button){
 		
-		//if (dieGui.arraySpielfeld[x][y].equals("blau") || dieGui.arraySpielfeld[x][y].equals("tuGoldRH") 
-		//		|| dieGui.arraySpielfeld[x][y].equals("pfGoldRH") || dieGui.arraySpielfeld[x][y].equals("laGoldRH") 
-		//		|| dieGui.arraySpielfeld[x][y].equals("daGoldRH") || dieGui.arraySpielfeld[x][y].equals("koGoldRH") 
-		//		|| dieGui.arraySpielfeld[x][y].equals("baGoldRH") || dieGui.arraySpielfeld[x][y].equals("tuSilberRH") 
-		//		|| dieGui.arraySpielfeld[x][y].equals("pfSilberRH") || dieGui.arraySpielfeld[x][y].equals("laSilberRH") 
-		//		|| dieGui.arraySpielfeld[x][y].equals("daSilberRH") || dieGui.arraySpielfeld[x][y].equals("koSilberRH") 
-		//		|| dieGui.arraySpielfeld[x][y].equals("baSilber") ) {
-			
-			
-			
-			
+		int xFigurAmZug = buttonKoordinaten[0];
+		int yFigurAmZug = buttonKoordinaten[1];
 		
+		int xFigurAufFeld = gibButtonKoordinaten(button)[0];
+		int yFigurAufFeld = gibButtonKoordinaten(button)[1];
+		
+		if (dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "blau") {
+			
+			dieBewegungsmuster.dieGui.arraySpielfeldVorher[xFigurAufFeld][yFigurAufFeld] = dieBewegungsmuster.dieGui.arraySpielfeldVorher[xFigurAmZug][yFigurAmZug]; 
+			
+			dieBewegungsmuster.dieGui.arraySpielfeldVorher[xFigurAmZug][yFigurAmZug] = null; 
+			
+			dieBewegungsmuster.dieGui.arraySpielfeld = dieBewegungsmuster.dieGui.arraySpielfeldVorher;
+			
+			dieBewegungsmuster.dieGui.überschreibeButtons(dieBewegungsmuster.dieGui.arraySpielfeld);
+			
+			dieBewegungsmuster.dieGui.istAmZug = false;
+			
+			
+		} else {
 
-		//}else{
+			dieBewegungsmuster.dieGui.arraySpielfeld = dieBewegungsmuster.dieGui.arraySpielfeldVorher;
 			
-		//}
+			dieBewegungsmuster.dieGui.überschreibeButtons(dieBewegungsmuster.dieGui.arraySpielfeld);
+			
+			dieBewegungsmuster.dieGui.istAmZug = false;
+			
+		}
+		
+		
+		
 		
 	}
 	
