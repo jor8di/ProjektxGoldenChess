@@ -6,8 +6,10 @@ public class Ausführung {
 		//String arraySpielfeld[][] = new String[8][8];
 		Bewegungsmuster dieBewegungsmuster;
 		dieBewegungsmuster = new Bewegungsmuster();
+		Actionlistener dieActionlistener;
+		dieActionlistener = new Actionlistener();
 		
-		Gui startfenster = new Gui(dieBewegungsmuster);
+		Gui startfenster = new Gui(dieBewegungsmuster,dieActionlistener);
 		
 		startfenster.setVisible(true);
 		
