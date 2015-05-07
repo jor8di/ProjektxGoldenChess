@@ -16,6 +16,28 @@ public class Bewegungsmuster {
 		
 	}
 	
+	// Hinterlegt ein aktuelles Feld mit dunkelblauem Hintergrund
+	
+	public void setzteAktuelleFigur (String button, String figur){
+		
+		int x,y;
+		x = dieSteuerung.gibButtonKoordinaten(button)[0];
+		y = dieSteuerung.gibButtonKoordinaten(button)[1];
+		
+		dieGui.arraySpielfeld[x][y] = figur;
+		
+		dieGui.überschreibeButtons(dieGui.arraySpielfeld);
+		
+	}
+	
+	//Gibt aktuellen Spieler zurück
+	
+	public String getSpieler() {
+		
+		return dieGui.spieler;
+	}
+	
+	
 	//--------------------------------------------------------------------------------
 	
 	public void hochfuellen(String button, String arraySpielfeld [][]) {
