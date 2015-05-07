@@ -1,4 +1,4 @@
- import java.awt.BorderLayout;
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -21,7 +21,7 @@ public class Gui extends JFrame{
 	
 	//Variable die angibt, welche Figur gerade am Zug ist
 	
-	String istAmZug = null;
+	Boolean istAmZug = false;
 	
 	//Array der die Koordinaten der im Zug befindlichen Figur speichert
 	
@@ -35,7 +35,12 @@ public class Gui extends JFrame{
 	//assoziation mit Steuerung
 	
 	Steuerung dieSteuerung;
+	
+	//assoziation mit Bewegungsmuster
 	Bewegungsmuster dieBewegungsmuster;
+	
+	//assoziation mit Actionlistener
+	ActionListener dieActionListener;
 	
 	//zweidimensionales Hintergrundspielfeldarray 
 	
@@ -93,6 +98,10 @@ public class Gui extends JFrame{
 	
 	JButton bH1,bH2,bH3,bH4,bH5,bH6,bH7,bH8;
 	
+	//Button für das Drehen des Spielfeldes 
+	
+	JButton bSpielfeldDreher;
+	
 	
 	
 	
@@ -122,6 +131,13 @@ public class Gui extends JFrame{
 	ImageIcon iGoldenesPferdRH;
 	ImageIcon iGoldenerTurmRH;
 	ImageIcon iGoldenerBauerRH;
+	//Blaue goldene Figuren
+	ImageIcon iGoldeneDameDBH;
+	ImageIcon iGoldenerKoenigDBH;
+	ImageIcon iGoldenerLaeuferDBH;
+	ImageIcon iGoldenesPferdDBH;
+	ImageIcon iGoldenerTurmDBH;
+	ImageIcon iGoldenerBauerDBH;
 	
 	//silberne Figurenicons
 	ImageIcon iSilberneDameWH;
@@ -145,22 +161,33 @@ public class Gui extends JFrame{
 	ImageIcon iSilbernerTurmRH;
 	ImageIcon iSilbernerBauerRH;
 	
+	//blaue Silberne Figurenicons
+	ImageIcon iSilberneDameDBH;
+	ImageIcon iSilbernerKoenigDBH;
+	ImageIcon iSilbernerLaeuferDBH;
+	ImageIcon iSilbernesPferdDBH;
+	ImageIcon iSilbernerTurmDBH;
+	ImageIcon iSilbernerBauerDBH;
+	
 	
 	
 	
 	
 	JPanel pBrett;
+	JPanel pUnten;
 	JPanel pContentpane;
 	
 	
 	
-	Gui(Bewegungsmuster b){
+	Gui(Bewegungsmuster b,Actionlistener a){
 		dieBewegungsmuster = b;
+		dieActionListener = a;
 		
 		dieSteuerung = new Steuerung(dieBewegungsmuster);
 		
 		
 		dieBewegungsmuster.linkGui(this);
+		
 		
 		init(); //initialisiert Variablen der Gui
 		
@@ -203,6 +230,13 @@ public class Gui extends JFrame{
 		iGoldenesPferdRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/rotGold/PferdGoldRH.jpg");
 		iGoldenerLaeuferRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/rotGold/LaeuferGoldRH.jpg");
 		
+		//goldBlaueFiguren
+		iGoldeneDameDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/DBlauGold/DameGoldDBH.jpg");
+		iGoldenerKoenigDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/DBlauGold/KoenigGoldDBH.jpg");
+		iGoldenerTurmDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/DBlauGold/TurmGoldDBH.jpg");
+		iGoldenerBauerDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/DBlauGold/BauerGoldDBH.jpg");
+		iGoldenesPferdDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/DBlauGold/PferdGoldDBH.jpg");
+		iGoldenerLaeuferDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenGold/DBlauGold/LaeuferGoldDBH.jpg");
 		
 		
 		//silber
@@ -226,19 +260,33 @@ public class Gui extends JFrame{
 		iSilbernesPferdRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/rotSilber/PferdSilberRH.jpg");
 		iSilbernerTurmRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/rotSilber/TurmSilberRH.jpg");
 		iSilbernerBauerRH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/rotSilber/BauerSilberRH.jpg");
+		
+		//blaue silberne Figuren
+		iSilberneDameDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/DBlauSilber/DameSilberDBH.jpg");
+		iSilbernerKoenigDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/DBlauSilber/KoenigSilberDBH.jpg");
+		iSilbernerLaeuferDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/DBlauSilber/LaeuferSilberDBH.jpg");
+		iSilbernesPferdDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/DBlauSilber/PferdSilberDBH.jpg");
+		iSilbernerTurmDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/DBlauSilber/TurmSilberDBH.jpg");
+		iSilbernerBauerDBH = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/FigurenSilber/DBlauSilber/BauerSilberDBH.jpg");
 	
 		
 		
 		
 		initButtons();
-		erstelleActionLis();
+		dieActionListener.erstelleActionLis();
+		
 		
 		pContentpane = new JPanel();
+		
 		pBrett = new JPanel();
 		pBrett = erstelleGridlayout();
 		
+		pUnten = new JPanel(new FlowLayout());
+		pUnten.add(bSpielfeldDreher);
+		
 		pContentpane.setLayout(new BorderLayout());
 		pContentpane.add(pBrett,BorderLayout.CENTER);
+		pContentpane.add(pUnten,BorderLayout.SOUTH);																																													
 		
 		this.setContentPane(pContentpane);
 		
@@ -322,38 +370,56 @@ public class Gui extends JFrame{
 		bH8 = new JButton(iSilbernerTurmWH);
 		
 		
+		bSpielfeldDreher = new JButton();
+		
+		
 	}
 	
 	//Gebe Buttons Actionlistener-------------------------------------------------------------------
 	
-	public void erstelleActionLis() {
-		
-		bD4.addActionListener(new ActionListener() {
+		public void erstelleActionLis() {
 			
-			public void actionPerformed(ActionEvent arg0) {
+			bD4.addActionListener(new ActionListener() {
 				
-				arraySpielfeldVorher = arraySpielfeld;
-				
-				String button = "bD4";
-				
-				if (istAmZug==null) {
+				public void actionPerformed(ActionEvent arg0) {
 					
-					dieSteuerung.rufeBewegungsMusterKlassen(arraySpielfeld, spieler, button);
+					String button = "bD4";
 					
-				} else {
-					
-					
+					if (istAmZug==false) {
+						
+						arraySpielfeldVorher = arraySpielfeld;
+						
+						dieSteuerung.rufeBewegungsMusterKlassen(arraySpielfeld, spieler, button);
+						
+						istAmZug = true;
+						
+					} else {
+						
+						dieSteuerung.bewegen(buttonKoordinaten,button);
 
+					}
+		
+					
 				}
-				
-				
-				
-			}
 
+			});
 			
-		});
-		
-	}
+			//Actionlistener für Dreher-Button:
+			
+			bSpielfeldDreher.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					
+					arraySpielfeld = dieSteuerung.dreheSpielfeld(arraySpielfeld);
+					
+					überschreibeButtons(arraySpielfeld);
+					
+					
+				}
+			});
+			
+		}
 	
 	//Füge Buttons dem Grid-Layout zu-------------------------------------------------------------------
 	
@@ -440,6 +506,7 @@ public class Gui extends JFrame{
 	}
 	
 	//erstelle einen zweidimensionalen Stringarray------------------------------------------------------
+	
 	public String [] [] erstelleSpielfeldArray(){
 		
 	String [][] arraySpielfeld = new String [8][8];
@@ -516,7 +583,7 @@ public class Gui extends JFrame{
 		arraySpielfeld[1][0] = pferdGold;
 		arraySpielfeld[2][0] = laeuferGold;
 		arraySpielfeld[3][0] = dameGold;
-		arraySpielfeld[3][3] = koenigGold;
+		arraySpielfeld[4][0] = koenigGold;
 		arraySpielfeld[5][0] = laeuferGold;
 		arraySpielfeld[6][0] = pferdGold;
 		arraySpielfeld[7][0] = turmGold;
@@ -531,6 +598,7 @@ public class Gui extends JFrame{
 		arraySpielfeld[6][7] = pferdSilber;
 		arraySpielfeld[7][7] = turmSilber;
 		
+		arraySpielfeld[3][3] = koenigGold;
 		
 		return arraySpielfeld;
 		
@@ -999,9 +1067,289 @@ public class Gui extends JFrame{
 		
 	}
     
+	//--------------------------------------------------------------------------------------------------------------------------
+	//Methode, welche die Buttons des Spielfeldes mit den Figuren des Strings überschreibt
+	
+	public void überschreibeButtons(String arraySpielfeld [][]) {
+		
+		for (int i = 0; i < arraySpielfeld.length; i++) {
+			
+			for (int j = 0; j < arraySpielfeld.length; j++) {
+				
+				switch (arraySpielfeld[j][i]) {
+				
+				case "tuGold":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iGoldenerTurmWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iGoldenerTurmSH, arraySpielfeld[j][i]);
+					}
+					break;
+					//---------------------------------------------------------
+				case "pfGold":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iGoldenesPferdWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iGoldenesPferdSH, arraySpielfeld[j][i]);
+					}
+					break;
+					//---------------------------------------------------------
+				case "laGold":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iGoldenerLaeuferWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iGoldenerLaeuferSH, arraySpielfeld[j][i]);
+					}
+					break;
+					//---------------------------------------------------------
+				case "daGold":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iGoldeneDameWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iGoldeneDameSH, arraySpielfeld[j][i]);
+					}
+					break;
+					//---------------------------------------------------------
+				case "koGold":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iGoldenerKoenigWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iGoldenerKoenigSH, arraySpielfeld[j][i]);
+					}
+					break;
+					//---------------------------------------------------------
+				case "baGold":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iGoldenerBauerWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iGoldenerBauerSH, arraySpielfeld[j][i]);
+					}
+					break;
+					
+					//----goldMitRotemHintergrund
+				case "tuGoldRH":
+					setzteFeld(j, i, iGoldenerTurmRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "laGoldRH":
+					setzteFeld(j, i, iGoldenerLaeuferRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "pfGoldRH":
+					setzteFeld(j, i, iGoldenesPferdRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "daGoldRH":
+					setzteFeld(j, i, iGoldeneDameRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "koGoldRH":
+					setzteFeld(j, i, iGoldenerKoenigRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "baGoldRH":
+					setzteFeld(j, i, iGoldenerBauerRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+					
+					//----goldMitBlauemHintergrund
+				case "tuGoldDBH":
+					setzteFeld(j, i, iGoldenerTurmDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "laGoldDBH":
+					setzteFeld(j, i, iGoldenerLaeuferDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "pfGoldDBH":
+					setzteFeld(j, i, iGoldenesPferdDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "daGoldDBH":
+					setzteFeld(j, i, iGoldeneDameDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "koGoldDBH":
+					setzteFeld(j, i, iGoldenerKoenigDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "baGoldDBH":
+					setzteFeld(j, i, iGoldenerBauerDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+					
+					
+					
+				//--------------------------------Silberne Figuren---------------------------------------------------
+				case "tuSilber":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iSilbernerTurmWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iSilbernerTurmSH, arraySpielfeld[j][i]);
+					}
+					break;
+				//----------------------------------------------------------------
+				case "pfSilber":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iSilbernesPferdWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iSilbernesPferdSH, arraySpielfeld[j][i]);
+					}
+					break;
+				//----------------------------------------------------------------
+				case "laSilber":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iSilbernerLaeuferWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iSilbernerLaeuferSH, arraySpielfeld[j][i]);
+					}
+					break;
+				//----------------------------------------------------------------
+				case "daSilber":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iSilberneDameWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iSilberneDameSH, arraySpielfeld[j][i]);
+					}
+					break;
+				//----------------------------------------------------------------
+				case "koSilber":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iSilbernerKoenigWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iSilbernerKoenigSH, arraySpielfeld[j][i]);
+					}
+					break;
+				//----------------------------------------------------------------
+				case "baSilber":
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iSilbernerBauerWH, arraySpielfeld[j][i]);
+					} else {
+						setzteFeld(j, i, iSilbernerBauerSH, arraySpielfeld[j][i]);
+					}
+					break;
+				//----------------------------------------------------------------
+				
+					//----SilberMitRotemHintergrund
+				case "tuSilberRH":
+					setzteFeld(j, i, iSilbernerTurmRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "laSilberRH":
+					setzteFeld(j, i, iSilbernerLaeuferRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "pfSilberRH":
+					setzteFeld(j, i, iSilbernesPferdRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "daSilberRH":
+					setzteFeld(j, i, iSilberneDameRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "koSilberRH":
+					setzteFeld(j, i, iSilbernerKoenigRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "baSilberRH":
+					setzteFeld(j, i, iSilbernerBauerRH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+					
+					//----SilberMitBlauemHintergrund
+				case "tuSilberDBH":
+					setzteFeld(j, i, iSilbernerTurmDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "laSilberDBH":
+					setzteFeld(j, i, iSilbernerLaeuferDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "pfSilberDBH":
+					setzteFeld(j, i, iSilbernesPferdDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "daSilberDBH":
+					setzteFeld(j, i, iSilberneDameDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "koSilberDBH":
+					setzteFeld(j, i, iSilbernerKoenigDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+				case "baSilberDBH":
+					setzteFeld(j, i, iSilbernerBauerDBH, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------
+					
+					
+					
+					//--Unbesetzte Felder
+				case "blau":
+					setzteFeld(j, i, iBlauesFeld, arraySpielfeld[j][i]);
+					break;
+					//-------------------------------------------------------	
+					
+
+				default:
+					
+					if (schwarzOderWeiß(j, i).equals("weiß")) {
+						setzteFeld(j, i, iWeißesFeld, "weiß");
+					} else {
+						setzteFeld(j, i, iSchwarzesFeld, "schwarz");
+					}
+					
+					break;
+				}
+				
+			}
+		}
+		
+	}
 	
 	
+	//Methode, welche zurückgibt ob das durch x-und y-Koordinaten übergebene Feld weiß oder schwarz ist
 	
+	public String schwarzOderWeiß(int x, int y) {
+		
+		int moduloRest;
+		
+		moduloRest = y%2;
+		
+		if (moduloRest!=0) {
+				
+				moduloRest = x%2;
+				
+				if (moduloRest!=0) {
+					
+					return "weiß";
+					
+				} else {
+					
+					return "schwarz";
+					
+				}
+			
+			
+		} else {
+				
+				moduloRest = x%2;
+				
+				if (moduloRest!=0) {
+					
+					return "schwarz";
+					
+				} else {
+					
+					return "weiß";
+					
+				}
+				
+		}		
+
+		
+		
+	}
 	
 	
 }
