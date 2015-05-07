@@ -1,0 +1,436 @@
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Actionlistener implements ActionListener{
+ 
+	Gui dieGui;
+	
+	String button;
+	
+	public Actionlistener() {
+		
+	}
+	
+	
+	//Gebe Buttons Actionlistener-------------------------------------------------------------------
+	
+		public void erstelleActionLis() {
+			
+			dieGui.bA1.addActionListener(this);
+			dieGui.bA2.addActionListener(this);
+			dieGui.bA3.addActionListener(this);
+			dieGui.bA4.addActionListener(this);
+			dieGui.bA5.addActionListener(this);
+			dieGui.bA6.addActionListener(this);
+			dieGui.bA7.addActionListener(this);
+			dieGui.bA8.addActionListener(this);
+			
+			dieGui.bB1.addActionListener(this);
+			dieGui.bB2.addActionListener(this);
+			dieGui.bB3.addActionListener(this);
+			dieGui.bB4.addActionListener(this);
+			dieGui.bB5.addActionListener(this);
+			dieGui.bB6.addActionListener(this);
+			dieGui.bB7.addActionListener(this);
+			dieGui.bB8.addActionListener(this);
+			
+			dieGui.bC1.addActionListener(this);
+			dieGui.bC2.addActionListener(this);
+			dieGui.bC3.addActionListener(this);
+			dieGui.bC4.addActionListener(this);
+			dieGui.bC5.addActionListener(this);
+			dieGui.bC6.addActionListener(this);
+			dieGui.bC7.addActionListener(this);
+			dieGui.bC8.addActionListener(this);
+			
+			dieGui.bD1.addActionListener(this);
+			dieGui.bD2.addActionListener(this);
+			dieGui.bD3.addActionListener(this);
+			dieGui.bD4.addActionListener(this);
+			dieGui.bD5.addActionListener(this);
+			dieGui.bD6.addActionListener(this);
+			dieGui.bD7.addActionListener(this);
+			dieGui.bD8.addActionListener(this);
+			
+			dieGui.bE1.addActionListener(this);
+			dieGui.bE2.addActionListener(this);
+			dieGui.bE3.addActionListener(this);
+			dieGui.bE4.addActionListener(this);
+			dieGui.bE5.addActionListener(this);
+			dieGui.bE6.addActionListener(this);
+			dieGui.bE7.addActionListener(this);
+			dieGui.bE8.addActionListener(this);
+			
+			dieGui.bF1.addActionListener(this);
+			dieGui.bF2.addActionListener(this);
+			dieGui.bF3.addActionListener(this);
+			dieGui.bF4.addActionListener(this);
+			dieGui.bF5.addActionListener(this);
+			dieGui.bF6.addActionListener(this);
+			dieGui.bF7.addActionListener(this);
+			dieGui.bF8.addActionListener(this);
+			
+			dieGui.bG1.addActionListener(this);
+			dieGui.bG2.addActionListener(this);
+			dieGui.bG3.addActionListener(this);
+			dieGui.bG4.addActionListener(this);
+			dieGui.bG5.addActionListener(this);
+			dieGui.bG6.addActionListener(this);
+			dieGui.bG7.addActionListener(this);
+			dieGui.bG8.addActionListener(this);
+			
+			dieGui.bH1.addActionListener(this);
+			dieGui.bH2.addActionListener(this);
+			dieGui.bH3.addActionListener(this);
+			dieGui.bH4.addActionListener(this);
+			dieGui.bH5.addActionListener(this);
+			dieGui.bH6.addActionListener(this);
+			dieGui.bH7.addActionListener(this);
+			dieGui.bH8.addActionListener(this);
+			
+			
+		}
+	
+   
+        
+    
+ 
+    public void actionPerformed (ActionEvent ae){
+        // Die Quelle wird mit getSource() abgefragt und mit den
+        // Buttons abgeglichen. Wenn die Quelle des ActionEvents einer
+        // der Buttons ist, wird der Text des JLabels entsprechend geändert
+        if(ae.getSource() == this.dieGui.bA1){
+        	
+        	button = "bA1";
+        	action(button);
+	
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        else if(ae.getSource() == this.dieGui.bA2){
+        	button = "bA2";
+        	action(button);
+        }
+        
+        
+    
+     // Assoziation mit Gui:
+    	
+    	public void linkGui(Gui g) {
+    		
+    		dieGui = g;
+    		
+    	}
+        
+    	
+    	public void action(String button) {
+			
+			if (dieGui.istAmZug==false) {
+				
+				dieGui.arraySpielfeldVorher = dieGui.arraySpielfeld;
+				
+				dieGui.dieSteuerung.rufeBewegungsMusterKlassen(dieGui.arraySpielfeld, dieGui.spieler, button);
+				
+				dieGui.istAmZug = true;
+				
+			} else {
+				
+				dieGui.dieSteuerung.bewegen(dieGui.buttonKoordinaten,button);
+
+			}
+    		
+		}
+    	
+    	
+    }
