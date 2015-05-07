@@ -1,1 +1,15 @@
 
+public class Bauer {
+
+	Bewegungsmuster dieBewegungsmuster;
+	
+	public Bauer() {
+		
+		dieBewegungsmuster = new Bewegungsmuster();
+		
+	}
+	
+	
+	
+}
+
