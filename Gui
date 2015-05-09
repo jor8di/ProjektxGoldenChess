@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class Gui extends JFrame{
+public class Gui extends JFrame implements ActionListener{
 
 	//Welcher Spieler ist am Zug?
-	
+	   String button;
 	String spieler="gold";
 	
 	//Variable die angibt, wie rum das Spielfeld gedreht ist
@@ -40,7 +40,7 @@ public class Gui extends JFrame{
 	Bewegungsmuster dieBewegungsmuster;
 	
 	//assoziation mit Actionlistener
-	ActionListener dieActionListener;
+	//Actionlistener dieActionlistener;
 	
 	//zweidimensionales Hintergrundspielfeldarray 
 	
@@ -177,23 +177,23 @@ public class Gui extends JFrame{
 	JPanel pUnten;
 	JPanel pContentpane;
 	
+	public Gui(){}
 	
-	
-	Gui(Bewegungsmuster b,Actionlistener a){
+	Gui(Bewegungsmuster b){
 		dieBewegungsmuster = b;
-		dieActionListener = a;
+		
 		
 		dieSteuerung = new Steuerung(dieBewegungsmuster);
-		
+	
 		
 		dieBewegungsmuster.linkGui(this);
-		
 		
 		init(); //initialisiert Variablen der Gui
 		
 		
+		
 	}
-
+ 
 	
 	//Initialisierungsmethode---------------------------------------------------------------------------
 	
@@ -273,7 +273,7 @@ public class Gui extends JFrame{
 		
 		
 		initButtons();
-		dieActionListener.erstelleActionLis();
+		//dieActionlistener.erstelleActionLis();
 		
 		
 		pContentpane = new JPanel();
@@ -376,51 +376,378 @@ public class Gui extends JFrame{
 	}
 	
 	//Gebe Buttons Actionlistener-------------------------------------------------------------------
+	//Gebe Buttons Actionlistener-------------------------------------------------------------------
 	
-		public void erstelleActionLis() {
-			
-			bD4.addActionListener(new ActionListener() {
-				
-				public void actionPerformed(ActionEvent arg0) {
-					
-					String button = "bD4";
-					
-					if (istAmZug==false) {
-						
-						arraySpielfeldVorher = arraySpielfeld;
-						
-						dieSteuerung.rufeBewegungsMusterKlassen(arraySpielfeld, spieler, button);
-						
-						istAmZug = true;
-						
-					} else {
-						
-						dieSteuerung.bewegen(buttonKoordinaten,button);
+			public void erstelleActionLis() {
 
-					}
+				
+				
+				bA1.addActionListener(this);
+				bA2.addActionListener(this);
+				bA3.addActionListener(this);
+				bA4.addActionListener(this);
+				bA5.addActionListener(this);
+				bA6.addActionListener(this);
+				bA7.addActionListener(this);
+				bA8.addActionListener(this);
+				
+				bB1.addActionListener(this);
+				bB2.addActionListener(this);
+				bB3.addActionListener(this);
+				bB4.addActionListener(this);
+				bB5.addActionListener(this);
+				bB6.addActionListener(this);
+				bB7.addActionListener(this);
+				bB8.addActionListener(this);
+				
+				bC1.addActionListener(this);
+				bC2.addActionListener(this);
+				bC3.addActionListener(this);
+				bC4.addActionListener(this);
+				bC5.addActionListener(this);
+				bC6.addActionListener(this);
+				bC7.addActionListener(this);
+				bC8.addActionListener(this);
+				
+				bD1.addActionListener(this);
+				bD2.addActionListener(this);
+				bD3.addActionListener(this);
+				bD4.addActionListener(this);
+				bD5.addActionListener(this);
+				bD6.addActionListener(this);
+				bD7.addActionListener(this);
+				bD8.addActionListener(this);
+				
+				bE1.addActionListener(this);
+				bE2.addActionListener(this);
+				bE3.addActionListener(this);
+				bE4.addActionListener(this);
+				bE5.addActionListener(this);
+				bE6.addActionListener(this);
+				bE7.addActionListener(this);
+				bE8.addActionListener(this);
+				
+				bF1.addActionListener(this);
+				bF2.addActionListener(this);
+				bF3.addActionListener(this);
+				bF4.addActionListener(this);
+				bF5.addActionListener(this);
+				bF6.addActionListener(this);
+				bF7.addActionListener(this);
+				bF8.addActionListener(this);
+				
+				bG1.addActionListener(this);
+				bG2.addActionListener(this);
+				bG3.addActionListener(this);
+				bG4.addActionListener(this);
+				bG5.addActionListener(this);
+				bG6.addActionListener(this);
+				bG7.addActionListener(this);
+				bG8.addActionListener(this);
+				
+				bH1.addActionListener(this);
+				bH2.addActionListener(this);
+				bH3.addActionListener(this);
+				bH4.addActionListener(this);
+				bH5.addActionListener(this);
+				bH6.addActionListener(this);
+				bH7.addActionListener(this);
+				bH8.addActionListener(this);
+				
+				
+			}
 		
-					
-				}
 
-			});
-			
-			//Actionlistener für Dreher-Button:
-			
-			bSpielfeldDreher.addActionListener(new ActionListener() {
+
+		
+
+		public void actionPerformed (ActionEvent ae){
+	     
+			// Die Quelle wird mit getSource() abgefragt und mit den
+	        // Buttons abgeglichen. Wenn die Quelle des ActionEvents einer
+	        // der Buttons ist, wird der Text des JLabels entsprechend geändert
+	        if(ae.getSource() == this.bA1){
+	        	button = "bA1";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bA2){
+	        	button = "bA2";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bA3){
+	        	button = "bA3";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bA4){
+	        	button = "bA4";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bA5){
+	        	button = "bA5";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bA6){
+	        	button = "bA6";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bA7){
+	        	button = "bA7";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bA8){
+	        	button = "bA8";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bB1){
+	        	button = "bB1";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bB2){
+	        	button = "bB2";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bB3){
+	        	button = "bB3";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bB4){
+	        	button = "bB4";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bB5){
+	        	button = "bB5";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bB6){
+	        	button = "bB6";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bB7){
+	        	button = "bB7";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bB8){
+	        	button = "bB8";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bC1){
+	        	button = "bC1";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bC2){
+	        	button = "bC2";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bC3){
+	        	button = "bC3";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bC4){
+	        	button = "bC4";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bC5){
+	        	button = "bC5";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bC6){
+	        	button = "bC6";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bC7){
+	        	button = "bC7";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bC8){
+	        	button = "bC8";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bD1){
+	        	button = "bD1";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bD2){
+	        	button = "bD2";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bD3){
+	        	button = "bD3";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bD4){
+	        	button = "bD4";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bD5){
+	        	button = "bD5";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bD6){
+	        	button = "bD6";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bD7){
+	        	button = "bD7";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bD8){
+	        	button = "bD8";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bE1){
+	        	button = "bE1";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bE2){
+	        	button = "bE2";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bE3){
+	        	button = "bE3";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bE4){
+	        	button = "bE4";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bE5){
+	        	button = "bE5";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bE6){
+	        	button = "bE6";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bE7){
+	        	button = "bE7";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bE8){
+	        	button = "bE8";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bF1){
+	        	button = "bF1";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bF2){
+	        	button = "bF2";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bF3){
+	        	button = "bF3";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bF4){
+	        	button = "bF4";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bF5){
+	        	button = "bF5";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bF6){
+	        	button = "bF6";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bF7){
+	        	button = "bF7";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bF8){
+	        	button = "bF8";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bG1){
+	        	button = "bG1";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bG2){
+	        	button ="bG2";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bG3){
+	        	button = "bG3";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bG4){
+	        	button = "bG4";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bG5){
+	        	button = "bG5";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bG6){
+	        	button = "bG6";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bG7){
+	        	button = "bG7";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bG8){
+	        	button = "bG8";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bH1){
+	        	button = "bH1";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bH2){
+	        	button = "bH2";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bH3){
+	        	button = "bH3";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bH4){
+	        	button = "bH4";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bH5){
+	        	button = "bH5";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bH6){
+	        	button = "bH6";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bH7){
+	        	button = "bH7";
+	        	action(button);
+	        }
+	        else if(ae.getSource() == this.bH8){
+	        	button = "bH8";
+	        	action(button); }
+	        }
+	       
+	        
+	        
+	    
+	     // Assoziation mit Gui:
+	    	
+
+	    	
+	    	public void action(String button) {
 				
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
+				if (istAmZug==false) {
 					
-					arraySpielfeld = dieSteuerung.dreheSpielfeld(arraySpielfeld);
+					arraySpielfeldVorher = arraySpielfeld;
 					
-					überschreibeButtons(arraySpielfeld);
+					dieSteuerung.rufeBewegungsMusterKlassen(arraySpielfeld, spieler, button);
 					
+					istAmZug = true;
 					
+				} else {
+					
+					dieSteuerung.bewegen(buttonKoordinaten,button);
+
 				}
-			});
-			
-		}
-	
+	    		
+			}
+
 	//Füge Buttons dem Grid-Layout zu-------------------------------------------------------------------
 	
 	public JPanel erstelleGridlayout(){
@@ -1350,9 +1677,18 @@ public class Gui extends JFrame{
 		
 		
 	}
+
+	//------------------------------------------------------------------------------------------------
 	
 	
-}
+	
+	
+	
+    	
+    	
+    }
+
+
 
 
 
