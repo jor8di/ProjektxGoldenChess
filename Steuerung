@@ -6,8 +6,6 @@ public class Steuerung {
 	Turm derTurm;
 	Laeufer derLaeufer;
 	Koenig derKoenig;
-	BauerGold derGoldeneBauer;
-	Pferd dasPferd;
 	
 	Steuerung(Bewegungsmuster b){
 	
@@ -19,8 +17,7 @@ public class Steuerung {
 		derTurm = new Turm(b);
 		derLaeufer = new Laeufer(b);
 		derKoenig = new Koenig(b);
-		derGoldeneBauer = new BauerGold(b);
-		dasPferd = new Pferd(b);
+			
 	}
 	
 	// Gibt die dem Button entsprechende Stringstelle im array
@@ -420,6 +417,7 @@ public class Steuerung {
 		int y = gibButtonKoordinaten(button)[1];
 		
 		
+		
 		if(spieler.equals("gold")){
 		
 			  switch (arraySpielfeld[x][y]) {
@@ -430,7 +428,7 @@ public class Steuerung {
 				  	break;
 				
 			  case "pfGold":
-				    dasPferd.pferdClicked(button, arraySpielfeld);
+				  
 					break;
 					
 			  case "laGold":
@@ -449,7 +447,7 @@ public class Steuerung {
 					break;
 					
 			  case "baGold":
-				    derGoldeneBauer.bauerGoldClicked(button,arraySpielfeld);
+				  
 					break;
 
 			  default:
@@ -573,7 +571,7 @@ public class Steuerung {
 			
 			dieBewegungsmuster.dieGui.arraySpielfeldVorher[xFigurAufFeld][yFigurAufFeld] = dieBewegungsmuster.dieGui.arraySpielfeldVorher[xFigurAmZug][yFigurAmZug]; 
 			
-			dieBewegungsmuster.dieGui.arraySpielfeldVorher[xFigurAmZug][yFigurAmZug] = null; 
+			dieBewegungsmuster.dieGui.arraySpielfeldVorher[xFigurAmZug][yFigurAmZug] = ""; 
 			
 			dieBewegungsmuster.dieGui.arraySpielfeld = dieBewegungsmuster.dieGui.arraySpielfeldVorher;
 			
