@@ -1,3 +1,5 @@
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 
 public class Steuerung {
 	
@@ -416,15 +418,14 @@ public class Steuerung {
 		int x = gibButtonKoordinaten(button)[0];
 		int y = gibButtonKoordinaten(button)[1];
 		
-		
-		
 		if(spieler.equals("gold")){
-		
+			
 			  switch (arraySpielfeld[x][y]) {
 			  
 			  case "tuGold":
 				  
 				  	derTurm.turmClicked(button, arraySpielfeld);
+				  	dieBewegungsmuster.dieGui.istAmZug= true;
 				  	break;
 				
 			  case "pfGold":
@@ -434,16 +435,19 @@ public class Steuerung {
 			  case "laGold":
 				  
 				  	derLaeufer.laeuferClicked(button, arraySpielfeld);
+				  	dieBewegungsmuster.dieGui.istAmZug= true;
 					break;
 					
 			  case "daGold":
 				  
 					dieDame.dameClicked(button,arraySpielfeld);
+					dieBewegungsmuster.dieGui.istAmZug= true;
 					break;
 					
 			  case "koGold":
 				  
 				  	derKoenig.koenigClicked(button,arraySpielfeld);
+				  	dieBewegungsmuster.dieGui.istAmZug= true;
 					break;
 					
 			  case "baGold":
@@ -465,7 +469,7 @@ public class Steuerung {
 				  case "tuSilber":
 					 
 					  	derTurm.turmClicked(button, arraySpielfeld);
-					  
+					  	dieBewegungsmuster.dieGui.istAmZug= true;
 					  	break;
 					
 				  case "pfSilber":
@@ -475,16 +479,19 @@ public class Steuerung {
 				  case "laSilber":
 					 
 					  	derLaeufer.laeuferClicked(button, arraySpielfeld);
+					  	dieBewegungsmuster.dieGui.istAmZug= true;
 						break;
 						
 				  case "daSilber":
 					  
 						dieDame.dameClicked(button,arraySpielfeld);
+						dieBewegungsmuster.dieGui.istAmZug= true;
 						break;
 						
 				  case "koSilber":
 					  
 					  	derKoenig.koenigClicked(button,arraySpielfeld);
+					  	dieBewegungsmuster.dieGui.istAmZug= true;
 						break;
 						
 				  case "baSilber":
@@ -492,6 +499,8 @@ public class Steuerung {
 						break;
 
 				  default:
+					  
+					  
 					break;
 				
 				}
@@ -561,6 +570,8 @@ public class Steuerung {
 	
 	public void bewegen(int buttonKoordinaten[], String button){
 		
+		
+		
 		int xFigurAmZug = buttonKoordinaten[0];
 		int yFigurAmZug = buttonKoordinaten[1];
 		
@@ -569,30 +580,107 @@ public class Steuerung {
 		
 		if (dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "blau") {
 			
-			dieBewegungsmuster.dieGui.arraySpielfeldVorher[xFigurAufFeld][yFigurAufFeld] = dieBewegungsmuster.dieGui.arraySpielfeldVorher[xFigurAmZug][yFigurAmZug]; 
 			
-			dieBewegungsmuster.dieGui.arraySpielfeldVorher[xFigurAmZug][yFigurAmZug] = ""; 
 			
-			dieBewegungsmuster.dieGui.arraySpielfeld = dieBewegungsmuster.dieGui.arraySpielfeldVorher;
+			dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld] = dieBewegungsmuster.dieGui.figurAmZug; 
+			
+			dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAmZug][yFigurAmZug] = ""; 
+			
+			deleteFarbe();
 			
 			dieBewegungsmuster.dieGui.überschreibeButtons(dieBewegungsmuster.dieGui.arraySpielfeld);
 			
 			dieBewegungsmuster.dieGui.istAmZug = false;
+			
+			if (dieBewegungsmuster.dieGui.spieler.equals("gold")) {
+				
+				dieBewegungsmuster.dieGui.spieler = "silber";
+				
+			} else {
+				
+				dieBewegungsmuster.dieGui.spieler = "gold";
+
+			}
 			
 			
 		} else {
 
-			dieBewegungsmuster.dieGui.arraySpielfeld = dieBewegungsmuster.dieGui.arraySpielfeldVorher;
+			dieBewegungsmuster.dieGui.arraySpielfeld [xFigurAmZug][yFigurAmZug] = dieBewegungsmuster.dieGui.figurAmZug;
+			
+			deleteFarbe();
 			
 			dieBewegungsmuster.dieGui.überschreibeButtons(dieBewegungsmuster.dieGui.arraySpielfeld);
 			
 			dieBewegungsmuster.dieGui.istAmZug = false;
+		}
+	
+		
+	}
+	
+	
+	public void deleteFarbe () {
+		
+		for (int i = 0; i < dieBewegungsmuster.dieGui.arraySpielfeld.length; i++) {
+			
+			for (int j = 0; j < dieBewegungsmuster.dieGui.arraySpielfeld.length; j++) {
+				
+				switch (dieBewegungsmuster.dieGui.arraySpielfeld[j][i]) {
+				case "tuGoldRH":
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="tuGold";
+					break;
+				case "pfGoldRH":
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="pfGold";
+					break;
+				case "laGoldRH":
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="laGold";
+					break;
+				case "daGoldRH": 
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="daGold";
+					break;
+				case "koGoldRH":
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="koGold";
+					break;
+				case "baGoldRH":
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="baGold";
+					break;
+					
+/////////////////////////////////////////////////////////////					
+					
+				case "tuSilberRH":
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="tuSilber";
+					break;
+				case "pfSilberRH":
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="pfSilber";
+					break;
+				case "laSilberRH":
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="laSilber";
+					break;
+				case "daSilberRH": 
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="laSilber";
+					break;
+				case "koSilberRH":
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="koSilber";
+					break;
+				case "baSilberRH":
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="baSilber";
+					break;	
+					
+					
+				case "blau":
+					
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="";
+					
+					break;	
+					
+				default:
+					break;
+				}
+				
+				
+			}
 			
 		}
 		
 		
-		
-		
 	}
-	
 }
