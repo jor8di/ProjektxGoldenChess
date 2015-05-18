@@ -88,6 +88,7 @@ public class Actionlistener implements ActionListener{
 			dieGui.bH6.addActionListener(this);
 			dieGui.bH7.addActionListener(this);
 			dieGui.bH8.addActionListener(this);
+			dieGui.bSpielfeldDreher.addActionListener(this);
 			
 			
 		}
@@ -355,7 +356,13 @@ public class Actionlistener implements ActionListener{
         else if(ae.getSource() == this.dieGui.bH8){
         	button = "bH8";
         	action(button); }
-        }
+        
+        
+    	else if(ae.getSource() == this.dieGui.bSpielfeldDreher){
+    		dieGui.arraySpielfeld = dieGui.dieSteuerung.dreheSpielfeld(dieGui.arraySpielfeld);
+			
+			dieGui.überschreibeButtons(dieGui.arraySpielfeld); }
+		}
        
         
         
@@ -371,18 +378,17 @@ public class Actionlistener implements ActionListener{
     	
     	public void action(String button) {
 			
+    		System.out.println(dieGui.istAmZug);
+    		
 			if (dieGui.istAmZug==false) {
 				
-				dieGui.arraySpielfeldVorher = dieGui.arraySpielfeld;
-				
 				dieGui.dieSteuerung.rufeBewegungsMusterKlassen(dieGui.arraySpielfeld, dieGui.spieler, button);
-				
-				dieGui.istAmZug = true;
 				
 			} else {
 				
 				dieGui.dieSteuerung.bewegen(dieGui.buttonKoordinaten,button);
-
+			
+				
 			}
     		
 		}
