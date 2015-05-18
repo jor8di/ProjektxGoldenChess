@@ -15,11 +15,15 @@ public class Dame {
 		//Dame mit dunkelblauem Hintergrund hinterlegen:
 		if (dieBewegungsmuster.getSpieler().equals("gold")) {
 			
-			  dieBewegungsmuster.setzteAktuelleFigur(button,"daGoldDBH");
+			dieBewegungsmuster.dieGui.figurAmZug = "daGold";
+			
+			  dieBewegungsmuster.setzteAktuelleFigur(button,"daGoldDBH", "daGold");
 			
 		} else {
 			
-		   	 dieBewegungsmuster.setzteAktuelleFigur(button,"daSilberDBH");
+			dieBewegungsmuster.dieGui.figurAmZug = "daSilber";
+			
+		   	 dieBewegungsmuster.setzteAktuelleFigur(button,"daSilberDBH", "daSilber");
 
 		}
 	
