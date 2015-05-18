@@ -18,11 +18,15 @@ public class Turm {
 		//Turm mit dunkelblauem Hintergrund hinterlegen:
 				if (dieBewegungsmuster.getSpieler().equals("gold")) {
 					
-					  dieBewegungsmuster.setzteAktuelleFigur(button,"tuGoldDBH");
+					dieBewegungsmuster.dieGui.figurAmZug = "tuGold";
+					
+					  dieBewegungsmuster.setzteAktuelleFigur(button,"tuGoldDBH","tuGold");
 					
 				} else {
 					
-				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"tuSilberDBH");
+					dieBewegungsmuster.dieGui.figurAmZug = "tuSilber";
+					
+				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"tuSilberDBH","tuSilber");
 
 				}
 		
