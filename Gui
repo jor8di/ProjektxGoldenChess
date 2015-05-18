@@ -1,4 +1,4 @@
-import java.awt.BorderLayout;
+ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -27,10 +27,9 @@ public class Gui extends JFrame{
 	
 	int buttonKoordinaten [] = new int [2];
 	
-	//Array des Spielfeldes vor dem Zug
+	//String, wo der String der am Zug befindlichen Figur abgespeichert wird
 	
-	String arraySpielfeldVorher[][] = new String [8][8];
-	
+	String figurAmZug;
 	
 	//assoziation mit Steuerung
 	
@@ -40,7 +39,7 @@ public class Gui extends JFrame{
 	Bewegungsmuster dieBewegungsmuster;
 	
 	//assoziation mit Actionlistener
-	Actionlistener dieActionListener;
+	Actionlistener dieActionlistener;
 	
 	//zweidimensionales Hintergrundspielfeldarray 
 	
@@ -181,18 +180,21 @@ public class Gui extends JFrame{
 	
 	Gui(Bewegungsmuster b,Actionlistener a){
 		dieBewegungsmuster = b;
-		dieActionListener = a;
+		dieActionlistener = a;
 		
 		dieSteuerung = new Steuerung(dieBewegungsmuster);
-	
 		
-		dieBewegungsmuster.linkGui(this);
+		
+		
+		dieActionlistener.linkGui(this);
+		
 		
 		init(); //initialisiert Variablen der Gui
 		
+		dieBewegungsmuster.linkGui(this);
 		
 	}
- 
+
 	
 	//Initialisierungsmethode---------------------------------------------------------------------------
 	
@@ -272,8 +274,8 @@ public class Gui extends JFrame{
 		
 		
 		initButtons();
-		dieActionListener.erstelleActionLis();
 		
+		dieActionlistener.erstelleActionLis();
 		
 		pContentpane = new JPanel();
 		
@@ -375,51 +377,26 @@ public class Gui extends JFrame{
 	}
 	
 	//Gebe Buttons Actionlistener-------------------------------------------------------------------
-
-	public void erstelleActionLis() {
-		
-		bD4.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent arg0) {
-				
-				String button = "bD4";
-				
-				if (istAmZug==false) {
-					
-					arraySpielfeldVorher = arraySpielfeld;
-					
-					dieSteuerung.rufeBewegungsMusterKlassen(arraySpielfeld, spieler, button);
-					
-					istAmZug = true;
-					
-				} else {
-					
-					dieSteuerung.bewegen(buttonKoordinaten,button);
-
-				}
 	
-				
-			}
-
-		});
-		
-		//Actionlistener für Dreher-Button:
-		
-		bSpielfeldDreher.addActionListener(new ActionListener() {
+		public void erstelleActionLis() {
 			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			//Actionlistener für Dreher-Button:
+			
+			bSpielfeldDreher.addActionListener(new ActionListener() {
 				
-				arraySpielfeld = dieSteuerung.dreheSpielfeld(arraySpielfeld);
-				
-				überschreibeButtons(arraySpielfeld);
-				
-				
-			}
-		});
-		
-	}
-
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					
+					arraySpielfeld = dieSteuerung.dreheSpielfeld(arraySpielfeld);
+					
+					überschreibeButtons(arraySpielfeld);
+					
+					
+				}
+			});
+			
+		}
+	
 	//Füge Buttons dem Grid-Layout zu-------------------------------------------------------------------
 	
 	public JPanel erstelleGridlayout(){
@@ -1027,7 +1004,7 @@ public class Gui extends JFrame{
 		
 //nach goldenen Gegnern abfragen
     	
-		System.out.println(arraySpielfeld[x][y]);
+		
 		
     	if (arraySpielfeld[x][y].equals("baGold") && spieler.equals("silber")) {
     		return "baGold";
