@@ -17,11 +17,15 @@ public class Laeufer {
 		//Laeufer mit dunkelblauem Hintergrund hinterlegen:
 				if (dieBewegungsmuster.getSpieler().equals("gold")) {
 					
-					  dieBewegungsmuster.setzteAktuelleFigur(button,"laGoldDBH");
+					dieBewegungsmuster.dieGui.figurAmZug = "laGold";
+					
+					  dieBewegungsmuster.setzteAktuelleFigur(button,"laGoldDBH","laGold");
 					
 				} else {
 					
-				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"laSilberDBH");
+					dieBewegungsmuster.dieGui.figurAmZug = "laSilber";
+					
+				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"laSilberDBH","laSilber");
 
 				}
 		
