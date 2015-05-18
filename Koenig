@@ -16,12 +16,17 @@ public class Koenig {
 		//König mit dunkelblauem Hintergrund hinterlegen:
 				if (dieBewegungsmuster.getSpieler().equals("gold")) {
 					
-					  dieBewegungsmuster.setzteAktuelleFigur(button,"koGoldDBH");
+					dieBewegungsmuster.dieGui.figurAmZug = "koGold";
+					
+					  dieBewegungsmuster.setzteAktuelleFigur(button,"koGoldDBH","koGold");
+					 
 					
 				} else {
 					
-				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"koSilberDBH");
+				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"koSilberDBH","koSilber");
 
+				   	dieBewegungsmuster.dieGui.figurAmZug = "koSilber";
+				   	 
 				}
 		
 		dieBewegungsmuster.alleRichtungenEinFeldFuellen(button, arraySpielfeld);
