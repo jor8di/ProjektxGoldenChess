@@ -1,5 +1,5 @@
 
-public class Koenig {
+public class Koenig implements Figur {
 	
 	Bewegungsmuster dieBewegungsmuster;
 	
@@ -11,19 +11,19 @@ public class Koenig {
 	
 	
 	//feld mit könig wurde geklickt-------------------------
-	public void koenigClicked(String button, String arraySpielfeld [][]){
+	public void clicked(String button, String arraySpielfeld [][]){
 		
 		//König mit dunkelblauem Hintergrund hinterlegen:
 				if (dieBewegungsmuster.getSpieler().equals("gold")) {
 					
 					dieBewegungsmuster.dieGui.figurAmZug = "koGold";
 					
-					  dieBewegungsmuster.setzteAktuelleFigur(button,"koGoldDBH","koGold");
+					  dieBewegungsmuster.setzteAktuelleFigur(button,"koGoldDBH");
 					 
 					
 				} else {
 					
-				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"koSilberDBH","koSilber");
+				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"koSilberDBH");
 
 				   	dieBewegungsmuster.dieGui.figurAmZug = "koSilber";
 				   	 
