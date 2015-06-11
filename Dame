@@ -1,5 +1,5 @@
 
-public class Dame {
+public class Dame implements Figur {
 
 	Bewegungsmuster dieBewegungsmuster;
 
@@ -10,20 +10,24 @@ public class Dame {
 
 	//Dame geklickt
 
-	public void dameClicked(String button, String arraySpielfeld [][]) {
+	/* (non-Javadoc)
+	 * @see Figur#dameClicked(java.lang.String, java.lang.String[][])
+	 */
+	@Override
+	public void clicked(String button, String arraySpielfeld [][]) {
 	
 		//Dame mit dunkelblauem Hintergrund hinterlegen:
 		if (dieBewegungsmuster.getSpieler().equals("gold")) {
 			
 			dieBewegungsmuster.dieGui.figurAmZug = "daGold";
 			
-			  dieBewegungsmuster.setzteAktuelleFigur(button,"daGoldDBH", "daGold");
+			  dieBewegungsmuster.setzteAktuelleFigur(button,"daGoldDBH");
 			
 		} else {
 			
 			dieBewegungsmuster.dieGui.figurAmZug = "daSilber";
 			
-		   	 dieBewegungsmuster.setzteAktuelleFigur(button,"daSilberDBH", "daSilber");
+		   	 dieBewegungsmuster.setzteAktuelleFigur(button,"daSilberDBH");
 
 		}
 	
