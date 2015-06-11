@@ -19,13 +19,13 @@ public class Laeufer {
 					
 					dieBewegungsmuster.dieGui.figurAmZug = "laGold";
 					
-					  dieBewegungsmuster.setzteAktuelleFigur(button,"laGoldDBH","laGold");
+					  dieBewegungsmuster.setzteAktuelleFigur(button,"laGoldDBH");
 					
 				} else {
 					
 					dieBewegungsmuster.dieGui.figurAmZug = "laSilber";
 					
-				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"laSilberDBH","laSilber");
+				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"laSilberDBH");
 
 				}
 		
