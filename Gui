@@ -101,10 +101,27 @@ public class Gui extends JFrame{
 	
 	JButton bSpielfeldDreher;
 	
+	//Label für das Anzeigen der geschlagenen Figuren
+	//linke Seite
+	//Figur
+	JLabel lLinksFigur1;
+	JLabel lLinksFigur2;
+	JLabel lLinksFigur3;
+	JLabel lLinksFigur4;
+	JLabel lLinksFigur5;
+	JLabel lLinksFigur6;
+	
+	//Anzahl
+	JLabel lLinksAnzahl1;
+	JLabel lLinksAnzahl2;
+	JLabel lLinksAnzahl3;
+	JLabel lLinksAnzahl4;
+	JLabel lLinksAnzahl5;
+	JLabel lLinksAnzahl6;
 	
 	
 	
-	
+	//ImageIcons für unbesetzte Felder
 	ImageIcon iWeißesFeld; 
 	ImageIcon iSchwarzesFeld;
 	ImageIcon iBlauesFeld;
@@ -174,6 +191,7 @@ public class Gui extends JFrame{
 	
 	JPanel pBrett;
 	JPanel pUnten;
+	JPanel pLinks;
 	JPanel pContentpane;
 	
 	
@@ -275,25 +293,31 @@ public class Gui extends JFrame{
 		
 		initButtons();
 		
+		labelErstellung();
+		
 		dieActionlistener.erstelleActionLis();
 		
 		pContentpane = new JPanel();
 		
 		pBrett = new JPanel();
-		pBrett = erstelleGridlayout();
+		pBrett = erstelleSpielfeldGridlayout();
+		
+		panelLinksErstellen();
 		
 		pUnten = new JPanel(new FlowLayout());
 		pUnten.add(bSpielfeldDreher);
 		
 		pContentpane.setLayout(new BorderLayout());
 		pContentpane.add(pBrett,BorderLayout.CENTER);
-		pContentpane.add(pUnten,BorderLayout.SOUTH);																																													
+		pContentpane.add(pUnten,BorderLayout.SOUTH);
+		pContentpane.add(pLinks,BorderLayout.WEST);
 		
 		this.setContentPane(pContentpane);
 		
 		this.pack();
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setSize(1000,1000);
+		
+		this.setSize(1200,1000);
 		
 		
 		
@@ -332,7 +356,7 @@ public class Gui extends JFrame{
 		bD1 = new JButton(iSchwarzesFeld);
 		bD2 = new JButton(iWeißesFeld);
 		bD3 = new JButton(iSchwarzesFeld);
-		bD4 = new JButton(iGoldenerKoenigWH);
+		bD4 = new JButton(iWeißesFeld);
 		bD5 = new JButton(iSchwarzesFeld);
 		bD6 = new JButton(iWeißesFeld);
 		bD7 = new JButton(iSchwarzesFeld);
@@ -371,7 +395,7 @@ public class Gui extends JFrame{
 		bH8 = new JButton(iSilbernerTurmWH);
 		
 		
-		bSpielfeldDreher = new JButton();
+		bSpielfeldDreher = new JButton("Drehmeister");
 		
 		
 	}
@@ -399,7 +423,7 @@ public class Gui extends JFrame{
 	
 	//Füge Buttons dem Grid-Layout zu-------------------------------------------------------------------
 	
-	public JPanel erstelleGridlayout(){
+	public JPanel erstelleSpielfeldGridlayout(){
 		
 		pBrett = new JPanel(); 
 		pBrett.setLayout(new GridLayout(8,8));
@@ -480,6 +504,56 @@ public class Gui extends JFrame{
 		return pBrett;
 		
 	}
+	
+	//Labelerstellung
+	
+	public void labelErstellung() {
+		
+		//LinksFigur
+		lLinksFigur1 = new JLabel(iGoldenerBauerWH);
+		lLinksFigur2 = new JLabel(iGoldenerTurmWH);
+		lLinksFigur3 = new JLabel(iGoldenesPferdWH);
+		lLinksFigur4 = new JLabel(iGoldenerLaeuferWH);
+		lLinksFigur5 = new JLabel(iGoldeneDameWH);
+		lLinksFigur6 = new JLabel(iGoldenerKoenigWH);
+		
+		//LinksAnzahl
+		lLinksAnzahl1 = new JLabel("1");
+		lLinksAnzahl2 = new JLabel("2");
+		lLinksAnzahl3 = new JLabel("3");
+		lLinksAnzahl4 = new JLabel("4");
+		lLinksAnzahl5 = new JLabel("5");
+		lLinksAnzahl6 = new JLabel("6");
+		
+		
+	}
+	
+	//Erstellung des Panels links vom Spielfeld
+	
+	public void panelLinksErstellen() {
+		
+		pLinks = new JPanel(new GridLayout(6,2));
+		
+		pLinks.add(lLinksFigur1);
+		pLinks.add(lLinksAnzahl1);
+		
+		pLinks.add(lLinksFigur2);
+		pLinks.add(lLinksAnzahl2);
+		
+		pLinks.add(lLinksFigur3);
+		pLinks.add(lLinksAnzahl3);
+		
+		pLinks.add(lLinksFigur4);
+		pLinks.add(lLinksAnzahl4);
+		
+		pLinks.add(lLinksFigur5);
+		pLinks.add(lLinksAnzahl5);
+		
+		pLinks.add(lLinksFigur6);
+		pLinks.add(lLinksAnzahl6);
+		
+	}
+	
 	
 	//erstelle einen zweidimensionalen Stringarray------------------------------------------------------
 	
@@ -574,7 +648,7 @@ public class Gui extends JFrame{
 		arraySpielfeld[6][7] = pferdSilber;
 		arraySpielfeld[7][7] = turmSilber;
 		
-		arraySpielfeld[3][3] = koenigGold;
+		
 		
 		return arraySpielfeld;
 		
