@@ -8,6 +8,8 @@ public class Steuerung {
 	Turm derTurm;
 	Laeufer derLaeufer;
 	Koenig derKoenig;
+	Bauer derBauer;
+	Pferd dasPferd;
 	
 	Steuerung(Bewegungsmuster b){
 	
@@ -19,7 +21,8 @@ public class Steuerung {
 		derTurm = new Turm(b);
 		derLaeufer = new Laeufer(b);
 		derKoenig = new Koenig(b);
-			
+		derBauer = new Bauer(b);
+		dasPferd = new Pferd(b);
 	}
 	
 	// Gibt die dem Button entsprechende Stringstelle im array
@@ -413,7 +416,7 @@ public class Steuerung {
 	
 	//Classenaufrufe der verschiedenen Klassen für die jeweiligen Bewegungsmuster----------------------------------------------------------------------------
 	
-	public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spieler, String button) {
+public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spieler, String button) {
 		
 		int x = gibButtonKoordinaten(button)[0];
 		int y = gibButtonKoordinaten(button)[1];
@@ -429,7 +432,8 @@ public class Steuerung {
 				  	break;
 				
 			  case "pfGold":
-				  
+				  dasPferd.pferdClicked(button, arraySpielfeld);
+				  dieBewegungsmuster.dieGui.istAmZug= true;
 					break;
 					
 			  case "laGold":
@@ -451,7 +455,8 @@ public class Steuerung {
 					break;
 					
 			  case "baGold":
-				  
+				  	derBauer.bauerGoldClicked(button, arraySpielfeld);
+				  	dieBewegungsmuster.dieGui.istAmZug= true;
 					break;
 
 			  default:
@@ -473,7 +478,8 @@ public class Steuerung {
 					  	break;
 					
 				  case "pfSilber":
-					  
+					   dasPferd.pferdClicked(button, arraySpielfeld);
+					   dieBewegungsmuster.dieGui.istAmZug= true;
 						break;
 						
 				  case "laSilber":
@@ -495,7 +501,8 @@ public class Steuerung {
 						break;
 						
 				  case "baSilber":
-					  
+					  derBauer.bauerSilberClicked(button,arraySpielfeld);
+					  dieBewegungsmuster.dieGui.istAmZug= true;
 						break;
 
 				  default:
