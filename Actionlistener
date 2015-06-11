@@ -359,6 +359,7 @@ public class Actionlistener implements ActionListener{
         
         
     	else if(ae.getSource() == this.dieGui.bSpielfeldDreher){
+    		
     		dieGui.arraySpielfeld = dieGui.dieSteuerung.dreheSpielfeld(dieGui.arraySpielfeld);
 			
 			dieGui.überschreibeButtons(dieGui.arraySpielfeld); }
