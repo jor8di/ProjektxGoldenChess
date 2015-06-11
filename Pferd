@@ -18,12 +18,12 @@ if (dieBewegungsmuster.getSpieler().equals("gold")) {
 			
 			dieBewegungsmuster.dieGui.figurAmZug = "pfGold";
 			
-			  dieBewegungsmuster.setzteAktuelleFigur(button,"pfGoldDBH","pfGold");
+			  dieBewegungsmuster.setzteAktuelleFigur(button,"pfGoldDBH");
 			 
 			
 		} else {
 			
-		   	 dieBewegungsmuster.setzteAktuelleFigur(button,"pfSilberDBH","pfSilber");
+		   	 dieBewegungsmuster.setzteAktuelleFigur(button,"pfSilberDBH");
 
 		   	dieBewegungsmuster.dieGui.figurAmZug = "pfSilber";
 		   	 
