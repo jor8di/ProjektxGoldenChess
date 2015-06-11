@@ -10,38 +10,35 @@ public class Bewegungsmuster {
 	int y;
 	
 	int buttonKoordinaten [] = new int [2];
-	
+
 	public Bewegungsmuster() {
 		
-
-	}
-
-	// Hinterlegt ein aktuelles Feld mit dunkelblauem Hintergrund
-
-	public void setzteAktuelleFigur (String button, String figur, String figur2){
 		
-		 dieGui.buttonKoordinaten =dieSteuerung.gibButtonKoordinaten(button);
+	}
+	
+	// Hinterlegt ein aktuelles Feld mit dunkelblauem Hintergrund
+	
+	public void setzteAktuelleFigur (String button, String figur){ 
+		
+		dieGui.buttonKoordinaten =dieSteuerung.gibButtonKoordinaten(button);
 		
 		int x,y;
-
 		x = dieSteuerung.gibButtonKoordinaten(button)[0];
-
 		y = dieSteuerung.gibButtonKoordinaten(button)[1];
-
+		
 		dieGui.arraySpielfeld[x][y] = figur;
-
+		
 		dieGui.überschreibeButtons(dieGui.arraySpielfeld);
-
+		
 	}
-
+	
 	//Gibt aktuellen Spieler zurück
-
+	
 	public String getSpieler() {
-
+		
 		return dieGui.spieler;
-
 	}
-
+	
 	
 	//--------------------------------------------------------------------------------
 	
@@ -629,8 +626,6 @@ public class Bewegungsmuster {
 			
 				}
 		
-			
-			
 		
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1227,12 +1222,13 @@ public class Bewegungsmuster {
 			x= buttonKoordinaten [0];
 			y= buttonKoordinaten [1];
 			
-			if (y==6 && x!=0 && x!= 7) { //für die Züge aus der Startposition
+			if (y==6 && x!=0 && x!= 7) {
+				        //für die Züge aus der Startposition 
 				//y-Achse runter füllen
 				
 				for (int i = 1; i < 3; i++) {
 					
-					try {
+					try {  
 						
 						if (dieGui.pruefeObVerbuendeter(x, y-i)==true) {
 						 //bauer kann ncith feld nach vorne wenn verbündeter drauf ist
@@ -1240,7 +1236,7 @@ public class Bewegungsmuster {
 							
 						}else if(dieGui.pruefeObGegner(x, y-i)!="-1") {
 							//bnauer kann nicht feld nach vorne wenn gegner drauf ist
-							gegnerString = dieGui.pruefeObGegner(x, y-i);
+							gegnerString = dieGui.pruefeObGegner(x, y-i);     
 							
 							break;
 					//----------------------------------------------------------------------
@@ -1530,7 +1526,7 @@ public class Bewegungsmuster {
 		
 	
 	
-//-------------------------------------------------------------------------------------------------------------------	
+//-------------------------------------------------------------------------------------------------------------------
 	
 	// Assoziation mit Gui:
 	
