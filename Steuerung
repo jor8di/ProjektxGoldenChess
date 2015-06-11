@@ -1,6 +1,10 @@
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 
+/**
+ * 
+ * @author j.kolb
+ *
+ */
 public class Steuerung {
 	
 	Bewegungsmuster dieBewegungsmuster;
@@ -383,35 +387,6 @@ public class Steuerung {
 		
 	}
 
-	//Prüfungsmethode ob eine Figur angeklickt wurde
-	
-	public boolean istFigurAngeklickt (String [][] arraySpielfeld){
-		
-		for (int i = 0; i < arraySpielfeld.length; i++) {
-			
-			for (int j = 0; j < arraySpielfeld.length; j++) {
-				
-				if (arraySpielfeld[j][i].equals("blau") || arraySpielfeld[j][i].equals("tuGoldRH") 
-						|| arraySpielfeld[j][i].equals("pfGoldRH") || arraySpielfeld[j][i].equals("laGoldRH") 
-						|| arraySpielfeld[j][i].equals("daGoldRH") || arraySpielfeld[j][i].equals("koGoldRH") 
-						|| arraySpielfeld[j][i].equals("baGoldRH") || arraySpielfeld[j][i].equals("tuSilberRH") 
-						|| arraySpielfeld[j][i].equals("pfSilberRH") || arraySpielfeld[j][i].equals("laSilberRH") 
-						|| arraySpielfeld[j][i].equals("daSilberRH") || arraySpielfeld[j][i].equals("koSilberRH") 
-						|| arraySpielfeld[j][i].equals("baSilber") ) {
-					
-					return true;
-					
-				}
-				
-			}
-			
-		}
-		
-		return false;
-		
-		
-	}
-	
 	
 	
 	//Classenaufrufe der verschiedenen Klassen für die jeweiligen Bewegungsmuster----------------------------------------------------------------------------
@@ -444,13 +419,13 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 					
 			  case "daGold":
 				  
-					dieDame.dameClicked(button,arraySpielfeld);
+					dieDame.clicked(button,arraySpielfeld);
 					dieBewegungsmuster.dieGui.istAmZug= true;
 					break;
 					
 			  case "koGold":
 				  
-				  	derKoenig.koenigClicked(button,arraySpielfeld);
+				  	derKoenig.clicked(button,arraySpielfeld);
 				  	dieBewegungsmuster.dieGui.istAmZug= true;
 					break;
 					
@@ -490,13 +465,13 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 						
 				  case "daSilber":
 					  
-						dieDame.dameClicked(button,arraySpielfeld);
+						dieDame.clicked(button,arraySpielfeld);
 						dieBewegungsmuster.dieGui.istAmZug= true;
 						break;
 						
 				  case "koSilber":
 					  
-					  	derKoenig.koenigClicked(button,arraySpielfeld);
+					  	derKoenig.clicked(button,arraySpielfeld);
 					  	dieBewegungsmuster.dieGui.istAmZug= true;
 						break;
 						
@@ -519,8 +494,13 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 	   }
 	
 	
-	//Methode, um die Stelle eines bestimmten Strings im arraySpielfeld zu finden
 	
+	/**
+	 * Methode, um die Stelle eines bestimmten Strings im arraySpielfeld zu finden
+	 * @param arraySpielfeld
+	 * @param figur
+	 * @return
+	 */
 	public int [] gibStrinStelle(String arraySpielfeld[][], String figur){
 		
 		int buttonKoordinaten [] = new int [2];
@@ -587,7 +567,7 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 		
 		if (dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "blau") {
 			
-			
+			         
 			
 			dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld] = dieBewegungsmuster.dieGui.figurAmZug; 
 			
@@ -610,8 +590,36 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 			}
 			
 			
-		} else {
+		} else if(dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "tuGoldRH" || dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "pfGoldRH" ||
+				  dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "laGoldRH" || dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "daGoldRH" ||
+				  dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "koGoldRH" || dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "baGoldRH" ||
+				  dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "tuSilberRH" || dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "pfSilberRH" ||
+				  dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "laSilberRH" || dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "daSilberRH" ||
+				  dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "koSilberRH" || dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "baSilberRH" ){
 
+			dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld] = dieBewegungsmuster.dieGui.figurAmZug; 
+			
+			dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAmZug][yFigurAmZug] = ""; 
+			
+			deleteFarbe();
+			
+			dieBewegungsmuster.dieGui.überschreibeButtons(dieBewegungsmuster.dieGui.arraySpielfeld);
+			
+			dieBewegungsmuster.dieGui.istAmZug = false;
+			
+			if (dieBewegungsmuster.dieGui.spieler.equals("gold")) {
+				
+				dieBewegungsmuster.dieGui.spieler = "silber";
+				
+			} else {
+				
+				dieBewegungsmuster.dieGui.spieler = "gold";
+
+			}
+			
+			
+		} else {
+			
 			dieBewegungsmuster.dieGui.arraySpielfeld [xFigurAmZug][yFigurAmZug] = dieBewegungsmuster.dieGui.figurAmZug;
 			
 			deleteFarbe();
@@ -619,6 +627,7 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 			dieBewegungsmuster.dieGui.überschreibeButtons(dieBewegungsmuster.dieGui.arraySpielfeld);
 			
 			dieBewegungsmuster.dieGui.istAmZug = false;
+			
 		}
 	
 		
