@@ -10,35 +10,38 @@ public class Bewegungsmuster {
 	int y;
 	
 	int buttonKoordinaten [] = new int [2];
-
+	
 	public Bewegungsmuster() {
 		
-		
+
 	}
-	
+
 	// Hinterlegt ein aktuelles Feld mit dunkelblauem Hintergrund
-	
-	public void setzteAktuelleFigur (String button, String figur, String figur2){ 
+
+	public void setzteAktuelleFigur (String button, String figur, String figur2){
 		
-		dieGui.buttonKoordinaten =dieSteuerung.gibButtonKoordinaten(button);
+		 dieGui.buttonKoordinaten =dieSteuerung.gibButtonKoordinaten(button);
 		
 		int x,y;
+
 		x = dieSteuerung.gibButtonKoordinaten(button)[0];
+
 		y = dieSteuerung.gibButtonKoordinaten(button)[1];
-		
+
 		dieGui.arraySpielfeld[x][y] = figur;
-		
+
 		dieGui.überschreibeButtons(dieGui.arraySpielfeld);
-		
+
 	}
-	
+
 	//Gibt aktuellen Spieler zurück
-	
+
 	public String getSpieler() {
-		
+
 		return dieGui.spieler;
+
 	}
-	
+
 	
 	//--------------------------------------------------------------------------------
 	
@@ -626,9 +629,908 @@ public class Bewegungsmuster {
 			
 				}
 		
+			
+			
 		
 	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	//--------------------------------------------------------- (y==1 && x!=0 && x!=7) -------------------------------------------------------------------------------
+	
+	
+	public void BauerGoldFeldRunter(String button, String arraySpielfeld [][]) {
+		
+		buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+		
+		x= buttonKoordinaten [0];
+		y= buttonKoordinaten [1];
+		
+		if (y==1 && x!=0 && x!=7) { //für die Züge aus der Startposition und wo x != 0 bzw 7 ist, da man für x==0/7 es etwas neu definieren muss ,da er sich sonst nicht bewegen kann
+			//y-Achse runter füllen
+			
+			for (int i = 1; i < 3; i++) { //i = 1 sonst wird die position des bauern mit "blau" markiert
+				
+				try {
+					
+				if (dieGui.pruefeObVerbuendeter(x, y+i)==true) {
+					 //bauer kann keih feld nach vorne wenn verbündeter drauf ist
+						
+						break;
+						
+				}else if(dieGui.pruefeObGegner(x, y+i)!="-1") {
+						//bauer kann nicht feld nach vorne wenn gegner drauf ist
+						gegnerString = dieGui.pruefeObGegner(x, y+1);
+						break;
+				//----------------------------------------------------------------------
+				
+				}else if(dieGui.pruefeObGegner(x-1,y+1)!="-1"){
+					
+					//bauer kann 1-2 felder vor oder 1 feld diagonal links gegner schlagen
+						dieGui.setzteFeld(x,y+1,dieGui.iBlauesFeld,"blau");
+					    dieGui.setzteFeld(x, y+2, dieGui.iBlauesFeld,"blau");
+						
+						gegnerString = dieGui.pruefeObGegner(x-1, y+1);
+						
+						dieGui.schreibeGegnerButton(x-1, y+1,gegnerString,button);
+					
+					
+						break;
+				//-----------------------------------------------------------------------	
+
+				}else if(dieGui.pruefeObGegner(x+1,y+1)!="-1"){
+						//bauer kann 1-2 felder vor oder 1 feld diagonal rechts gegner schlagen
+						gegnerString = dieGui.pruefeObGegner(x+1, y+1);
+						
+						dieGui.schreibeGegnerButton(x+1, y+1,gegnerString,button);
+						
+						dieGui.setzteFeld(x,y+i,dieGui.iBlauesFeld,"blau");
+					    //dieGui.setzteFeld(x, y+2, dieGui.iBlauesFeld,"blau");
+						
+						break;
+				//------------------------------------------------------------------------
+						
+				}else{
+						dieGui.setzteFeld(x,y+i,dieGui.iBlauesFeld,"blau");     //funktioniert: bis zu 2 felder nach vorne ziehen
+					}
+					
+					
+				} catch (Exception e) {
+					break;
+				}
+				
+			}//Schleife ende For
+			
+			//-----------------------------------------------------------------------------------
+		}else { 
+			//gilt für alle buttons außerhalb "k"= die Startposition der Bauer
+				
+			
+									try {
+				
+										if (dieGui.pruefeObVerbuendeter(x, y+1)==true) {
+											
+										}else if(dieGui.pruefeObGegner(x, y+1)!="-1") {
+											//bnauer kann nicht feld nach vorne wenn gegner drauf ist
+											gegnerString = dieGui.pruefeObGegner(x, y+1);
+											
+											//Jemand steht vertikal vor bauer, sowie rechts bzw links diagonal vor ihm!
+											if(dieGui.pruefeObGegner(x+1,y+1)!="-1"){ 
+												
+												gegnerString = dieGui.pruefeObGegner(x+1, y+1);
+						
+												dieGui.schreibeGegnerButton(x+1, y+1, gegnerString, button);
+						
+											
+
+											} //& knüft mit der anderen diagonalen an!
+											if(dieGui.pruefeObGegner(x-1,y+1)!="-1"){
+						
+												gegnerString = dieGui.pruefeObGegner(x-1, y+1);
+						
+												dieGui.schreibeGegnerButton(x-1, y+1, gegnerString, button);
+						
+										
+
+											}
+					
+										
+					
+								} else if(dieGui.pruefeObGegner(x+1,y+1)!="-1"){
+					
+											gegnerString = dieGui.pruefeObGegner(x+1, y+1);
+					
+											dieGui.schreibeGegnerButton(x+1, y+1, gegnerString, button);
+					
+											dieGui.setzteFeld(x,y+1,dieGui.iBlauesFeld,"blau");
+
+										}else if(dieGui.pruefeObGegner(x-1,y+1)!="-1"){
+					
+											gegnerString = dieGui.pruefeObGegner(x-1, y+1);
+					
+											dieGui.schreibeGegnerButton(x-1, y+1, gegnerString, button);
+					
+											dieGui.setzteFeld(x,y+1,dieGui.iBlauesFeld,"blau");
+					
+
+										}else{
+					
+											dieGui.setzteFeld(x,y+1,dieGui.iBlauesFeld,"blau");
+					
+										}
+				
+				
+				
+									} catch (Exception e) {
+				
+									}
+			
+								} //Else (y==1 && x!=0 && x!=7) ende klammer
+		
+		//--------------------------------------------(if y==1 && x== 0)-----------------------------------------------------
+		
+		if (y==1 && x==0) { //für die Züge aus der Startposition
+			//y-Achse runter füllen
+			
+			for (int i = 1; i < 3; i++) { //i = 1 sonst wird die position des bauern mit "blau" markiert
+				
+				try {
+					
+				if (dieGui.pruefeObVerbuendeter(x, y+i)==true) {
+					 //bauer kann keih feld nach vorne wenn verbündeter drauf ist
+						
+						break;
+						
+				}else if(dieGui.pruefeObGegner(x, y+i)!="-1") {
+						//bauer kann nicht feld nach vorne wenn gegner drauf ist
+						gegnerString = dieGui.pruefeObGegner(x, y+1);
+						break;
+				//----------------------------------------------------------------------
+				//hier kann es bei x==0 kein "pruefeObGegner(x-1,y+1)" geben , da das Feld schon aufhört -> sonst kommt es dazu dass sich der bauer dort nicht bewegen kann
+				
+				}else if(dieGui.pruefeObGegner(x+1,y+1)!="-1"){
+						//bauer kann 1-2 felder vor oder 1 feld diagonal rechts gegner schlagen
+						gegnerString = dieGui.pruefeObGegner(x+1, y+1);
+						
+						dieGui.schreibeGegnerButton(x+1, y+1,gegnerString,button);
+						
+						dieGui.setzteFeld(x,y+i,dieGui.iBlauesFeld,"blau");
+					    //dieGui.setzteFeld(x, y+2, dieGui.iBlauesFeld,"blau");
+						
+						break;
+				//------------------------------------------------------------------------
+						
+				}else{
+						dieGui.setzteFeld(x,y+i,dieGui.iBlauesFeld,"blau");     //funktioniert: bis zu 2 felder nach vorne ziehen
+					}
+					
+					
+				} catch (Exception e) {
+					break;
+				}
+				
+			}//Schleife ende For
+			
+			//-----------------------------------------------------------------------------------
+		}else { 
+			//gilt für alle buttons außerhalb "k"= die Startposition der Bauer
+				
+			
+							try {
+				
+								if (dieGui.pruefeObVerbuendeter(x, y+1)==true) {
+											
+								}else if(dieGui.pruefeObGegner(x, y+1)!="-1") {
+											//bnauer kann nicht feld nach vorne wenn gegner drauf ist
+											gegnerString = dieGui.pruefeObGegner(x, y+1);
+											
+											//Jemand steht vertikal vor bauer, sowie rechts bzw links diagonal vor ihm!
+											if(dieGui.pruefeObGegner(x+1,y+1)!="-1"){ 
+												
+												gegnerString = dieGui.pruefeObGegner(x+1, y+1);
+						
+												dieGui.schreibeGegnerButton(x+1, y+1, gegnerString, button);	
+													}
+											
+										
+					
+								} else if(dieGui.pruefeObGegner(x+1,y+1)!="-1"){
+					
+											gegnerString = dieGui.pruefeObGegner(x+1, y+1);
+					
+											dieGui.schreibeGegnerButton(x+1, y+1, gegnerString, button);
+					
+											dieGui.setzteFeld(x,y+1,dieGui.iBlauesFeld,"blau");
+
+										
+
+								}else{
+					
+											dieGui.setzteFeld(x,y+1,dieGui.iBlauesFeld,"blau");
+					
+										}
+				
+				
+				
+									} catch (Exception e) {
+				
+									}
+			
+								} //Else ende (if y==1 && x== 0) klammer
+		
+	//------------------------------------------(if y==1 && x== 7)-------------------------------------------------------
+		
+		if (y==1 && x==7) { //für die Züge aus der Startposition
+			//y-Achse runter füllen
+			
+			for (int i = 1; i < 3; i++) { //i = 1 sonst wird die position des bauern mit "blau" markiert
+				
+				try {
+					
+				if (dieGui.pruefeObVerbuendeter(x, y+i)==true) {
+					 //bauer kann keih feld nach vorne wenn verbündeter drauf ist
+						
+						break;
+						
+				}else if(dieGui.pruefeObGegner(x, y+i)!="-1") {
+						//bauer kann nicht feld nach vorne wenn gegner drauf ist
+						gegnerString = dieGui.pruefeObGegner(x, y+1);
+						break;
+				//----------------------------------------------------------------------
+				//hier kann es bei x==0 kein "pruefeObGegner(x+1,y+1)" geben , da das Feld schon aufhört -> sonst kommt es dazu dass sich der bauer dort nicht bewegen kann
+				
+				}else if(dieGui.pruefeObGegner(x-1,y+1)!="-1"){
+						//bauer kann 1-2 felder vor oder 1 feld diagonal rechts gegner schlagen
+						gegnerString = dieGui.pruefeObGegner(x-1, y+1);
+						
+						dieGui.schreibeGegnerButton(x-1, y+1,gegnerString,button);
+						
+						dieGui.setzteFeld(x,y+i,dieGui.iBlauesFeld,"blau");
+					    //dieGui.setzteFeld(x, y+2, dieGui.iBlauesFeld,"blau");
+						
+						break;
+				//------------------------------------------------------------------------
+						
+				}else{
+						dieGui.setzteFeld(x,y+i,dieGui.iBlauesFeld,"blau");     //funktioniert: bis zu 2 felder nach vorne ziehen
+					}
+					
+					
+				} catch (Exception e) {
+					break;
+				}
+				
+			}//Schleife ende For //(if y==1 && x== 7)
+			
+			//--------------------------------------(if y==1 && x== 7)---------------------------------------------
+		}else { //(if y==1 && x== 7)
+			//gilt für alle buttons außerhalb "k"= die Startposition der Bauer
+				
+			
+							try {
+				
+								if (dieGui.pruefeObVerbuendeter(x, y+1)==true) { 
+											
+								}else if(dieGui.pruefeObGegner(x, y+1)!="-1") { //(if y==1 && x== 7)
+											//bnauer kann nicht feld nach vorne wenn gegner drauf ist
+											gegnerString = dieGui.pruefeObGegner(x, y+1);
+											
+											//Jemand steht vertikal vor bauer, sowie rechts bzw links diagonal vor ihm!
+											if(dieGui.pruefeObGegner(x-1,y+1)!="-1"){ 
+												
+												gegnerString = dieGui.pruefeObGegner(x-1, y+1);
+						
+												dieGui.schreibeGegnerButton(x-1, y+1, gegnerString, button);	
+													}
+											
+										
+					
+								} else if(dieGui.pruefeObGegner(x-1,y+1)!="-1"){ //(if y==1 && x== 7)
+					
+											gegnerString = dieGui.pruefeObGegner(x-1, y+1);
+					
+											dieGui.schreibeGegnerButton(x-1, y+1, gegnerString, button);
+					
+											dieGui.setzteFeld(x,y+1,dieGui.iBlauesFeld,"blau");
+
+										
+
+								}else{
+					
+											dieGui.setzteFeld(x,y+1,dieGui.iBlauesFeld,"blau");
+					
+										}
+				
+								
+				
+									} catch (Exception e) {
+				
+									}
+			
+								} //Else ende (if y==1 && x== 7) klammer
+			}//Methodenende BauerGOLD
+	
+	
+	
+	
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////
+	
+	//---------------------------PFERDE MUSTER WIIIIIIIIIIIIIIIIIIIIIIHAAAAAAAAAAAAAAAAAA------------------------------------------------------------------------
+
+		public void PferdBewegungsmuster(String button, String arraySpielfeld [][]) {
+		
+		buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+		
+		x= buttonKoordinaten [0];
+		y= buttonKoordinaten [1];
+		
+		//----------------------------------------------------------------------
+		// PFERD unten links
+		
+		try {
+			
+			if (dieGui.pruefeObVerbuendeter(x-2, y+1)==true) {
+				
+				
+				
+			} else if(dieGui.pruefeObGegner(x-2,y+1)!="-1"){
+				
+				gegnerString = dieGui.pruefeObGegner(x-2, y+1);
+				
+				dieGui.schreibeGegnerButton(x-2, y+1, gegnerString, button);
+				
+				
+
+			}else{
+				
+				dieGui.setzteFeld(x-2,y+1,dieGui.iBlauesFeld,"blau");
+				
+			}
+			
+			
+			
+			} catch (Exception e) {
+			
+		
+		
+			}
+		
+	//----------------------------------------------------------------------
+	 //Unten rechts
+
+	try {
+		
+		if (dieGui.pruefeObVerbuendeter(x+2, y+1)==true) {
+			
+			
+			
+		} else if(dieGui.pruefeObGegner(x+2,y+1)!="-1"){
+			
+			gegnerString = dieGui.pruefeObGegner(x+2, y+1);
+			
+			dieGui.schreibeGegnerButton(x+2, y+1, gegnerString, button);
+			
+			
+
+		}else{
+			
+			dieGui.setzteFeld(x+2,y+1,dieGui.iBlauesFeld,"blau");
+			
+		}
+		
+		
+		
+		} catch (Exception e) {
+		
+
+
+		}
+
+	//----------------------------------------------------------------------
+	//oben links
+
+	try {
+
+	if (dieGui.pruefeObVerbuendeter(x-2, y-1)==true) {
+		
+		
+		
+	} else if(dieGui.pruefeObGegner(x-2,y-1)!="-1"){
+		
+		gegnerString = dieGui.pruefeObGegner(x-2, y-1);
+		
+		dieGui.schreibeGegnerButton(x-2, y-1, gegnerString, button);
+		
+		
+
+	}else{
+		
+		dieGui.setzteFeld(x-2,y-1,dieGui.iBlauesFeld,"blau");
+		
+	}
+
+
+
+	} catch (Exception e) {
+
+
+
+	}
+
+	//----------------------------------------------------------------------
+	//Oben rechts
+
+	try {
+
+	if (dieGui.pruefeObVerbuendeter(x+2, y-1)==true) {
+		
+		
+		
+	} else if(dieGui.pruefeObGegner(x+2,y-1)!="-1"){
+		
+		gegnerString = dieGui.pruefeObGegner(x+2, y-1);
+		
+		dieGui.schreibeGegnerButton(x+2, y-1, gegnerString, button);
+		
+		
+
+	}else{
+		
+		dieGui.setzteFeld(x+2,y-1,dieGui.iBlauesFeld,"blau");
+		
+	}
+
+
+
+	} catch (Exception e) {
+
+
+
+	}
+
+			
+	
+	//----------------------------------------------------------------------
+		// PFERD unten links
+		
+		try {
+			
+			if (dieGui.pruefeObVerbuendeter(x-1, y+2)==true) {
+				
+				
+				
+			} else if(dieGui.pruefeObGegner(x-1,y+2)!="-1"){
+				
+				gegnerString = dieGui.pruefeObGegner(x-1, y+2);
+				
+				dieGui.schreibeGegnerButton(x-1, y+2, gegnerString, button);
+				
+				
+
+			}else{
+				
+				dieGui.setzteFeld(x-1,y+2,dieGui.iBlauesFeld,"blau");
+				
+			}
+			
+			
+			
+			} catch (Exception e) {
+			
+		
+		
+			}
+		
+	//----------------------------------------------------------------------
+	 //Unten rechts
+
+	try {
+		
+		if (dieGui.pruefeObVerbuendeter(x+1, y+2)==true) {
+			
+			
+			
+		} else if(dieGui.pruefeObGegner(x+1,y+2)!="-1"){
+			
+			gegnerString = dieGui.pruefeObGegner(x+1, y+2);
+			
+			dieGui.schreibeGegnerButton(x+1, y+2, gegnerString, button);
+			
+			
+
+		}else{
+			
+			dieGui.setzteFeld(x+1,y+2,dieGui.iBlauesFeld,"blau");
+			
+		}
+		
+		
+		
+		} catch (Exception e) {
+		
+
+
+		}
+
+	//----------------------------------------------------------------------
+	//oben links
+
+	try {
+
+	if (dieGui.pruefeObVerbuendeter(x-1, y-2)==true) {
+		
+		
+		
+	} else if(dieGui.pruefeObGegner(x-1,y-2)!="-1"){
+		
+		gegnerString = dieGui.pruefeObGegner(x-1, y-2);
+		
+		dieGui.schreibeGegnerButton(x-1, y-2, gegnerString, button);
+		
+		
+
+	}else{
+		
+		dieGui.setzteFeld(x-1,y-2,dieGui.iBlauesFeld,"blau");
+		
+	}
+
+
+
+	} catch (Exception e) {
+
+
+
+	}
+
+	//----------------------------------------------------------------------
+	//Oben rechts
+
+	try {
+
+	if (dieGui.pruefeObVerbuendeter(x+1, y-2)==true) {
+		
+		
+		
+	} else if(dieGui.pruefeObGegner(x+1,y-2)!="-1"){
+		
+		gegnerString = dieGui.pruefeObGegner(x+1, y-2);
+		
+		dieGui.schreibeGegnerButton(x+1, y-2, gegnerString, button);
+		
+		
+
+	}else{
+		
+		dieGui.setzteFeld(x+1,y-2,dieGui.iBlauesFeld,"blau");
+		
+	}
+
+
+
+	} catch (Exception e) {
+
+
+
+	}
+
+			
+		} //Klammer ende Pferd bewegungsmustermethode
+//////////////////////////////////////////////////////////////////////////////////////////////////////		
+		
+//----------------------------------------------------BAUER SILBER _---------IF(y==6 && x!=0 && x!= 7)-------------------------------------------------------------
+		public void BauerSilberFeldHoch(String button, String arraySpielfeld [][]) {
+			
+			buttonKoordinaten = dieSteuerung.gibButtonKoordinaten(button);
+			
+			x= buttonKoordinaten [0];
+			y= buttonKoordinaten [1];
+			
+			if (y==6 && x!=0 && x!= 7) { //für die Züge aus der Startposition
+				//y-Achse runter füllen
+				
+				for (int i = 1; i < 3; i++) {
+					
+					try {
+						
+						if (dieGui.pruefeObVerbuendeter(x, y-i)==true) {
+						 //bauer kann ncith feld nach vorne wenn verbündeter drauf ist
+							break;
+							
+						}else if(dieGui.pruefeObGegner(x, y-i)!="-1") {
+							//bnauer kann nicht feld nach vorne wenn gegner drauf ist
+							gegnerString = dieGui.pruefeObGegner(x, y-i);
+							
+							break;
+					//----------------------------------------------------------------------
+					
+					}else if(dieGui.pruefeObGegner(x-1,y-1)!="-1"){
+							//bauer kann 1-2 felder vor oder 1 feld diagonal links gegner schlagen
+							dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+						    dieGui.setzteFeld(x, y-2, dieGui.iBlauesFeld,"blau");
+							
+							gegnerString = dieGui.pruefeObGegner(x-1, y-1);
+							
+							dieGui.schreibeGegnerButton(x-1, y-1,gegnerString,button);
+							
+							
+					//-----------------------------------------------------------------------	
+
+						}else if(dieGui.pruefeObGegner(x+1,y-1)!="-1"){
+							//bauer kann 1-2 felder vor oder 1 feld diagonal rechts gegner schlagen
+							gegnerString = dieGui.pruefeObGegner(x+1, y-1);
+							
+							dieGui.schreibeGegnerButton(x+1, y-1,gegnerString,button);
+							
+							dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+						    dieGui.setzteFeld(x, y-2, dieGui.iBlauesFeld,"blau");
+							
+							
+					//------------------------------------------------------------------------
+							
+						}else{
+							dieGui.setzteFeld(x,y-i,dieGui.iBlauesFeld,"blau");     //funktioniert: bis zu 2 felder nach vorne ziehen
+						}
+						
+						
+					} catch (Exception e) {
+						break;
+					}
+					
+				}//Schleife ende For
+				
+				
+					}else { 
+			//gilt für alle buttons außerhalb "k"= die Startposition der Bauer
+				
+			
+									try {
+				
+										if (dieGui.pruefeObVerbuendeter(x, y-1)==true) {
+											
+										}else if(dieGui.pruefeObGegner(x, y-1)!="-1") {
+											//bnauer kann nicht feld nach vorne wenn gegner drauf ist
+											gegnerString = dieGui.pruefeObGegner(x, y-1);
+											
+											//Jemand steht vertikal vor bauer, sowie rechts bzw links diagonal vor ihm!
+											if(dieGui.pruefeObGegner(x+1,y-1)!="-1"){ 
+												
+												gegnerString = dieGui.pruefeObGegner(x+1, y-1);
+						
+												dieGui.schreibeGegnerButton(x+1, y-1, gegnerString, button);
+						
+											
+
+											}
+											if(dieGui.pruefeObGegner(x-1,y-1)!="-1"){
+						
+												gegnerString = dieGui.pruefeObGegner(x-1, y-1);
+						
+												dieGui.schreibeGegnerButton(x-1, y-1, gegnerString, button);
+						
+										
+
+											}
+					
+										
+					
+								} else if(dieGui.pruefeObGegner(x+1,y-1)!="-1"){
+					
+											gegnerString = dieGui.pruefeObGegner(x+1, y-1);
+					
+											dieGui.schreibeGegnerButton(x+1, y-1, gegnerString, button);
+					
+											dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+
+										}else if(dieGui.pruefeObGegner(x-1,y-1)!="-1"){
+					
+											gegnerString = dieGui.pruefeObGegner(x-1, y-1);
+					
+											dieGui.schreibeGegnerButton(x-1, y-1, gegnerString, button);
+					
+											dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+					
+
+										}else{
+					
+											dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+					
+										}
+				
+				
+				
+									} catch (Exception e) {
+				
+									}
+			
+								} //Else ende klammer if(y==6 && x!=0 && x!=7)
+			
+			//-----------------------------------------------------IF(y==6 && x==0)-------------------------------------------------------------------------
+			
+			if (y==6 && x==0) { //für die Züge aus der Startposition
+				//y-Achse runter füllen
+				
+				for (int i = 1; i < 3; i++) {
+					
+					try {
+						
+						if (dieGui.pruefeObVerbuendeter(x, y-i)==true) {
+						 //bauer kann ncith feld nach vorne wenn verbündeter drauf ist
+							break;
+							
+						}else if(dieGui.pruefeObGegner(x, y-i)!="-1") {
+							//bnauer kann nicht feld nach vorne wenn gegner drauf ist
+							gegnerString = dieGui.pruefeObGegner(x, y-i);
+							
+							break;
+					//----------------------------------------------------------------------
+				
+						}else if(dieGui.pruefeObGegner(x+1,y-1)!="-1"){
+							//bauer kann 1-2 felder vor oder 1 feld diagonal rechts gegner schlagen
+							gegnerString = dieGui.pruefeObGegner(x+1, y-1);
+							
+							dieGui.schreibeGegnerButton(x+1, y-1,gegnerString,button);
+							
+							dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+						    dieGui.setzteFeld(x, y-2, dieGui.iBlauesFeld,"blau");
+							
+							
+					//------------------------------------------------------------------------
+							
+						}else{
+							dieGui.setzteFeld(x,y-i,dieGui.iBlauesFeld,"blau");     //funktioniert: bis zu 2 felder nach vorne ziehen
+						}
+						
+						
+					} catch (Exception e) {
+						break;
+					}
+					
+				}//Schleife ende For
+				
+				
+					}else { 
+			//gilt für alle buttons außerhalb "k"= die Startposition der Bauer
+				
+			
+									try {
+				
+										if (dieGui.pruefeObVerbuendeter(x, y-1)==true) {
+											
+										}else if(dieGui.pruefeObGegner(x, y-1)!="-1") {
+											//bnauer kann nicht feld nach vorne wenn gegner drauf ist
+											gegnerString = dieGui.pruefeObGegner(x, y-1);
+											
+											//Jemand steht vertikal vor bauer, sowie rechts bzw links diagonal vor ihm!
+											if(dieGui.pruefeObGegner(x+1,y-1)!="-1"){ 
+												
+												gegnerString = dieGui.pruefeObGegner(x+1, y-1);
+						
+												dieGui.schreibeGegnerButton(x+1, y-1, gegnerString, button);
+						
+											
+
+											}
+									
+					
+										
+					
+								} else if(dieGui.pruefeObGegner(x+1,y-1)!="-1"){
+					
+											gegnerString = dieGui.pruefeObGegner(x+1, y-1);
+					
+											dieGui.schreibeGegnerButton(x+1, y-1, gegnerString, button);
+					
+											dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+
+								}else{
+					
+											dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+					
+										}
+				
+				
+				
+									} catch (Exception e) {
+				
+									}
+			
+								} //Else ende klammer IF(y==6 &&x==0)
+			//--------------------------------------------------------IF(y==6 && x==7)-----------------------------------------------------------
+			if (y==6 && x==7) { //für die Züge aus der Startposition
+				//y-Achse runter füllen
+				
+				for (int i = 1; i < 3; i++) {
+					
+					try {
+						
+						if (dieGui.pruefeObVerbuendeter(x, y-i)==true) {
+						 //bauer kann ncith feld nach vorne wenn verbündeter drauf ist
+							break;
+							
+						}else if(dieGui.pruefeObGegner(x, y-i)!="-1") {
+							//bnauer kann nicht feld nach vorne wenn gegner drauf ist
+							gegnerString = dieGui.pruefeObGegner(x, y-i);
+							
+							break;
+					//----------------------------------------------------------------------
+					
+					}else if(dieGui.pruefeObGegner(x-1,y-1)!="-1"){
+							//bauer kann 1-2 felder vor oder 1 feld diagonal links gegner schlagen
+							dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+						    dieGui.setzteFeld(x, y-2, dieGui.iBlauesFeld,"blau");
+							
+							gegnerString = dieGui.pruefeObGegner(x-1, y-1);
+							
+							dieGui.schreibeGegnerButton(x-1, y-1,gegnerString,button);
+							
+							
+					//-----------------------------------------------------------------------	
+
+							
+						}else{
+							dieGui.setzteFeld(x,y-i,dieGui.iBlauesFeld,"blau");     //funktioniert: bis zu 2 felder nach vorne ziehen
+						}
+						
+						
+					} catch (Exception e) {
+						break;
+					}
+					
+				}//Schleife ende For
+				//--------------------------------------------------------------------------------------------
+				
+					}else { 
+			//gilt für alle buttons außerhalb "k"= die Startposition der Bauer
+				
+			
+									try {
+				
+										if (dieGui.pruefeObVerbuendeter(x, y-1)==true) {
+											
+										}else if(dieGui.pruefeObGegner(x, y-1)!="-1") {
+											//bnauer kann nicht feld nach vorne wenn gegner drauf ist
+											gegnerString = dieGui.pruefeObGegner(x, y-1);
+											
+											//Jemand steht vertikal vor bauer, sowie rechts bzw links diagonal vor ihm!
+											
+											if(dieGui.pruefeObGegner(x-1,y-1)!="-1"){
+						
+												gegnerString = dieGui.pruefeObGegner(x-1, y-1);
+						
+												dieGui.schreibeGegnerButton(x-1, y-1, gegnerString, button);
+						
+											}
+						
+					
+									}else if(dieGui.pruefeObGegner(x-1,y-1)!="-1"){
+					
+											gegnerString = dieGui.pruefeObGegner(x-1, y-1);
+					
+											dieGui.schreibeGegnerButton(x-1, y-1, gegnerString, button);
+					
+											dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+					
+
+										}else{
+					
+											dieGui.setzteFeld(x,y-1,dieGui.iBlauesFeld,"blau");
+					
+										}
+				
+				
+				
+									} catch (Exception e) {
+				
+									}
+			
+								} //Else ende klammer IF(y==6 && x==7)
+			}//Methodenende BauerSilber
+		
+	
+	
+//-------------------------------------------------------------------------------------------------------------------	
 	
 	// Assoziation mit Gui:
 	
