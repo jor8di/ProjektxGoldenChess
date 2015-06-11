@@ -20,13 +20,13 @@ public class Turm {
 					
 					dieBewegungsmuster.dieGui.figurAmZug = "tuGold";
 					
-					  dieBewegungsmuster.setzteAktuelleFigur(button,"tuGoldDBH","tuGold");
+					  dieBewegungsmuster.setzteAktuelleFigur(button,"tuGoldDBH");
 					
 				} else {
 					
 					dieBewegungsmuster.dieGui.figurAmZug = "tuSilber";
 					
-				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"tuSilberDBH","tuSilber");
+				   	 dieBewegungsmuster.setzteAktuelleFigur(button,"tuSilberDBH");
 
 				}
 		
