@@ -18,12 +18,12 @@ public class Bauer {
 			
 			dieBewegungsmuster.dieGui.figurAmZug = "baGold";
 			
-			  dieBewegungsmuster.setzteAktuelleFigur(button,"baGoldDBH","baGold");
+			  dieBewegungsmuster.setzteAktuelleFigur(button,"baGoldDBH");
 			 
 			
 	}  else{
 			
-		   	 dieBewegungsmuster.setzteAktuelleFigur(button,"baSilberDBH","baSilber");
+		   	 dieBewegungsmuster.setzteAktuelleFigur(button,"baSilberDBH");
 
 		   	dieBewegungsmuster.dieGui.figurAmZug = "baSilber";
 		   	 
@@ -47,7 +47,7 @@ public class Bauer {
 			
 			dieBewegungsmuster.dieGui.figurAmZug = "baSilber";
 			
-			  dieBewegungsmuster.setzteAktuelleFigur(button,"baSilberDBH","baSilber");
+			  dieBewegungsmuster.setzteAktuelleFigur(button,"baSilberDBH");
 			 
 			
 		} 
@@ -60,3 +60,4 @@ public class Bauer {
 }
 	
 
+ 
