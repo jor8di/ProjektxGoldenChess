@@ -4,29 +4,12 @@ public class Ausführung {
 	public static void main(String[] args) {
 		
 		//String arraySpielfeld[][] = new String[8][8];
-		Bewegungsmuster dieBewegungsmuster;
-		dieBewegungsmuster = new Bewegungsmuster();
-		Actionlistener dieActionlistener;
-		dieActionlistener = new Actionlistener();
+		Bewegungsmuster dieBewegungsmuster = new Bewegungsmuster();
+		Actionlistener dieActionlistener = new Actionlistener();
 		
 		Gui startfenster = new Gui(dieBewegungsmuster,dieActionlistener);
 		
 		startfenster.setVisible(true);
-		
-		/*arraySpielfeld = startfenster.erstelleSpielfeldArray();
-		
-		for (int i = 0; i < 8; i++) {
-			
-			for (int j = 0; j < 8; j++) {
-				
-				System.out.print(arraySpielfeld[j][i]);
-				
-				
-				
-			}
-			
-			System.out.println();
-		}*/
 		
 
 	}
