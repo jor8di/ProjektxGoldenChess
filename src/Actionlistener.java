@@ -100,7 +100,7 @@ public class Actionlistener implements ActionListener{
     public void actionPerformed (ActionEvent ae){
         // Die Quelle wird mit getSource() abgefragt und mit den
         // Buttons abgeglichen. Wenn die Quelle des ActionEvents einer
-        // der Buttons ist, wird der Text des JLabels entsprechend geändert
+        // der Buttons ist, wird der Text des JLabels entsprechend geÃ¤ndert
         if(ae.getSource() == this.dieGui.bA1){
         	button = "bA1";
         	action(button);
