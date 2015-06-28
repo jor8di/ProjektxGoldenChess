@@ -100,7 +100,7 @@ public class Actionlistener implements ActionListener{
     public void actionPerformed (ActionEvent ae){
         // Die Quelle wird mit getSource() abgefragt und mit den
         // Buttons abgeglichen. Wenn die Quelle des ActionEvents einer
-        // der Buttons ist, wird der Text des JLabels entsprechend geÃ¤ndert
+        // der Buttons ist, wird der Text des JLabels entsprechend geändert
         if(ae.getSource() == this.dieGui.bA1){
         	button = "bA1";
         	action(button);
@@ -362,7 +362,20 @@ public class Actionlistener implements ActionListener{
     		
     		dieGui.arraySpielfeld = dieGui.dieSteuerung.dreheSpielfeld(dieGui.arraySpielfeld);
 			
-			dieGui.überschreibeButtons(dieGui.arraySpielfeld); }
+			dieGui.überschreibeButtons(dieGui.arraySpielfeld); 
+			
+			if (dieGui.goldOben == true) {
+				
+				dieGui.goldOben = false;
+				
+			} else {
+				
+				dieGui.goldOben = true;
+
+			}
+			
+			
+			}
 		}
        
         
