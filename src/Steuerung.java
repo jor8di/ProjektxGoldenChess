@@ -430,7 +430,7 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 					break;
 					
 			  case "baGold":
-				  	derBauer.bauerGoldClicked(button, arraySpielfeld);
+				  	derBauer.bauerClicked(button, arraySpielfeld);
 				  	dieBewegungsmuster.dieGui.istAmZug= true;
 					break;
 
@@ -476,7 +476,7 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 						break;
 						
 				  case "baSilber":
-					  derBauer.bauerSilberClicked(button,arraySpielfeld);
+					  derBauer.bauerClicked(button,arraySpielfeld);
 					  dieBewegungsmuster.dieGui.istAmZug= true;
 						break;
 
@@ -558,7 +558,6 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 	public void bewegen(int buttonKoordinaten[], String button){
 		
 		
-		
 		int xFigurAmZug = buttonKoordinaten[0];
 		int yFigurAmZug = buttonKoordinaten[1];
 		
@@ -597,6 +596,8 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 				  dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "laSilberRH" || dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "daSilberRH" ||
 				  dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "koSilberRH" || dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]== "baSilberRH" ){
 
+			labelbesetztung(xFigurAufFeld, yFigurAufFeld);
+			
 			dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld] = dieBewegungsmuster.dieGui.figurAmZug; 
 			
 			dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAmZug][yFigurAmZug] = ""; 
@@ -699,4 +700,98 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 		
 		
 	}
+	
+	//Beschreiben der Label links und rechts vom Spielfeld
+	
+	public void labelbesetztung(int xFigurAufFeld, int yFigurAufFeld) {
+		
+		switch (dieBewegungsmuster.dieGui.arraySpielfeld[xFigurAufFeld][yFigurAufFeld]) {
+		//cases für gold
+		case "tuGoldRH":
+			dieBewegungsmuster.dieGui.lRechtsFigur2.setIcon(dieBewegungsmuster.dieGui.iGoldenerTurmWH);
+			dieBewegungsmuster.dieGui.lRechtsAnzahl2.setText(labelerhoehung(dieBewegungsmuster.dieGui.lRechtsAnzahl2.getText()));
+			break;
+			
+		case "pfGoldRH":
+			dieBewegungsmuster.dieGui.lRechtsFigur3.setIcon(dieBewegungsmuster.dieGui.iGoldenesPferdWH);
+			dieBewegungsmuster.dieGui.lRechtsAnzahl3.setText(labelerhoehung(dieBewegungsmuster.dieGui.lRechtsAnzahl3.getText()));
+			break;
+			
+		case "laGoldRH":
+			dieBewegungsmuster.dieGui.lRechtsFigur4.setIcon(dieBewegungsmuster.dieGui.iGoldenerLaeuferWH);
+			dieBewegungsmuster.dieGui.lRechtsAnzahl4.setText(labelerhoehung(dieBewegungsmuster.dieGui.lRechtsAnzahl4.getText()));
+			break;
+			
+		case "daGoldRH":
+			dieBewegungsmuster.dieGui.lRechtsFigur5.setIcon(dieBewegungsmuster.dieGui.iGoldeneDameWH);
+			dieBewegungsmuster.dieGui.lRechtsAnzahl5.setText(labelerhoehung(dieBewegungsmuster.dieGui.lRechtsAnzahl5.getText()));
+			break;
+			
+		case "koGoldRH":
+			dieBewegungsmuster.dieGui.lRechtsFigur6.setIcon(dieBewegungsmuster.dieGui.iGoldenerKoenigWH);
+			dieBewegungsmuster.dieGui.lRechtsAnzahl6.setText(labelerhoehung(dieBewegungsmuster.dieGui.lRechtsAnzahl6.getText()));
+			break;
+			
+		case "baGoldRH":
+			dieBewegungsmuster.dieGui.lRechtsFigur1.setIcon(dieBewegungsmuster.dieGui.iGoldenerBauerWH);
+			dieBewegungsmuster.dieGui.lRechtsAnzahl1.setText(labelerhoehung(dieBewegungsmuster.dieGui.lRechtsAnzahl1.getText()));
+			break;
+			
+		//cases für silber	
+			
+		case "tuSilberRH":
+			dieBewegungsmuster.dieGui.lLinksFigur2.setIcon(dieBewegungsmuster.dieGui.iSilbernerTurmWH);
+			dieBewegungsmuster.dieGui.lLinksAnzahl2.setText(labelerhoehung(dieBewegungsmuster.dieGui.lLinksAnzahl2.getText()));
+			break;
+			
+		case "pfSilberRH":
+			dieBewegungsmuster.dieGui.lLinksFigur3.setIcon(dieBewegungsmuster.dieGui.iSilbernesPferdWH);
+			dieBewegungsmuster.dieGui.lLinksAnzahl3.setText(labelerhoehung(dieBewegungsmuster.dieGui.lLinksAnzahl3.getText()));
+			break;
+			
+		case "laSilberRH":
+			dieBewegungsmuster.dieGui.lLinksFigur4.setIcon(dieBewegungsmuster.dieGui.iSilbernerLaeuferWH);
+			dieBewegungsmuster.dieGui.lLinksAnzahl4.setText(labelerhoehung(dieBewegungsmuster.dieGui.lLinksAnzahl4.getText()));
+			break;
+			
+		case "daSilberRH":
+			dieBewegungsmuster.dieGui.lLinksFigur5.setIcon(dieBewegungsmuster.dieGui.iSilberneDameWH);
+			dieBewegungsmuster.dieGui.lLinksAnzahl5.setText(labelerhoehung(dieBewegungsmuster.dieGui.lLinksAnzahl5.getText()));
+			break;
+			
+		case "koSilberRH":
+			dieBewegungsmuster.dieGui.lLinksFigur6.setIcon(dieBewegungsmuster.dieGui.iSilbernerKoenigWH);
+			dieBewegungsmuster.dieGui.lLinksAnzahl6.setText(labelerhoehung(dieBewegungsmuster.dieGui.lLinksAnzahl6.getText()));
+			break;
+			
+		case "baSilberRH":
+			dieBewegungsmuster.dieGui.lLinksFigur1.setIcon(dieBewegungsmuster.dieGui.iSilbernerBauerWH);
+			dieBewegungsmuster.dieGui.lLinksAnzahl1.setText(labelerhoehung(dieBewegungsmuster.dieGui.lLinksAnzahl1.getText()));
+			break;
+
+		default:
+			break;
+		}
+		
+	}
+	
+	public String labelerhoehung(String labelString) {
+		
+		if (labelString.equals("")) {
+			
+			labelString = "0";
+			
+		}
+		
+		int zahl;
+		
+		zahl = Integer.parseInt(labelString);
+		zahl++;
+		
+		labelString = "" + zahl;
+		
+		return labelString;
+	}
+	
+	
 }
