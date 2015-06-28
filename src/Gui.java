@@ -102,7 +102,11 @@ public class Gui extends JFrame{
 	JButton bSpielfeldDreher;
 	
 	//Label für das Anzeigen der geschlagenen Figuren
+	JLabel lLinksLeer;
+	JLabel lRechtsLeer;
+	
 	//linke Seite
+	JLabel lLinksAnzeige;
 	//Figur
 	JLabel lLinksFigur1;
 	JLabel lLinksFigur2;
@@ -120,6 +124,23 @@ public class Gui extends JFrame{
 	JLabel lLinksAnzahl6;
 	
 	
+	//rechte Seite
+	JLabel lRechtsAnzeige;
+	//Figur
+	JLabel lRechtsFigur1;
+	JLabel lRechtsFigur2;
+	JLabel lRechtsFigur3;
+	JLabel lRechtsFigur4;
+	JLabel lRechtsFigur5;
+	JLabel lRechtsFigur6;
+	
+	//Anzahl
+	JLabel lRechtsAnzahl1;
+	JLabel lRechtsAnzahl2;
+	JLabel lRechtsAnzahl3;
+	JLabel lRechtsAnzahl4;
+	JLabel lRechtsAnzahl5;
+	JLabel lRechtsAnzahl6;
 	
 	//ImageIcons für unbesetzte Felder
 	ImageIcon iWeißesFeld; 
@@ -192,6 +213,7 @@ public class Gui extends JFrame{
 	JPanel pBrett;
 	JPanel pUnten;
 	JPanel pLinks;
+	JPanel pRechts;
 	JPanel pContentpane;
 	
 	
@@ -302,7 +324,9 @@ public class Gui extends JFrame{
 		pBrett = new JPanel();
 		pBrett = erstelleSpielfeldGridlayout();
 		
+		panelRechtsErstellen();
 		panelLinksErstellen();
+		
 		
 		pUnten = new JPanel(new FlowLayout());
 		pUnten.add(bSpielfeldDreher);
@@ -311,13 +335,15 @@ public class Gui extends JFrame{
 		pContentpane.add(pBrett,BorderLayout.CENTER);
 		pContentpane.add(pUnten,BorderLayout.SOUTH);
 		pContentpane.add(pLinks,BorderLayout.WEST);
+		pContentpane.add(pRechts,BorderLayout.EAST);
+		
 		
 		this.setContentPane(pContentpane);
 		
 		this.pack();
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
-		this.setSize(1200,1000);
+		this.setSize(1500,1000);
 		
 		
 		
@@ -509,21 +535,45 @@ public class Gui extends JFrame{
 	
 	public void labelErstellung() {
 		
+		lLinksLeer = new JLabel("");
+		lRechtsLeer = new JLabel("");
+		
+		lLinksAnzeige = new JLabel("geschlagene Figuren Silber");
+		
 		//LinksFigur
-		lLinksFigur1 = new JLabel(iGoldenerBauerWH);
-		lLinksFigur2 = new JLabel(iGoldenerTurmWH);
-		lLinksFigur3 = new JLabel(iGoldenesPferdWH);
-		lLinksFigur4 = new JLabel(iGoldenerLaeuferWH);
-		lLinksFigur5 = new JLabel(iGoldeneDameWH);
-		lLinksFigur6 = new JLabel(iGoldenerKoenigWH);
+		lLinksFigur1 = new JLabel("");
+		lLinksFigur2 = new JLabel("");
+		lLinksFigur3 = new JLabel("");
+		lLinksFigur4 = new JLabel("");
+		lLinksFigur5 = new JLabel("");
+		lLinksFigur6 = new JLabel("");
 		
 		//LinksAnzahl
-		lLinksAnzahl1 = new JLabel("1");
-		lLinksAnzahl2 = new JLabel("2");
-		lLinksAnzahl3 = new JLabel("3");
-		lLinksAnzahl4 = new JLabel("4");
-		lLinksAnzahl5 = new JLabel("5");
-		lLinksAnzahl6 = new JLabel("6");
+		lLinksAnzahl1 = new JLabel("");
+		lLinksAnzahl2 = new JLabel("");
+		lLinksAnzahl3 = new JLabel("");
+		lLinksAnzahl4 = new JLabel("");
+		lLinksAnzahl5 = new JLabel("");
+		lLinksAnzahl6 = new JLabel("");
+		
+		
+		lRechtsAnzeige = new JLabel("geschlagene Figuren Gold");
+		
+		//RechtsFigur
+		lRechtsFigur1 = new JLabel("");
+		lRechtsFigur2 = new JLabel("");
+		lRechtsFigur3 = new JLabel("");
+		lRechtsFigur4 = new JLabel("");
+		lRechtsFigur5 = new JLabel("");
+		lRechtsFigur6 = new JLabel("");
+				
+		//RechtsAnzahl
+		lRechtsAnzahl1 = new JLabel("");
+		lRechtsAnzahl2 = new JLabel("");
+		lRechtsAnzahl3 = new JLabel("");
+		lRechtsAnzahl4 = new JLabel("");
+		lRechtsAnzahl5 = new JLabel("");
+		lRechtsAnzahl6 = new JLabel("");
 		
 		
 	}
@@ -532,7 +582,10 @@ public class Gui extends JFrame{
 	
 	public void panelLinksErstellen() {
 		
-		pLinks = new JPanel(new GridLayout(6,2));
+		pLinks = new JPanel(new GridLayout(7,2));
+		
+		pLinks.add(lLinksAnzeige);
+		pLinks.add(lLinksLeer);
 		
 		pLinks.add(lLinksFigur1);
 		pLinks.add(lLinksAnzahl1);
@@ -553,6 +606,36 @@ public class Gui extends JFrame{
 		pLinks.add(lLinksAnzahl6);
 		
 	}
+	
+	
+	//Erstellung des Panels rechts vom Spielfeld
+	
+		public void panelRechtsErstellen() {
+			
+			pRechts = new JPanel(new GridLayout(7,2));
+			
+			pRechts.add(lRechtsAnzeige);
+			pRechts.add(lRechtsLeer);
+			
+			pRechts.add(lRechtsFigur1);
+			pRechts.add(lRechtsAnzahl1);
+			
+			pRechts.add(lRechtsFigur2);
+			pRechts.add(lRechtsAnzahl2);
+			
+			pRechts.add(lRechtsFigur3);
+			pRechts.add(lRechtsAnzahl3);
+			
+			pRechts.add(lRechtsFigur4);
+			pRechts.add(lRechtsAnzahl4);
+			
+			pRechts.add(lRechtsFigur5);
+			pRechts.add(lRechtsAnzahl5);
+			
+			pRechts.add(lRechtsFigur6);
+			pRechts.add(lRechtsAnzahl6);
+			
+		}
 	
 	
 	//erstelle einen zweidimensionalen Stringarray------------------------------------------------------
