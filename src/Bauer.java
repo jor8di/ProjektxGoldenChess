@@ -12,47 +12,67 @@ public class Bauer {
 
 	
 	//feld mit bauer wurde geklickt-------------------------
-	public void bauerGoldClicked(String button, String[][] arraySpielfeld) {
+	public void bauerClicked(String button, String[][] arraySpielfeld) {
 		
-		if (dieBewegungsmuster.getSpieler().equals("gold")) {
+		if (dieBewegungsmuster.dieGui.goldOben == true) {
 			
-			dieBewegungsmuster.dieGui.figurAmZug = "baGold";
-			
-			  dieBewegungsmuster.setzteAktuelleFigur(button,"baGoldDBH");
-			 
-			
-	}  else{
-			
-		   	 dieBewegungsmuster.setzteAktuelleFigur(button,"baSilberDBH");
-
-		   	dieBewegungsmuster.dieGui.figurAmZug = "baSilber";
-		   	 
-		}
-		
-		if (dieBewegungsmuster.dieGui.goldOben ) {
-			dieBewegungsmuster.BauerGoldFeldRunter(button, arraySpielfeld);
-		}else{
-			dieBewegungsmuster.BauerSilberFeldHoch(button, arraySpielfeld);
-		}
-		
-		
-	}
-	
-	
-	
-
-	public void bauerSilberClicked(String button, String[][] arraySpielfeld) {
-	
-		if (dieBewegungsmuster.getSpieler().equals("silber")) {
-			
-			dieBewegungsmuster.dieGui.figurAmZug = "baSilber";
-			
-			  dieBewegungsmuster.setzteAktuelleFigur(button,"baSilberDBH");
-			 
-			
+			if (dieBewegungsmuster.getSpieler().equals("gold")) {
+				
+				dieBewegungsmuster.dieGui.figurAmZug = "baGold";
+				
+				  dieBewegungsmuster.setzteAktuelleFigur(button,"baGoldDBH");	
+				  
+				  dieBewegungsmuster.BauerFeldRunter(button, arraySpielfeld);
+				  
+				  
 		} 
+			
 		
-		dieBewegungsmuster.BauerSilberFeldHoch(button, arraySpielfeld);
+		
+			if (dieBewegungsmuster.getSpieler().equals("silber")) {
+				
+				dieBewegungsmuster.dieGui.figurAmZug = "baSilber";
+				
+				  dieBewegungsmuster.setzteAktuelleFigur(button,"baSilberDBH");
+				  
+				  dieBewegungsmuster.BauerFeldHoch(button, arraySpielfeld);
+				  
+			} 
+			
+			
+			
+			
+			
+		} else {
+			
+			
+			if (dieBewegungsmuster.getSpieler().equals("gold")) {
+				
+				dieBewegungsmuster.dieGui.figurAmZug = "baGold";
+				
+				  dieBewegungsmuster.setzteAktuelleFigur(button,"baGoldDBH");	
+				  
+				  dieBewegungsmuster.BauerFeldHoch(button, arraySpielfeld);
+				  
+				  
+		} 
+			
+		
+		
+			if (dieBewegungsmuster.getSpieler().equals("silber")) {
+				
+				dieBewegungsmuster.dieGui.figurAmZug = "baSilber";
+				
+				  dieBewegungsmuster.setzteAktuelleFigur(button,"baSilberDBH");
+				  
+				  dieBewegungsmuster.BauerFeldRunter(button, arraySpielfeld);
+				  
+			} 
+			
+			
+			
+
+		}
 	
 		
 	}
