@@ -14,11 +14,12 @@ public class Menu extends JFrame implements ActionListener {
 
 
 
-private JButton schliessen;
+private JButton starten;
 private JButton einstellung;
 private JButton info;
 private JButton ende;
 private JButton anleitung;
+
 
 
 
@@ -33,7 +34,7 @@ private JButton anleitung;
 
 	dasMenu.setSize(900,700);
 	
-	//dasMenu.setLayout(null); // nichts, das Layout wird selber gemacht
+	dasMenu.setLayout(null); // nichts, das Layout wird selber gemacht
 	
 	dasMenu.setVisible(true); 
 	
@@ -46,10 +47,10 @@ private JButton anleitung;
 		
 		super(title); 
 		
-		schliessen = new JButton("Spiel starten"); // Name zeigt an , dass das Spiel gestartet wird und das Menu beim Klicken geschlossen wird.
-		schliessen.setBounds(250,80,400,60);    //a,b = Größe des Buttons ; c,d = Position der Buttons
-		schliessen.addActionListener(this);
-		add(schliessen);							// wird der Oberfläche hinzugefügt
+		starten = new JButton("Spiel starten"); // Name zeigt an , dass das Spiel gestartet wird und das Menu beim Klicken geschlossen wird.
+		starten.setBounds(250,80,400,60);    //a,b = Größe des Buttons ; c,d = Position der Buttons
+		starten.addActionListener(this);
+		add(starten);		// wird der Oberfläche hinzugefügt
 		
 		einstellung = new JButton("Einstellungen");
 		einstellung.setBounds(280, 190, 340, 40);
@@ -77,7 +78,7 @@ private JButton anleitung;
 	   
 	   
 		
-		JLabel label = new JLabel("Made by Golden Chess Team ");
+		JLabel label = new JLabel("Golden Chess Team ");
 		label.setBounds(700,630,150,20);
 		add(label);
 		
@@ -94,7 +95,7 @@ private JButton anleitung;
 	public void actionPerformed(ActionEvent e){ // für die ereignisse der Buttons
 		
 		
-		if (e.getSource() == schliessen){  //das ereignis löst aus 
+		if (e.getSource() == starten){ 
 			fenster();	
 			
 			
@@ -102,7 +103,7 @@ private JButton anleitung;
 		
 		if (e.getSource() == info){
 			Object[] options = { "OK"}; // OK button auf dem Fenster wenn man auf info klcikt
-			JOptionPane.showOptionDialog(null, "Programmiert von J.Kolb & A.Uka", "Information", //message box
+			JOptionPane.showOptionDialog(null, "Programmiert von Josias Kolb & Arbnor Uka", "Information", //message box
 
 			        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
 
@@ -111,7 +112,7 @@ private JButton anleitung;
 		
 		if (e.getSource() == einstellung){
 			Object[] options = { "OK"};
-			JOptionPane.showOptionDialog(null, "Hier können Sie die Zeit einstellen.", "Information",  
+			JOptionPane.showOptionDialog(null , "Hier können Sie die Zeit einstellen.", "Information",  
 
 			        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
 
@@ -126,7 +127,7 @@ private JButton anleitung;
 		}
 		
 		if (e.getSource() == anleitung){
-			tutorial();
+			tutorial(); //methode Tutorial wird ausgeführt die das Cardlayout aus der Klasse CardLayout ruft.
 			
 			
 			
@@ -137,26 +138,32 @@ private JButton anleitung;
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 	
 	private void tutorial() {
-	 JFrame tutorial = new JFrame("Anleitung");
-	 tutorial.setVisible(true);
+		//Hier kommuniziert das Menu mit der Klasse CardLayoutAnleitung
+		CardLayoutAnleitung dieAnleitung;
+		dieAnleitung = new CardLayoutAnleitung();
+		
+	
+
+	
 	
 	}
 	
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 	public static void fenster(){
+		/*Hier kommuniziert das Menu mit den Klassen Bewegungsmuster und Actionlistener
+		 * Und erhält somit einen Zugriff auf die Gui */
 		
 		Bewegungsmuster dieBewegungsmuster;
 		dieBewegungsmuster = new Bewegungsmuster();
 		Actionlistener dieActionListener;
 		dieActionListener = new Actionlistener();
-		
-		JFrame fenster = new JFrame("ProjektSchachspiel");
-		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
+	
+
 		Gui startfenster = new Gui(dieBewegungsmuster,dieActionListener);
-		
-		startfenster.setVisible(true);
 	
+		startfenster.setVisible(true);
+
 	}
 	
 	
