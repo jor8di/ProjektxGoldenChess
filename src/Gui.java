@@ -142,6 +142,15 @@ public class Gui extends JFrame{
 	JLabel lRechtsAnzahl5;
 	JLabel lRechtsAnzahl6;
 	
+	//JLAbel zur Anzeige wer gerade am Zug ist + Strings
+	
+	JLabel lZugAnzeige;
+	
+	String goldenerSpielerAmZug = "goldener Spieler ist am Zug ...";
+	
+	String silbernerSpielerAmZug = "silberner Spieler ist am Zug ...";
+	
+	
 	//ImageIcons für unbesetzte Felder
 	ImageIcon iWeißesFeld; 
 	ImageIcon iSchwarzesFeld;
@@ -214,6 +223,7 @@ public class Gui extends JFrame{
 	JPanel pUnten;
 	JPanel pLinks;
 	JPanel pRechts;
+	JPanel pOben;
 	JPanel pContentpane;
 	
 	
@@ -331,11 +341,15 @@ public class Gui extends JFrame{
 		pUnten = new JPanel(new FlowLayout());
 		pUnten.add(bSpielfeldDreher);
 		
+		pOben = new JPanel(new FlowLayout());
+		pOben.add(lZugAnzeige);
+		
 		pContentpane.setLayout(new BorderLayout());
 		pContentpane.add(pBrett,BorderLayout.CENTER);
 		pContentpane.add(pUnten,BorderLayout.SOUTH);
 		pContentpane.add(pLinks,BorderLayout.WEST);
 		pContentpane.add(pRechts,BorderLayout.EAST);
+		pContentpane.add(pOben,BorderLayout.NORTH);
 		
 		
 		this.setContentPane(pContentpane);
@@ -575,6 +589,9 @@ public class Gui extends JFrame{
 		lRechtsAnzahl5 = new JLabel("");
 		lRechtsAnzahl6 = new JLabel("");
 		
+		//gold als erstes am Zug => 
+		
+		lZugAnzeige = new JLabel(goldenerSpielerAmZug);
 		
 	}
 	
