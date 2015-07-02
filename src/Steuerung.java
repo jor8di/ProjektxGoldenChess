@@ -581,10 +581,13 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 			if (dieBewegungsmuster.dieGui.spieler.equals("gold")) {
 				
 				dieBewegungsmuster.dieGui.spieler = "silber";
+				dieBewegungsmuster.dieGui.lZugAnzeige.setText(dieBewegungsmuster.dieGui.silbernerSpielerAmZug);
+				
 				
 			} else {
 				
 				dieBewegungsmuster.dieGui.spieler = "gold";
+				dieBewegungsmuster.dieGui.lZugAnzeige.setText(dieBewegungsmuster.dieGui.goldenerSpielerAmZug);
 
 			}
 			
@@ -611,10 +614,12 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 			if (dieBewegungsmuster.dieGui.spieler.equals("gold")) {
 				
 				dieBewegungsmuster.dieGui.spieler = "silber";
+				dieBewegungsmuster.dieGui.lZugAnzeige.setText(dieBewegungsmuster.dieGui.silbernerSpielerAmZug);
 				
 			} else {
 				
 				dieBewegungsmuster.dieGui.spieler = "gold";
+				dieBewegungsmuster.dieGui.lZugAnzeige.setText(dieBewegungsmuster.dieGui.goldenerSpielerAmZug);
 
 			}
 			
