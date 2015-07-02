@@ -1,0 +1,345 @@
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.text.StyledEditorKit.ForegroundAction;
+
+public class CardLayoutAnleitung {
+	JFrame frame = new JFrame("Anleitung");
+	JPanel panelCont = new JPanel();
+	
+	//Die Anleitungsseiten werden erzeugt
+	JPanel panelStart = new JPanel();
+	JPanel panelStart2 = new JPanel();
+	JPanel panelBauerStart = new JPanel();
+	JPanel panelBauer1 = new JPanel();
+	JPanel panelBauer2 = new JPanel();
+	JPanel panelBauer3 = new JPanel();
+	JPanel panelBauer4 = new JPanel();
+	JPanel panelKoenig = new JPanel();
+	JPanel panelDame   = new JPanel();
+	JPanel panelLaeufer= new JPanel();
+	JPanel panelTurm   = new JPanel();
+	JPanel panelPferd  = new JPanel();
+	
+	//Die notwendigen Buttons für das Umblättern
+	
+	JButton vor1	= new JButton("Nächste Seite");
+	JButton vor2	= new JButton("Nächste Seite");
+	JButton vor3	= new JButton("Nächste Seite");
+	JButton vor4	= new JButton("Nächste Seite");
+	JButton vor5	= new JButton("Nächste Seite");
+	JButton vor6	= new JButton("Nächste Seite");
+	JButton vor7	= new JButton("Nächste Seite");
+	JButton vor8	= new JButton("Nächste Seite");
+	JButton vor9	= new JButton("Nächste Seite");
+	JButton vor10	= new JButton("Nächste Seite");
+	JButton vor11	= new JButton("Nächste Seite");
+	
+	
+	JButton back1 = new JButton("vorherige Seite");
+	JButton back2 = new JButton("vorherige Seite");
+	JButton back3 = new JButton("vorherige Seite");
+	JButton back4 = new JButton("vorherige Seite");
+	JButton back5 = new JButton("vorherige Seite");
+	JButton back6 = new JButton("vorherige Seite");
+	JButton back7 = new JButton("vorherige Seite");
+	JButton back8 = new JButton("vorherige Seite");
+	JButton back9 = new JButton("vorherige Seite");
+	JButton back10 = new JButton("vorherige Seite");
+	JButton back11 = new JButton("vorherige Seite");
+
+	CardLayout cl = new CardLayout();
+
+	//Die ImageIcon für die Hintergründe für das jeweilige Panel. Es wird einfach der Hintergrund gesetzt den wir zuvor in Photoshop bearbeitet haben.
+	
+	ImageIcon bauerAnleitung;
+	ImageIcon bauer1;
+	ImageIcon bauer2;
+	ImageIcon bauer3;
+	ImageIcon bauer4;
+	
+	ImageIcon anleitungStart;
+	ImageIcon anleitung1;
+	
+	ImageIcon pferdAnleitung;
+	ImageIcon dameAnleitung;
+	ImageIcon koenigAnleitung;
+	ImageIcon laeuferAnleitung;
+	ImageIcon turmAnleitung;
+	
+	//-----------------------------------------------------------------------
+	public CardLayoutAnleitung() {
+//Initialisierung der Imageicons
+		bauerAnleitung = new ImageIcon("/Anleitung/BaueranleitungStart0.jpg");
+		 bauer1 = new ImageIcon("/Anleitung/Baueranleitung1.jpg");
+		 bauer2 = new ImageIcon("/Anleitung/Baueranleitung2.jpg");
+		 bauer3 = new ImageIcon("/Anleitung/Baueranleitung3.jpg");
+		 bauer4 = new ImageIcon("/Anleitung/Baueranleitung4.jpg");
+		
+		 anleitungStart = new ImageIcon("/Anleitung/Anleitungstart.jpg");
+		 anleitung1 = new ImageIcon("/Anleitung/Anleitungstart.jpg");
+		
+		 pferdAnleitung = new ImageIcon("/Anleitung/Pferdanleitung.jpg");
+		 dameAnleitung = new ImageIcon("/Anleitung/Damenanleitung.jpg");
+		 koenigAnleitung = new ImageIcon("/Anleitung/Koeniganleitung.jpg");
+		 laeuferAnleitung = new ImageIcon("/Anleitung/Laeuferanleitung.jpg");
+		 turmAnleitung = new ImageIcon("/Anleitung/Turmanleitung.jpg");
+		
+		
+		
+		//das setzen
+		panelCont.setLayout(cl);
+		
+		//Welches Panel was enthält!
+		
+		panelStart.add(new JLabel(anleitungStart));
+		panelStart.add(vor1);
+		//_______________________________________________
+		panelStart2.add(new JLabel(anleitung1));
+		panelStart2.add(vor2);
+		panelStart2.add(back1);
+		//_______________________________________________
+		
+		panelBauerStart.add(back1); //zuerst vorherige seite button
+		panelBauerStart.add(new JLabel(bauerAnleitung)); // dann das Panel mit dem Bild
+		panelBauerStart.add(vor3); // zum schluss dann "nächste Seite" button
+		//_______________________________________________
+		panelBauer1.add(back3);
+		panelBauer1.add(new JLabel(bauer1));
+		panelBauer1.add(vor4);
+		//_______________________________________________
+		panelBauer2.add(back4);
+		panelBauer2.add(new JLabel(bauer2));
+		panelBauer2.add(vor5);
+		//_______________________________________________
+		panelBauer3.add(back5);
+		panelBauer3.add(new JLabel(bauer3));
+		panelBauer3.add(vor6);
+		//_______________________________________________
+		panelBauer4.add(back6);
+		panelBauer4.add(new JLabel(bauer4));
+		panelBauer4.add(vor7);
+		//_______________________________________________
+		panelTurm.add(back7);
+		panelTurm.add(new JLabel(turmAnleitung));
+		panelTurm.add(vor8);
+		//_______________________________________________
+		panelLaeufer.add(back8);
+		panelLaeufer.add(new JLabel(laeuferAnleitung));
+		panelLaeufer.add(vor9);
+		//_______________________________________________
+		panelPferd.add(back9);
+		panelPferd.add(new JLabel(pferdAnleitung));
+		panelPferd.add(vor10);
+		//_______________________________________________
+		panelDame.add(back10);
+		panelDame.add(new JLabel(dameAnleitung));
+		panelDame.add(vor11);
+		//_______________________________________________
+		panelKoenig.add(back11);
+		panelKoenig.add(new JLabel(koenigAnleitung));
+		
+		
+		//Die Deklarierung der Panels, mit ("Panelname" , "X") können wir später bei den Actionlistener die Reihenfolge direkt festlegen.
+		panelCont.add(panelStart,"1");
+		panelCont.add(panelBauerStart, "2");
+		panelCont.add(panelBauer1,"3");
+		panelCont.add(panelBauer2,"4");
+		panelCont.add(panelBauer3, "5");
+		panelCont.add(panelBauer4,"6");
+		panelCont.add(panelTurm,"7");
+		panelCont.add(panelLaeufer, "8");
+		panelCont.add(panelPferd,"9");
+		panelCont.add(panelDame,"10");
+		panelCont.add(panelKoenig, "11");
+		panelCont.add(panelStart2,"0");
+		
+		
+		//Der Anfangspanel der gezeigt wird.
+		cl.show(panelCont, "1");
+		
+
+		//:::::::::::::::::::::::::::::::::::::::::::Actionlistener für Umblättern:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::	
+
+		vor1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "0");
+			}
+		});
+		//--------------------------------------------------
+		back1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "1");
+			}
+		});
+		//--------------------------------------------------
+
+		vor2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "2");
+			}
+		});
+		//--------------------------------------------------
+		back2.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "0");
+			}
+		});
+		//--------------------------------------------------
+
+		vor3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "3");
+			}
+		});
+		//--------------------------------------------------
+		back3.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "2");
+			}
+		});
+		//--------------------------------------------------
+
+		vor4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "4");
+			}
+		});
+		//--------------------------------------------------
+		back4.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "3");
+			}
+		});
+		//--------------------------------------------------
+
+		vor5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "5");
+			}
+		});
+		//--------------------------------------------------
+		back5.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "4");
+			}
+		});
+		//--------------------------------------------------
+
+		vor6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "6");
+			}
+		});
+		//--------------------------------------------------
+		back6.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "5");
+			}
+		});
+		//--------------------------------------------------
+
+		vor7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "7");
+			}
+		});
+		//--------------------------------------------------
+		back7.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "6");
+			}
+		});
+		//--------------------------------------------------
+
+		vor8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "8");
+			}
+		});
+		//--------------------------------------------------
+		back8.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "7");
+			}
+		});
+		//--------------------------------------------------
+
+		vor9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "9");
+			}
+		});
+		//--------------------------------------------------
+		back9.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "8");
+			}
+		});
+		//--------------------------------------------------
+
+		vor10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "10");
+			}
+		});
+		//--------------------------------------------------
+		back10.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "9");
+			}
+		});
+		//--------------------------------------------------
+
+		vor11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "11");
+			}
+		});
+		//--------------------------------------------------
+		back11.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelCont, "10");
+			}
+		});
+		//--------------------------------------------------
+
+		//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		frame.add(panelCont);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
+		
+}
+
+	public static void main(String[] args) { //wird nicht benötigt
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				new CardLayoutAnleitung();
+			}
+		});
+	}
+
+}
