@@ -10,7 +10,7 @@ import javax.swing.*;
 
 
 public class Gui extends JFrame{
-
+	
 	//Welcher Spieler ist am Zug?
 	
 	String spieler="gold";
@@ -150,6 +150,9 @@ public class Gui extends JFrame{
 	
 	String silbernerSpielerAmZug = "silberner Spieler ist am Zug ...";
 	
+	//JLabel zur Anzeige wie viel Zeit übrig bleibt
+	
+	JLabel lZeitAnzeige;
 	
 	//ImageIcons für unbesetzte Felder
 	ImageIcon iWeißesFeld; 
@@ -228,13 +231,11 @@ public class Gui extends JFrame{
 	
 	
 	
-	Gui(Bewegungsmuster b,Actionlistener a){
+	Gui(Bewegungsmuster b,Actionlistener a, int zeitProZug){
 		dieBewegungsmuster = b;
 		dieActionlistener = a;
 		
-		dieSteuerung = new Steuerung(dieBewegungsmuster);
-		
-		
+		dieSteuerung = new Steuerung(dieBewegungsmuster, zeitProZug);
 		
 		dieActionlistener.linkGui(this);
 		
@@ -339,7 +340,10 @@ public class Gui extends JFrame{
 		
 		
 		pUnten = new JPanel(new FlowLayout());
+		
+		pUnten.add(lZeitAnzeige);
 		pUnten.add(bSpielfeldDreher);
+		
 		
 		pOben = new JPanel(new FlowLayout());
 		pOben.add(lZugAnzeige);
@@ -433,6 +437,7 @@ public class Gui extends JFrame{
 		bH6 = new JButton(iSilbernerLaeuferWH);
 		bH7 = new JButton(iSilbernesPferdSH);
 		bH8 = new JButton(iSilbernerTurmWH);
+		
 		
 		
 		bSpielfeldDreher = new JButton("Drehmeister");
@@ -592,6 +597,10 @@ public class Gui extends JFrame{
 		//gold als erstes am Zug => 
 		
 		lZugAnzeige = new JLabel(goldenerSpielerAmZug);
+		
+		
+		lZeitAnzeige = new JLabel("");
+		
 		
 	}
 	
