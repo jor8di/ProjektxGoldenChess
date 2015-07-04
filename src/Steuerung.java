@@ -15,8 +15,14 @@ public class Steuerung {
 	Bauer derBauer;
 	Pferd dasPferd;
 	
-	Steuerung(Bewegungsmuster b){
+	int zeitProZug;
+	ZugZeitCounter Counterthread;
+	Menu dasMenu;
 	
+	Steuerung(Bewegungsmuster b, int zeitProZug){
+	
+		this.zeitProZug = zeitProZug;
+		
 		dieBewegungsmuster = b;
 		dieBewegungsmuster.linkSteuerung(this);
 		
@@ -27,6 +33,10 @@ public class Steuerung {
 		derKoenig = new Koenig(b);
 		derBauer = new Bauer(b);
 		dasPferd = new Pferd(b);
+		
+		Counterthread = new ZugZeitCounter(dieBewegungsmuster.dieGui);
+		
+	
 	}
 	
 	// Gibt die dem Button entsprechende Stringstelle im array
@@ -419,13 +429,13 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 					
 			  case "daGold":
 				  
-					dieDame.clicked(button,arraySpielfeld);
+					dieDame.dameClicked(button,arraySpielfeld);
 					dieBewegungsmuster.dieGui.istAmZug= true;
 					break;
 					
 			  case "koGold":
 				  
-				  	derKoenig.clicked(button,arraySpielfeld);
+				  	derKoenig.koenigClicked(button,arraySpielfeld);
 				  	dieBewegungsmuster.dieGui.istAmZug= true;
 					break;
 					
@@ -465,13 +475,13 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 						
 				  case "daSilber":
 					  
-						dieDame.clicked(button,arraySpielfeld);
+						dieDame.dameClicked(button,arraySpielfeld);
 						dieBewegungsmuster.dieGui.istAmZug= true;
 						break;
 						
 				  case "koSilber":
 					  
-					  	derKoenig.clicked(button,arraySpielfeld);
+					  	derKoenig.koenigClicked(button,arraySpielfeld);
 					  	dieBewegungsmuster.dieGui.istAmZug= true;
 						break;
 						
@@ -583,11 +593,17 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 				dieBewegungsmuster.dieGui.spieler = "silber";
 				dieBewegungsmuster.dieGui.lZugAnzeige.setText(dieBewegungsmuster.dieGui.silbernerSpielerAmZug);
 				
+				//timer reseten
+				dasMenu.Counterthread.löschen(zeitProZug);
+				
 				
 			} else {
 				
 				dieBewegungsmuster.dieGui.spieler = "gold";
 				dieBewegungsmuster.dieGui.lZugAnzeige.setText(dieBewegungsmuster.dieGui.goldenerSpielerAmZug);
+				
+				//timer reseten
+				dasMenu.Counterthread.löschen(zeitProZug);
 
 			}
 			
@@ -616,10 +632,16 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 				dieBewegungsmuster.dieGui.spieler = "silber";
 				dieBewegungsmuster.dieGui.lZugAnzeige.setText(dieBewegungsmuster.dieGui.silbernerSpielerAmZug);
 				
+				//timer reseten
+				dasMenu.Counterthread.löschen(zeitProZug);
+				
 			} else {
 				
 				dieBewegungsmuster.dieGui.spieler = "gold";
 				dieBewegungsmuster.dieGui.lZugAnzeige.setText(dieBewegungsmuster.dieGui.goldenerSpielerAmZug);
+				
+				//timer reseten
+				dasMenu.Counterthread.löschen(zeitProZug);
 
 			}
 			
@@ -796,6 +818,13 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 		labelString = "" + zahl;
 		
 		return labelString;
+	}
+	
+	
+	public void linkMenu(Menu dasMenu) {
+		
+		this.dasMenu = dasMenu;
+		
 	}
 	
 	
