@@ -4,6 +4,8 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import org.w3c.dom.css.Counter;
+
 
 
 
@@ -11,15 +13,20 @@ import javax.swing.*;
 public class Menu extends JFrame implements ActionListener {
 	
 
-
-
+//Assoziation zur ZugZeitCounterklasse, um den Thread zu starten	
+ZugZeitCounter Counterthread;
+static Menu dasMenu;
 
 private JButton starten;
-private JButton einstellung;
+
+JTextField counter;
+
+//Variable, welcher die Minutenzahl des Textfeldes counter als Ganzzahl übergeben wird
+int zeitProZug;
+
 private JButton info;
 private JButton ende;
 private JButton anleitung;
-
 
 
 
@@ -28,7 +35,9 @@ private JButton anleitung;
 
 	
 		
-	Menu dasMenu = new Menu("Menü");
+	dasMenu = new Menu("Menü");
+	
+	
 	
 	dasMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -37,6 +46,8 @@ private JButton anleitung;
 	dasMenu.setLayout(null); // nichts, das Layout wird selber gemacht
 	
 	dasMenu.setVisible(true); 
+	
+	
 	
 																															
 	}
@@ -52,10 +63,11 @@ private JButton anleitung;
 		starten.addActionListener(this);
 		add(starten);		// wird der Oberfläche hinzugefügt
 		
-		einstellung = new JButton("Einstellungen");
-		einstellung.setBounds(280, 190, 340, 40);
-		einstellung.addActionListener(this);
-		add(einstellung);
+		
+		
+		counter = new JTextField();
+		counter.setBounds(400, 190, 220, 40);
+		add(counter);
 	
 		
 		info = new JButton("Credits");
@@ -82,6 +94,10 @@ private JButton anleitung;
 		label.setBounds(700,630,150,20);
 		add(label);
 		
+		JLabel zeitlabel = new JLabel("Zeiteinstellung:");
+		zeitlabel.setBounds(280, 190, 100, 40);
+		add(zeitlabel);
+		
 	
 		
 	}
@@ -94,9 +110,22 @@ private JButton anleitung;
 	
 	public void actionPerformed(ActionEvent e){ // für die ereignisse der Buttons
 		
-		
 		if (e.getSource() == starten){ 
-			fenster();	
+			
+			try {
+				zeitProZug = Integer.parseInt(counter.getText());
+			} catch (Exception e2) {
+				zeitProZug = 0;
+			}
+			
+			Gui startFenster = fenster(zeitProZug);
+			
+			if (zeitProZug>0) {
+				Counterthread = new ZugZeitCounter(startFenster);
+				Counterthread.start(zeitProZug);
+			}
+			
+			startFenster.dieSteuerung.linkMenu(dasMenu);
 			
 			
 		}
@@ -110,14 +139,7 @@ private JButton anleitung;
 			        null, options, options[0]);
 		}
 		
-		if (e.getSource() == einstellung){
-			Object[] options = { "OK"};
-			JOptionPane.showOptionDialog(null , "Hier können Sie die Zeit einstellen.", "Information",  
-
-			        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-
-			        null, options, options[0]);
-		}
+	
 		
 		
 		if (e.getSource() == ende){
@@ -149,7 +171,7 @@ private JButton anleitung;
 	}
 	
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-	public static void fenster(){
+	public static Gui fenster(int zeitProZug){
 		/*Hier kommuniziert das Menu mit den Klassen Bewegungsmuster und Actionlistener
 		 * Und erhält somit einen Zugriff auf die Gui */
 		
@@ -160,9 +182,11 @@ private JButton anleitung;
 	
 	
 
-		Gui startfenster = new Gui(dieBewegungsmuster,dieActionListener);
-	
+		Gui startfenster = new Gui(dieBewegungsmuster,dieActionListener,zeitProZug);
+		
 		startfenster.setVisible(true);
+		
+		return startfenster;
 
 	}
 	
