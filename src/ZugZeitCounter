@@ -1,0 +1,92 @@
+
+public class ZugZeitCounter implements Runnable {
+
+	Gui dieGui;
+	Thread countdown;
+	int zeitProZug;
+	int zeitProZugUnveraendert;
+	int neueZeit = 0;
+	
+	public ZugZeitCounter(Gui dieGui){
+		
+		this.dieGui = dieGui;
+		
+		countdown = new Thread(this);
+		
+		
+	}
+	
+	
+	
+	
+		@Override
+		public void run() {
+			
+			//Minuten in Sekunden umrechnen
+			zeitProZugUnveraendert = zeitProZug;
+			zeitProZug = zeitProZug*60;
+			
+			
+			while (zeitProZug>=0) {
+		
+				dieGui.lZeitAnzeige.setText(""+zeitProZug);
+				
+				zeitProZug--;
+				
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				if (neueZeit != 0) {
+					
+					zeitProZug = neueZeit;
+					neueZeit = 0;
+					
+				}
+				
+			}
+			
+			
+			dieGui.dieSteuerung.deleteFarbe();
+			
+			if (dieGui.spieler.equals("gold")) {
+				
+				dieGui.spieler = "silber";
+				dieGui.lZugAnzeige.setText(dieGui.silbernerSpielerAmZug);
+				
+				
+			} else {
+				
+				dieGui.spieler = "gold";
+				dieGui.lZugAnzeige.setText(dieGui.goldenerSpielerAmZug);
+				
+
+			}
+			
+			zeitProZug = zeitProZugUnveraendert;
+			run();
+			
+			
+		}
+		
+		
+		public void start(int zeitProZug) {
+			this.zeitProZug = zeitProZug;
+			countdown.start();
+			
+		}
+		
+		public void löschen(int zeitProZug) {
+			
+			neueZeit = zeitProZug * 60;
+			
+		}
+		
+		
+		
+	}
+	
+
