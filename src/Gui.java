@@ -12,7 +12,7 @@ import javax.swing.*;
 public class Gui extends JFrame{
 	
 	//Welcher Spieler ist am Zug?
-	
+
 	String spieler="gold";
 	
 	//Variable die angibt, wie rum das Spielfeld gedreht ist
@@ -97,6 +97,13 @@ public class Gui extends JFrame{
 	
 	JButton bH1,bH2,bH3,bH4,bH5,bH6,bH7,bH8;
 	
+	//Buttons und fensterframe für die Umwandlung
+	JFrame auswahl = new JFrame("Umwandlung");
+		JButton UDame;
+		JButton UPferd;
+		JButton ULaeufer;
+		JButton UTurm;
+	
 	//Button für das Drehen des Spielfeldes 
 	
 	JButton bSpielfeldDreher;
@@ -153,6 +160,10 @@ public class Gui extends JFrame{
 	//JLabel zur Anzeige wie viel Zeit übrig bleibt
 	
 	JLabel lZeitAnzeige;
+	
+	//ImageIcons für SIegerbildschirme
+	ImageIcon iSiegGold;
+	ImageIcon iSiegSilber;
 	
 	//ImageIcons für unbesetzte Felder
 	ImageIcon iWeißesFeld; 
@@ -254,6 +265,9 @@ public class Gui extends JFrame{
 		
 		arraySpielfeld = erstelleSpielfeldArray();
 		
+		//initialisiere Imagesicons von siegerbildschirmen
+		iSiegGold = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/GoldSieg.png");
+		iSiegSilber = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/SilberSieg.png");
 		
 		//initialisiere Imageicons mithilfe der Bilder im Ordner SchachfigurenBilderBearbeitet
 		iWeißesFeld = new ImageIcon("/Projekt Schachspiel/SchachfigurenBilderBearbeitet/WH.jpg");
@@ -364,7 +378,7 @@ public class Gui extends JFrame{
 		this.setSize(1500,1000);
 		
 		
-		
+	
 		
 		
 	}
@@ -443,8 +457,31 @@ public class Gui extends JFrame{
 		bSpielfeldDreher = new JButton("Drehmeister");
 		
 		
+		UDame = new JButton("Umwandlung in Dame");
+		UDame.setBounds(150, 90, 300, 50);
+		UTurm = new JButton("Umwandlung in Turm");
+		UTurm.setBounds(150, 170, 300, 50);
+		ULaeufer = new JButton("Umwandlung in Läufer");
+		ULaeufer.setBounds(150,250,300,50);		
+		UPferd = new JButton("Umwandlung in Pferd");
+		UPferd.setBounds(150, 330, 300, 50);
+		
 	}
-	
+
+    //Methode für die Umwandlung des Bauern ,nachdem er das andere Ende erreicht hat
+		void auswahl() {
+			
+			 auswahl.setSize(600, 500);
+			 auswahl.setLayout(null);
+			
+			auswahl.add(UDame);
+			
+			auswahl.add(UPferd);
+			auswahl.add(ULaeufer);
+			auswahl.add(UTurm);
+			auswahl.setVisible(true); 
+		
+	}
 	//Gebe Buttons Actionlistener-------------------------------------------------------------------
 	
 		public void erstelleActionLis() {
@@ -630,6 +667,7 @@ public class Gui extends JFrame{
 		
 		pLinks.add(lLinksFigur6);
 		pLinks.add(lLinksAnzahl6);
+		
 		
 	}
 	
@@ -1509,6 +1547,9 @@ public class Gui extends JFrame{
 		
 		
 	}
+
+	
+	
 	
 	
 }
