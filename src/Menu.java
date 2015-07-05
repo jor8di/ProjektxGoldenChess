@@ -1,6 +1,6 @@
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
 
 import javax.swing.*;
 
@@ -16,7 +16,7 @@ public class Menu extends JFrame implements ActionListener {
 //Assoziation zur ZugZeitCounterklasse, um den Thread zu starten	
 ZugZeitCounter Counterthread;
 static Menu dasMenu;
-
+Gui dieGui;
 private JButton starten;
 
 JTextField counter;
@@ -66,7 +66,7 @@ private JButton anleitung;
 		
 		
 		counter = new JTextField();
-		counter.setBounds(400, 190, 220, 40);
+		counter.setBounds(380, 190, 175, 40);
 		add(counter);
 	
 		
@@ -98,12 +98,13 @@ private JButton anleitung;
 		zeitlabel.setBounds(280, 190, 100, 40);
 		add(zeitlabel);
 		
-	
+		JLabel zeitMinuten = new JLabel("Minuten");
+		zeitMinuten.setBounds(572, 190, 60, 40);
+		add(zeitMinuten);
 		
 	}
 		
 
-	
 	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 	
 	
@@ -154,6 +155,8 @@ private JButton anleitung;
 			
 			
 		}
+		
+	
 	}
 	 
 	
@@ -175,6 +178,7 @@ private JButton anleitung;
 		/*Hier kommuniziert das Menu mit den Klassen Bewegungsmuster und Actionlistener
 		 * Und erhält somit einen Zugriff auf die Gui */
 		
+		
 		Bewegungsmuster dieBewegungsmuster;
 		dieBewegungsmuster = new Bewegungsmuster();
 		Actionlistener dieActionListener;
@@ -191,8 +195,10 @@ private JButton anleitung;
 	}
 	
 	
+	  
+
+       
+	
 	
 		}
 	
-	
-		
