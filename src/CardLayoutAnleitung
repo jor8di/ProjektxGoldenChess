@@ -87,7 +87,7 @@ public class CardLayoutAnleitung {
 		 bauer4 = new ImageIcon("/Anleitung/Baueranleitung4.jpg");
 		
 		 anleitungStart = new ImageIcon("/Anleitung/Anleitungstart.jpg");
-		 anleitung1 = new ImageIcon("/Anleitung/Anleitungstart.jpg");
+		 anleitung1 = new ImageIcon("/Anleitung/Anleitungstart2.jpg");
 		
 		 pferdAnleitung = new ImageIcon("/Anleitung/Pferdanleitung.jpg");
 		 dameAnleitung = new ImageIcon("/Anleitung/Damenanleitung.jpg");
@@ -105,12 +105,12 @@ public class CardLayoutAnleitung {
 		panelStart.add(new JLabel(anleitungStart));
 		panelStart.add(vor1);
 		//_______________________________________________
+		panelStart2.add(back1);
 		panelStart2.add(new JLabel(anleitung1));
 		panelStart2.add(vor2);
-		panelStart2.add(back1);
 		//_______________________________________________
 		
-		panelBauerStart.add(back1); //zuerst vorherige seite button
+		panelBauerStart.add(back2); //zuerst vorherige seite button
 		panelBauerStart.add(new JLabel(bauerAnleitung)); // dann das Panel mit dem Bild
 		panelBauerStart.add(vor3); // zum schluss dann "nächste Seite" button
 		//_______________________________________________
