@@ -1,3 +1,7 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 
 
 /**
@@ -18,6 +22,8 @@ public class Steuerung {
 	int zeitProZug;
 	ZugZeitCounter Counterthread;
 	Menu dasMenu;
+	
+	
 	
 	Steuerung(Bewegungsmuster b, int zeitProZug){
 	
@@ -700,7 +706,7 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="laSilber";
 					break;
 				case "daSilberRH": 
-					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="laSilber";
+					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="daSilber";
 					break;
 				case "koSilberRH":
 					dieBewegungsmuster.dieGui.arraySpielfeld[j][i]="koSilber";
@@ -757,8 +763,16 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 		case "koGoldRH":
 			dieBewegungsmuster.dieGui.lRechtsFigur6.setIcon(dieBewegungsmuster.dieGui.iGoldenerKoenigWH);
 			dieBewegungsmuster.dieGui.lRechtsAnzahl6.setText(labelerhoehung(dieBewegungsmuster.dieGui.lRechtsAnzahl6.getText()));
+		
+			//Siegerbildschrim!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
+			JFrame SiegSilber = new JFrame("Spieler Silber hat gewonnen");
+			JPanel panelSiegSilber = new JPanel();
+			panelSiegSilber.add(new JLabel(dieBewegungsmuster.dieGui.iSiegSilber));
+			SiegSilber.add(panelSiegSilber);
+			SiegSilber.setVisible(true);
+			SiegSilber.pack();
+			SiegSilber.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			break;
-			
 		case "baGoldRH":
 			dieBewegungsmuster.dieGui.lRechtsFigur1.setIcon(dieBewegungsmuster.dieGui.iGoldenerBauerWH);
 			dieBewegungsmuster.dieGui.lRechtsAnzahl1.setText(labelerhoehung(dieBewegungsmuster.dieGui.lRechtsAnzahl1.getText()));
@@ -789,6 +803,15 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 		case "koSilberRH":
 			dieBewegungsmuster.dieGui.lLinksFigur6.setIcon(dieBewegungsmuster.dieGui.iSilbernerKoenigWH);
 			dieBewegungsmuster.dieGui.lLinksAnzahl6.setText(labelerhoehung(dieBewegungsmuster.dieGui.lLinksAnzahl6.getText()));
+		//Siegerbildschrim!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
+			JFrame SiegGold = new JFrame("Spieler Silber hat gewonnen");
+			JPanel panelSiegGold = new JPanel();
+			panelSiegGold.add(new JLabel(dieBewegungsmuster.dieGui.iSiegGold));
+			SiegGold.add(panelSiegGold);
+			SiegGold.setVisible(true);
+			SiegGold.pack();
+			SiegGold.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 			break;
 			
 		case "baSilberRH":
@@ -820,6 +843,8 @@ public void rufeBewegungsMusterKlassen(String arraySpielfeld [][], String spiele
 		return labelString;
 	}
 	
+	
+
 	
 	public void linkMenu(Menu dasMenu) {
 		
