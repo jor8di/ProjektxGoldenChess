@@ -2,6 +2,9 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 public class Actionlistener implements ActionListener{
  
 	Gui dieGui;
@@ -89,6 +92,10 @@ public class Actionlistener implements ActionListener{
 			dieGui.bH7.addActionListener(this);
 			dieGui.bH8.addActionListener(this);
 			dieGui.bSpielfeldDreher.addActionListener(this);
+			dieGui.UDame.addActionListener(this);
+			dieGui.UTurm.addActionListener(this);
+			dieGui.ULaeufer.addActionListener(this);
+			dieGui.UPferd.addActionListener(this);
 			
 			
 		}
@@ -375,10 +382,49 @@ public class Actionlistener implements ActionListener{
 			}
 			
 			
-			
 			}
-		}
-       
+        
+    	else if(ae.getSource() == this.dieGui.UDame){
+    	
+				
+				dieGui.dieSteuerung.dieDame.dameClicked(button,dieGui.arraySpielfeld);
+				dieGui.dieSteuerung.dieBewegungsmuster.dieGui.istAmZug= true;
+				dieGui.auswahl.dispose();
+			
+	
+    	
+    	}
+    	else if(ae.getSource() == this.dieGui.UTurm){
+    		
+			
+				dieGui.dieSteuerung.derTurm.turmClicked(button,dieGui.arraySpielfeld);
+				dieGui.dieSteuerung.dieBewegungsmuster.dieGui.istAmZug= true;
+				dieGui.auswahl.dispose();
+			
+    	
+    	}
+    	else if(ae.getSource() == this.dieGui.UPferd){
+    		
+				dieGui.dieSteuerung.dasPferd.pferdClicked(button,dieGui.arraySpielfeld);
+				dieGui.dieSteuerung.dieBewegungsmuster.dieGui.istAmZug= true;
+				dieGui.auswahl.dispose();
+			
+			
+    	
+    	}
+    	else if(ae.getSource() == this.dieGui.ULaeufer){
+    		
+				
+				dieGui.dieSteuerung.derLaeufer.laeuferClicked(button,dieGui.arraySpielfeld);
+				dieGui.dieSteuerung.dieBewegungsmuster.dieGui.istAmZug= true;
+				dieGui.auswahl.dispose();
+			
+    	
+    	}
+    		
+    		
+    }
+  
         
         
     
